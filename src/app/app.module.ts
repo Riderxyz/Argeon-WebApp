@@ -55,10 +55,8 @@ import { MenuComponent } from './menu/menu.component';
     NbCheckboxModule,
     Ng2SmartTableModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
-
     RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
-      ,
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home', component: HomeComponent, data: {
           breadcrumbs: true,

@@ -12,16 +12,28 @@ export class GridComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any
   settings = {
+    actions:{
+     add: false,
+     edit:false,
+     delete:false
+   },
     columns: {
       nome: {
         title: 'Nome:'
-      }
+      },
+      habitantes: {
+        title: 'Habitantes'
+      },
+      lider: {
+        title: 'Lider'
+      },
+      populacao: {
+        title: 'População'
+      },
     }
   };
   constructor(public db: AngularFireDatabase) {
     this.getmenu()
-
-  
     
   }
 
@@ -29,7 +41,7 @@ export class GridComponent implements OnInit {
   }
 
   getmenu() {
-    this.db.list('MenuPrincipal').valueChanges()
+    this.db.list('Reinos').valueChanges()
       .subscribe((s) => {
         this.menuItems = s;
         console.log(s)
