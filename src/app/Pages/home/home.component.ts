@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
+import { GridComponent } from '../../Components/grid/grid.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

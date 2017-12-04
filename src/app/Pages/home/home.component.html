@@ -1,5 +1,29 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <h1>Argeon</h1>
+  </nb-layout-header>
+
+  <nb-sidebar class="menu-sidebar" responsive state="compacted">
+    <nb-sidebar-header>
+      
+    </nb-sidebar-header>
+    <ng-content select="nb-menu"></ng-content>
+    
+    <nb-sidebar-footer>
+      Footer components here
+    </nb-sidebar-footer>
+  </nb-sidebar>
+
+  <nb-layout-column>
+
+    <app-grid></app-grid>
+  </nb-layout-column>
+</nb-layout>
+
+<!-- 
+
 <ul>
   <li class="text" *ngFor="let item of menuItems">
     {{item.nome}}
   </li>
-</ul>
+</ul> -->

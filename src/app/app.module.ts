@@ -1,6 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+//Nebular
+import {
+  NbActionsModule,
+  NbCardModule,
+  NbLayoutModule,
+  NbMenuModule,
+  NbSidebarService,
+  NbRouteTabsetModule,
+  NbSearchModule,
+  NbSidebarModule,
+  NbTabsetModule,
+  NbThemeModule,
+  NbUserModule,
+  NbCheckboxModule, } from '@nebular/theme';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 //AngularFire
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -25,7 +41,21 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase),    
+    AngularFireModule.initializeApp(environment.firebase),
+    NbActionsModule,
+    NbCardModule,
+    NbLayoutModule,
+    NbMenuModule,
+    NbRouteTabsetModule,
+    NbSearchModule,
+    NbSidebarModule,
+    NbTabsetModule,
+    NbThemeModule,
+    NbUserModule,
+    NbCheckboxModule,
+    Ng2SmartTableModule,
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' }
       ,
@@ -37,7 +67,9 @@ import { MenuComponent } from './menu/menu.component';
       }
     ]),
   ],
-  providers: [],
+  providers: [NbSidebarService,
+    NbSidebarModule.forRoot().providers,
+    NbMenuModule.forRoot().providers],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
