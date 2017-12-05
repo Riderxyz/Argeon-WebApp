@@ -27,7 +27,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './Pages/home/home.component';
 //Componentes
 import { GridComponent } from './Components/grid/grid.component';
-import { MenuComponent } from './menu/menu.component';
+import { HeaderComponent } from './Components/header/header.component';
+//Serviços
+import { CacheServiceService } from './Service/cache-service.service';
 
 
 @NgModule({
@@ -35,7 +37,7 @@ import { MenuComponent } from './menu/menu.component';
     AppComponent,
     HomeComponent,
     GridComponent,
-    MenuComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,9 @@ import { MenuComponent } from './menu/menu.component';
   ],
   providers: [NbSidebarService,
     NbSidebarModule.forRoot().providers,
-    NbMenuModule.forRoot().providers],
-  bootstrap: [AppComponent]
+    NbMenuModule.forRoot().providers,
+    CacheServiceService],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

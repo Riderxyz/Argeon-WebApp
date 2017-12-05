@@ -3,6 +3,8 @@ import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { GridOptions } from "ag-grid";
+import { CacheServiceService } from './../../Service/cache-service.service';
+
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -11,13 +13,39 @@ import { GridOptions } from "ag-grid";
 export class GridComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any
+  colunas: any;
+
+  titulo:string;
   settings = {
-    actions:{
-     add: false,
-     edit:false,
-     delete:false
-   },
-    columns: {
+    actions: {
+      add: false,
+      edit: false,
+      delete: false
+    },
+    columns: {}
+  };
+  constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
+    this.getmenu()
+    console.log(this.settings.columns);
+    this.titulo = this.cacheSrv.TituloObj.Grid
+  }
+
+  ngOnInit() {
+    this.getcolunas()
+    this.settings.columns = this.colunas
+  }
+  getmenu() {
+    this.db.list('Reinos').valueChanges()
+      .subscribe((s) => {
+        this.menuItems = s
+        //this.titulo = 'Reinos'
+        console.log(s)
+
+      })
+  };
+
+  getcolunas() {
+    this.colunas = {
       nome: {
         title: 'Nome:'
       },
@@ -31,66 +59,9 @@ export class GridComponent implements OnInit {
         title: 'População'
       },
     }
-  };
-  constructor(public db: AngularFireDatabase) {
-    this.getmenu()
-    
   }
 
-  ngOnInit() {
-  }
 
-  getmenu() {
-    this.db.list('Reinos').valueChanges()
-      .subscribe((s) => {
-        this.menuItems = s;
-        console.log(s)
-
-      })
-  };
-
-
-
-  private static createColumnDefs() {
-    return [
-      {
-        headerName: "Row",
-        field: "row",
-        width: 150
-      },
-      {
-        headerName: "Square",
-        field: "value",
-        editable: true,
-        colId: "square",
-        width: 150
-      },
-      {
-        headerName: "Cube",
-        field: "value",
-        colId: "cube",
-        width: 150
-      },
-      {
-        headerName: "Row Params",
-        field: "row",
-        colId: "params",
-        width: 150
-      },
-      {
-        headerName: "Currency (Pipe)",
-        field: "currency",
-        colId: "currency",
-        width: 100
-      },
-      {
-        headerName: "Child/Parent",
-        field: "value",
-        colId: "params",
-        width: 180
-      }
-    ];
-  }
 
   //this.gridOptions = <GridOptions>{};
 

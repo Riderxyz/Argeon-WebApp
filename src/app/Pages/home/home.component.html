@@ -1,29 +1,25 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <h1>Argeon</h1>
+    <app-header></app-header>
   </nb-layout-header>
 
-  <nb-sidebar class="menu-sidebar" responsive state="compacted">
-    <nb-sidebar-header>
-      
-    </nb-sidebar-header>
-    <ng-content select="nb-menu"></ng-content>
-    
-    <nb-sidebar-footer>
-      Footer components here
-    </nb-sidebar-footer>
-  </nb-sidebar>
-
+      <nb-sidebar class="menu-sidebar" tag="menu-sidebar"  responsive>
+        <nb-sidebar-header>
+          <a href="#" class="btn btn-hero-success main-btn">
+            <i class="ion ion-social-github"></i> <span>Support Us</span>
+          </a>
+        </nb-sidebar-header>
+        <ul>
+            <li class="menu-items">
+                <a title="Dashboard" class="" href="#/pages/dashboard">
+                  <i class="menu-icon nb-home"></i>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+          </ul>
+      </nb-sidebar>
   <nb-layout-column>
 
     <app-grid></app-grid>
   </nb-layout-column>
 </nb-layout>
-
-<!-- 
-
-<ul>
-  <li class="text" *ngFor="let item of menuItems">
-    {{item.nome}}
-  </li>
-</ul> -->

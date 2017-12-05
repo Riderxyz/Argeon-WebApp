@@ -1,10 +1,10 @@
 
   <nb-card>
       <nb-card-header>
-        Smart Table
+        {{titulo}}
       </nb-card-header>
       <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="menuItems" (deleteConfirm)="onDeleteConfirm($event)">
+        <ng2-smart-table [settings]="settings" [source]="menuItems">
         </ng2-smart-table>
       </nb-card-body>
     </nb-card>
