@@ -6,6 +6,7 @@ import { NbSidebarModule, NbLayoutModule, NbSidebarService,NbMenuItem } from '@n
 import { GridComponent } from '../../Components/grid/grid.component';
 import { HeaderComponent } from '../../Components/header/header.component';
 import { CacheServiceService } from './../../Service/cache-service.service';
+import { ButtonsComponent } from '../../Components/buttons/buttons.component';
 
 @Component({
   selector: 'app-home',

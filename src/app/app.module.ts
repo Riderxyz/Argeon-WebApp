@@ -28,6 +28,7 @@ import { HomeComponent } from './Pages/home/home.component';
 //Componentes
 import { GridComponent } from './Components/grid/grid.component';
 import { HeaderComponent } from './Components/header/header.component';
+import { ButtonsComponent } from './Components/buttons/buttons.component';
 //Serviços
 import { CacheServiceService } from './Service/cache-service.service';
 
@@ -37,7 +38,8 @@ import { CacheServiceService } from './Service/cache-service.service';
     AppComponent,
     HomeComponent,
     GridComponent,
-    HeaderComponent
+    HeaderComponent,
+    ButtonsComponent
   ],
   imports: [
     BrowserModule,
