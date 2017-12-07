@@ -21,20 +21,26 @@ export class HomeComponent implements OnInit {
       title: 'PAGE LEVEL MENU',
       group: true,
     }]
+
+
+
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
-   // this.cacheSrv.TituloObj.Grid = 'Reinos'
   }
   ngOnInit() {
 
   }
 
-/*   getmenu() {
+  getmenu() {
     this.db.list('MenuPrincipal').valueChanges()
       .subscribe((s) => {
         this.menuItems = s;
         console.log(s)
+
       })
+
+      
+
   };
- */
+
 
 }

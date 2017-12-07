@@ -12,15 +12,13 @@ export class ButtonsComponent implements OnInit {
   themeName = 'cosmic';
   settings: Array<any>;
   themeSubscription: any;
-
   constructor(private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
     });
   }
-  ngOnInit() {    
-    
+  ngOnInit() {
 }
   init(colors: any) {
     this.settings = [{
@@ -29,7 +27,6 @@ export class ButtonsComponent implements OnInit {
       Destino: 'Grimorio',
       NameButton: 'Grimório',
       Name: 'Grimório: O Livro de Magias',
-      Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
         gradientRight: colors.primary,
@@ -43,7 +40,6 @@ export class ButtonsComponent implements OnInit {
       Destino: 'Reinos',
       NameButton: 'Reinos',
       Name: 'Os Reinos de Argeon',
-      Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
         gradientRight: colors.warning,
@@ -57,7 +53,6 @@ export class ButtonsComponent implements OnInit {
       Destino: 'Fichas de Usuario',
       NameButton: 'Jogadores',
       Name: 'Fichas dos Jogadores',
-      Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.success}, 20deg)`,
         gradientRight: colors.success,
@@ -71,7 +66,6 @@ export class ButtonsComponent implements OnInit {
       Destino: 'Clans',
       NameButton: 'Clãs',
       Name: 'Clãs de Argeon',
-      Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.info}, -10deg)`,
         gradientRight: colors.info,
@@ -105,10 +99,9 @@ export class ButtonsComponent implements OnInit {
     }];
   }
   Gerar(Botao) {
+    console.log('Funciona!', Botao)
     this.cacheSrv.TituloObj.Grid = Botao.Name;
     this.cacheSrv.DatabaseObj.Destino = Botao.Destino
-    this.cacheSrv.DatabaseObj.Executar = Botao.Execute
-    this.cacheSrv.MudarDados(Botao.Name)
+    console.log(this.cacheSrv);
   }
-  
 }

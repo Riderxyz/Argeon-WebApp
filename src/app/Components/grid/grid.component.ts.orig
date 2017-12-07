@@ -14,10 +14,8 @@ export class GridComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any
   colunas: any;
-  message: string
-  destino: string;
-  titulo: string;
-  execute: boolean
+  destino:string;
+  titulo:string;
   settings = {
     actions: {
       add: false,
@@ -27,37 +25,19 @@ export class GridComponent implements OnInit {
     columns: {}
   };
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
-    this.titulo = this.cacheSrv.TituloObj.Grid
-    this.execute = false
+    //this.getmenu()    
   }
 
   ngOnInit() {
     this.getcolunas()
     this.settings.columns = this.colunas
-    if (this.destino == null) {
-      this.destino = 'Reinos'
-      this.titulo = 'Os Reinos de Argeon'
-    }
-    this.message = 'Omega Max Megazord'
-    //this.getmenu()
-    //console.log(this.message);
-
   }
   getmenu() {
-    if (this.execute == true) {
-      this.db.list(this.destino).valueChanges()
-        .subscribe((s) => {
-          this.menuItems = s
-          //this.titulo = 'Reinos'
-          //console.log(s)
-          this.execute = false;
-        })
-    } else {
-     
-
-    }
-  }
-
+    this.db.list(this.destino).valueChanges()
+      .subscribe((s) => {
+        this.menuItems = s
+      })
+  };
   getcolunas() {
     this.colunas = {
       nome: {
@@ -74,18 +54,8 @@ export class GridComponent implements OnInit {
       },
     }
   }
-  ngDoCheck() {
-    this.titulo = this.cacheSrv.TituloObj.Grid
-    this.execute = this.cacheSrv.DatabaseObj.Executar
-    this.destino = this.cacheSrv.DatabaseObj.Destino
-    //this.getmenu()
-    this.cacheSrv.MensagemAtual.subscribe(message => this.message = message)
-    console.log(this.message);
-    this.getmenu()
 
-    //this.changeDetected = false;
-  }
-
+    
 
   //this.gridOptions = <GridOptions>{};
 
