@@ -57,6 +57,7 @@ export class ButtonsComponent implements OnInit {
       Destino: 'Fichas de Usuario',
       NameButton: 'Jogadores',
       Name: 'Fichas dos Jogadores',
+      
       Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.success}, 20deg)`,
@@ -82,8 +83,10 @@ export class ButtonsComponent implements OnInit {
     }, {
       class: 'btn-hero-danger',
       container: 'danger-container',
-      title: 'Danger Button',
-      buttonTitle: 'Danger',
+      Destino: 'Potions',
+      NameButton: 'Poções',
+      Name: 'Poções Magicas',
+      Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.danger}, -20deg)`,
         gradientRight: colors.danger,
@@ -91,11 +94,13 @@ export class ButtonsComponent implements OnInit {
         shadow: 'rgba (33, 7, 77, 0.5)',
         glow: `adjust-hue(${colors.danger}, -10deg)`,
       },
-    }, {
+    },  {
       class: 'btn-hero-secondary',
       container: 'secondary-container',
-      title: 'Ghost Button',
-      buttonTitle: 'Ghost',
+      Destino: 'MenuPrincipal',
+      NameButton: 'Menu',
+      Name: 'Menu Principal',
+      Execute: true,
       cosmic: {
         border: colors.primary,
         bevel: '#665ebd',
@@ -108,7 +113,12 @@ export class ButtonsComponent implements OnInit {
     this.cacheSrv.TituloObj.Grid = Botao.Name;
     this.cacheSrv.DatabaseObj.Destino = Botao.Destino
     this.cacheSrv.DatabaseObj.Executar = Botao.Execute
-    this.cacheSrv.MudarDados(Botao.Name)
+    this.cacheSrv.callComponentMethod();
   }
   
+  callMethod = function () {
+    this.cacheSrv.callComponentMethod();
+  }
+
+
 }
