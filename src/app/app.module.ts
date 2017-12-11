@@ -25,6 +25,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 //Paginas
 import { HomeComponent } from './Pages/home/home.component';
+import { NoticiasComponent } from './Pages/noticias/noticias.component';
+
 //Componentes
 import { GridComponent } from './Components/grid/grid.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -37,6 +39,7 @@ import { CacheServiceService } from './Service/cache-service.service';
   declarations: [
     AppComponent,
     HomeComponent,
+    NoticiasComponent,
     GridComponent,
     HeaderComponent,
     ButtonsComponent
@@ -65,6 +68,12 @@ import { CacheServiceService } from './Service/cache-service.service';
         path: 'home', component: HomeComponent, data: {
           breadcrumbs: true,
           text: 'Home'
+        }
+      },
+      {
+        path: 'noticias', component: NoticiasComponent, data: {
+          breadcrumbs: true,
+          text: 'Noticias'
         }
       }
     ]),

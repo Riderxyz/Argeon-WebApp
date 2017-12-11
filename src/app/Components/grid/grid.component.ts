@@ -25,6 +25,7 @@ export class GridComponent implements OnInit {
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
     this.execute = false
     this.titulo = 'Escolha uma Grid'
+    this.settings = {actions: {add: false,edit: false,delete: false }, columns: {}}
     this.cacheSrv.componentMethodCalled$.subscribe(
       () => {
         this.titulo = this.cacheSrv.TituloObj.Grid;
@@ -51,25 +52,26 @@ export class GridComponent implements OnInit {
 
   }
   getcolunas() {
+    this.settings = null
     if (this.cacheSrv.DatabaseObj.Destino == 'Reinos') {
       this.ColunaExibida = this.colunas.Reinos
-    }
+    };
     if (this.cacheSrv.DatabaseObj.Destino == 'Grimorio') {
       this.ColunaExibida = this.colunas.Magia
-    }
+    };
     if (this.cacheSrv.DatabaseObj.Destino == 'Fichas de Usuario') {
       this.ColunaExibida = this.colunas.Jogadores
-    }
+    };
     if (this.cacheSrv.DatabaseObj.Destino == 'Clans') {
       this.ColunaExibida = this.colunas.Clan
-    }
+    };
     if (this.cacheSrv.DatabaseObj.Destino == 'Potions') {
       this.ColunaExibida = this.colunas.Clan
-    }
+    };
     if (this.cacheSrv.DatabaseObj.Destino == 'MenuPrincipal') {
       this.ColunaExibida = this.colunas.Menu
       console.log(this.cacheSrv.DatabaseObj.Destino)
-    }
+    };
     this.colunas.Reinos = {
       nome: {
         title: 'Nome:'
