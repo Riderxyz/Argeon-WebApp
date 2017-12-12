@@ -13,7 +13,6 @@ import { CacheServiceService } from './../../Service/cache-service.service';
 export class GridComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any
-  colunaAtiva: {};
   ColunaExibida: any
   colunas = { Reinos: null, Jogadores: null, Magia: null, Clan: null, Potions:null,Menu:null }
   destino: string;
@@ -41,7 +40,6 @@ export class GridComponent implements OnInit {
 
   }
   getmenu() {
-
       this.db.list(this.destino).valueChanges()
         .subscribe((s) => {
           this.menuItems = s
