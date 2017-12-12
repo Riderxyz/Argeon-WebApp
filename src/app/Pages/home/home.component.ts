@@ -1,5 +1,5 @@
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { NoticiasComponent } from './../noticias/noticias.component';
+import { RouterModule, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -67,9 +67,9 @@ export class HomeComponent implements OnInit {
   }
 
   Gerar(Botao) {
-    this.router.navigate('noticias')
+    this.router.navigateByUrl('/noticias')
     console.log('Okay');
-    
+
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { CacheServiceService } from './../../Service/cache-service.service';
 import { GridComponent } from '../grid/grid.component';
-
+import { RouterModule, Router } from '@angular/router';
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
@@ -13,15 +13,15 @@ export class ButtonsComponent implements OnInit {
   settings: Array<any>;
   themeSubscription: any;
 
-  constructor(private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
+  constructor(private themeService: NbThemeService, public router: Router, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
     });
   }
-  ngOnInit() {    
-    
-}
+  ngOnInit() {
+
+  }
   init(colors: any) {
     this.settings = [{
       class: 'btn-hero-primary',
@@ -57,7 +57,7 @@ export class ButtonsComponent implements OnInit {
       Destino: 'Fichas de Usuario',
       NameButton: 'Jogadores',
       Name: 'Fichas dos Jogadores',
-      
+
       Execute: true,
       cosmic: {
         gradientLeft: `adjust-hue(${colors.success}, 20deg)`,
@@ -94,7 +94,7 @@ export class ButtonsComponent implements OnInit {
         shadow: 'rgba (33, 7, 77, 0.5)',
         glow: `adjust-hue(${colors.danger}, -10deg)`,
       },
-    },  {
+    }, {
       class: 'btn-hero-secondary',
       container: 'secondary-container',
       Destino: 'MenuPrincipal',
@@ -114,8 +114,9 @@ export class ButtonsComponent implements OnInit {
     this.cacheSrv.DatabaseObj.Destino = Botao.Destino
     this.cacheSrv.DatabaseObj.Executar = Botao.Execute
     this.cacheSrv.callComponentMethod();
+    //this.router.navigateByUrl('/noticias')
   }
-  
+
   callMethod = function () {
     this.cacheSrv.callComponentMethod();
   }

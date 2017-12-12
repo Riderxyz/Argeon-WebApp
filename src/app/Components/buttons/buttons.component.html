@@ -1,15 +1,12 @@
 <nb-card>
-<!--     <nb-card-header></nb-card-header> -->
-    <nb-card-body>
-      <div class="row">
-        <div class="example-container col-sm-6 col-md-4 col-xl-3 col-xxxl-2" *ngFor="let hb of settings">
-          <div class="container-btn">
-            <button class="btn {{ hb.class }} btn-demo" (click)="Gerar(hb)">{{ hb.NameButton }}</button>
-          </div>
+  <!--     <nb-card-header></nb-card-header> -->
+  <nb-card-body>
+    <div class="row">
+      <div class="example-container" *ngFor="let hb of settings">
+        <div class="container-btn">
+          <button class="btn {{ hb.class }} btn-demo" (click)="Gerar(hb)">{{ hb.NameButton }}</button>
         </div>
       </div>
-    </nb-card-body>
-  </nb-card>
-  
-
-
+    </div>
+  </nb-card-body>
+</nb-card>
