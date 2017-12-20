@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeService } from '@nebular/theme';
 import { GridComponent } from '../../Components/grid/grid.component';
 import { HeaderComponent } from '../../Components/header/header.component';
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any;
   themeName = 'cosmic';
+  layout: any = {};
+   protected layoutState$: Subscription;
   themeSubscription: any;
   settings: Array<any>;
   menu: NbMenuItem[] = [
@@ -31,7 +34,9 @@ export class HomeComponent implements OnInit {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
-    });
+      //this.layoutState$ = this.stateService.onLayoutState()
+     // .subscribe((layout: string) => this.layout = layout);
+   });
   }
   ngOnInit() {
 
@@ -67,9 +72,13 @@ export class HomeComponent implements OnInit {
   }
 
   Gerar(Botao) {
-    this.router.navigateByUrl('/noticias')
-    console.log('Okay');
-
+  
+    setTimeout(() => {
+      this.router.navigateByUrl('/noticias')
+    }, 30);
+    
   }
-
+  ngOnDestroy() {
+    //this.layoutState.unsubscribe();
+  }
 }

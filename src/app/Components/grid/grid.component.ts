@@ -18,7 +18,11 @@ export class GridComponent implements OnInit {
   destino: string;
   titulo: string;
   execute: boolean
-  settings:any
+  settings:any = {actions: {add: false,edit: false,delete: false }, columns: {
+    nome: {
+      title: 'Nome:'
+    },
+  }}
   //settings = {actions: {add: false,edit: false,delete: false }, columns: {}};
  // settings = {actions: {add: false,edit: false,delete: false }, columns: {}};
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
@@ -36,7 +40,7 @@ export class GridComponent implements OnInit {
     );
   }
   ngOnInit() {
-    this.getcolunas()
+   // this.getcolunas()
 
   }
   getmenu() {
@@ -47,10 +51,8 @@ export class GridComponent implements OnInit {
           //console.log(s)
           this.execute = false;
         })
-
   }
   getcolunas() {
-    this.settings = null
     if (this.cacheSrv.DatabaseObj.Destino == 'Reinos') {
       this.ColunaExibida = this.colunas.Reinos
     };
@@ -139,6 +141,33 @@ export class GridComponent implements OnInit {
     //this.settings.columns = this.ColunaExibida
     this.settings = {actions: {add: false,edit: false,delete: false }, columns: this.ColunaExibida};
   }
+
+
+
+  data = [
+    {
+      id: 1,
+      name: "Leanne Graham",
+      username: "Bret",
+      email: "Sincere@april.biz"
+    },
+    {
+      id: 2,
+      name: "Ervin Howell",
+      username: "Antonette",
+      email: "Shanna@melissa.tv"
+    },
+    
+    // ... list of items
+    
+    {
+      id: 11,
+      name: "Nicholas DuBuque",
+      username: "Nicholas.Stanton",
+      email: "Rey.Padberg@rosamond.biz"
+    }
+  ]
+  
   //this.gridOptions = <GridOptions>{};
 
 
