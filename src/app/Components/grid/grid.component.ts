@@ -40,15 +40,11 @@ export class GridComponent implements OnInit {
     );
   }
   ngOnInit() {
-   // this.getcolunas()
-
   }
   getmenu() {
       this.db.list(this.destino).valueChanges()
         .subscribe((s) => {
           this.menuItems = s
-          //this.titulo = 'Reinos'
-          //console.log(s)
           this.execute = false;
         })
   }
@@ -138,37 +134,7 @@ export class GridComponent implements OnInit {
         title: 'Nome:'
       }
     }
-    //this.settings.columns = this.ColunaExibida
     this.settings = {actions: {add: false,edit: false,delete: false }, columns: this.ColunaExibida};
   }
-
-
-
-  data = [
-    {
-      id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-      email: "Sincere@april.biz"
-    },
-    {
-      id: 2,
-      name: "Ervin Howell",
-      username: "Antonette",
-      email: "Shanna@melissa.tv"
-    },
-    
-    // ... list of items
-    
-    {
-      id: 11,
-      name: "Nicholas DuBuque",
-      username: "Nicholas.Stanton",
-      email: "Rey.Padberg@rosamond.biz"
-    }
-  ]
-  
-  //this.gridOptions = <GridOptions>{};
-
 
 }
