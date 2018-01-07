@@ -1,77 +1,120 @@
 nb-sidebar.settings-sidebar {
     $sidebar-width: 7.5rem;
-
     transition: width 0.3s ease;
     width: $sidebar-width;
     overflow: hidden;
-
     &.collapsed {
-      width: 0;
-
-      /deep/ .main-container {
         width: 0;
-
-        .scrollable {
-          width: $sidebar-width;
-          padding: 1.25rem;
+        /deep/ .main-container {
+            width: 0;
+            .scrollable {
+                width: $sidebar-width;
+                padding: 1.25rem;
+            }
         }
-      }
     }
-  }
+}
 
-  nb-sidebar.menu-sidebar {
-
+nb-sidebar.menu-sidebar {
     margin-top: nb-theme(sidebar-header-gap);
-
     /deep/ .main-container {
-      height:
-        calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)} - #{nb-theme(sidebar-header-gap)}) !important;
-      border-top-right-radius: nb-theme(radius);
+        height: calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)} - #{nb-theme(sidebar-header-gap)}) !important;
+        border-top-right-radius: nb-theme(radius);
     }
-
     /deep/ nb-sidebar-header {
-      padding-bottom: 0.5rem;
-      text-align: center;
+        padding-bottom: 0.5rem;
+        text-align: center;
     }
-
     background: transparent;
-
     .main-btn {
-      padding: 0.75rem 2.5rem;
-      margin-top: -2rem;
-      font-weight: bold;
-      transition: padding 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.48);
-
-      i {
-        font-size: 2rem;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-      }
-      span {
-        padding-left: 0.25rem;
-      }
-
-      i, span {
-        vertical-align: middle;
-      }
-    }
-
-    &.compacted {
-
-      /deep/ nb-sidebar-header {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .main-btn {
-        width: 46px;
-        height: 44px;
-        padding: 0.375rem;
-        border-radius: 5px;
-        transition: none;
-
-        span {
-          display: none;
+        padding: 0.75rem 2.5rem;
+        margin-top: -2rem;
+        font-weight: bold;
+        transition: padding 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.48);
+        i {
+            font-size: 2rem;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         }
-      }
+        span {
+            padding-left: 0.25rem;
+        }
+        i,
+        span {
+            vertical-align: middle;
+        }
     }
-  }
+    &.compacted {
+        /deep/ nb-sidebar-header {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .main-btn {
+            width: 46px;
+            height: 44px;
+            padding: 0.375rem;
+            border-radius: 5px;
+            transition: none;
+            span {
+                display: none;
+            }
+        }
+    }
+}
+
+.angrytext {
+    font-size: 70px;
+    font-weight: bold; //color: #4794D3; //width: 300px;
+    //margin: 90px auto;
+    -webkit-animation-name: bounce-in;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-delay: 0s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: normal;
+    -webkit-animation-fill-mode: none;
+    animation-name: bounce-in;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+}
+
+@-webkit-keyframes bounce-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3);
+        transform: scale(.3);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    51% {
+        opacity: 1;
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+    70% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    50% {
+        transform: scale(1);
+    }
+    51% {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+}

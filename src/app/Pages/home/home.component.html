@@ -6,21 +6,15 @@
   <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
     <nb-sidebar-header>
     </nb-sidebar-header>
-    <ul>
-      <div class="example-container" *ngFor="let hb of settings">
-        <div class="container-btn">
-          <button class="btn {{ hb.class }} btn-demo" (click)="Gerar(hb)" style="padding:10px">{{ hb.NameButton }}</button>
-        </div>
-      </div>
-    </ul>
+    <app-menu></app-menu>
   </nb-sidebar>
 
   <nb-layout-column>
-    <app-buttons></app-buttons>
-
-     <app-grid></app-grid> 
+    <div class="angrytext">
+      <app-buttons></app-buttons>
+    </div>
+    <app-grid></app-grid>
 
 
   </nb-layout-column>
 </nb-layout>
-

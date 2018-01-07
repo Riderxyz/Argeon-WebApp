@@ -14,7 +14,8 @@ import {
   NbTabsetModule,
   NbThemeModule,
   NbUserModule,
-  NbCheckboxModule, } from '@nebular/theme';
+  NbCheckboxModule,
+} from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 //AngularFire
@@ -31,8 +32,10 @@ import { NoticiasComponent } from './Pages/noticias/noticias.component';
 import { GridComponent } from './Components/grid/grid.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { ButtonsComponent } from './Components/buttons/buttons.component';
+import { MenuComponent } from './Components/menu/menu.component';
 //Serviços
 import { CacheServiceService } from './Service/cache-service.service';
+
 
 
 @NgModule({
@@ -42,7 +45,8 @@ import { CacheServiceService } from './Service/cache-service.service';
     NoticiasComponent,
     GridComponent,
     HeaderComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +87,6 @@ import { CacheServiceService } from './Service/cache-service.service';
     NbMenuModule.forRoot().providers,
     CacheServiceService],
   bootstrap: [AppComponent],
-  
+
 })
 export class AppModule { }

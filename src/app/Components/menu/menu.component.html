@@ -1,3 +1,8 @@
-<p>
-  menu works!
-</p>
+<ul>
+  <div class="example-container" *ngFor="let hb of settings">
+    <div class="container-btn">
+      <button class="btn {{ hb.class }} btn-demo" (click)="Gerar(hb)" style="padding:10px; width:100%">
+        <i class="nb-home"></i>{{ hb.NameButton }}</button>
+    </div>
+  </div>
+</ul>
