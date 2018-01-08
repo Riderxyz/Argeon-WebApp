@@ -1,0 +1,12 @@
+<nb-card>
+  <!--     <nb-card-header></nb-card-header> -->
+  <nb-card-body style=" margin: auto; ">
+    <div class="row">
+      <div class="example-container" *ngFor="let hb of settings">
+        <div class="container-btn" style="padding-right: 7%;">
+          <button class="btn {{ hb.class }} btn-demo" (click)="Gerar(hb)">{{ hb.NameButton }}</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

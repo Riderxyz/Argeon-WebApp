@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+@Injectable()
+export class CacheServiceService {
+  UsuarioObj: any = { username: null }
+  DatabaseObj: any = { Destino: null }
+  TituloObj: any = { Grid: null, notification: null }
+  Ativar: Function;
+  constructor() {
+    //this.DatabaseObj.Destino = 'Reinos'
+  }
+
+}
