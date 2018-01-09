@@ -46,7 +46,8 @@ export class GridComponent implements OnInit {
     this.db.list(this.destino).valueChanges()
       .subscribe((s) => {
         this.menuItems = s
-        this.execute = false;
+       // this.execute = false;
+       console.log(this.settings)
       })
   }
   getcolunas() {

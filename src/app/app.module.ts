@@ -27,7 +27,7 @@ import { AppComponent } from './app.component';
 //Paginas
 import { HomeComponent } from './Pages/home/home.component';
 import { NoticiasComponent } from './Pages/noticias/noticias.component';
-
+import { LoginComponent } from './Pages/login/login.component';
 //Componentes
 import { GridComponent } from './Components/grid/grid.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -36,17 +36,18 @@ import { MenuComponent } from './Components/menu/menu.component';
 //Serviços
 import { CacheServiceService } from './Service/cache-service.service';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
+//Paginas
     HomeComponent,
     NoticiasComponent,
+    LoginComponent,
+//Componentes
     GridComponent,
     HeaderComponent,
     ButtonsComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +69,12 @@ import { CacheServiceService } from './Service/cache-service.service';
     NbThemeModule.forRoot({ name: 'cosmic' }),
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'login', component: LoginComponent, data: {
+          breadcrumbs: true,
+          text: 'Home'
+        }
+      },
       {
         path: 'home', component: HomeComponent, data: {
           breadcrumbs: true,
