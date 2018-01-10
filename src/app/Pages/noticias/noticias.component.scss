@@ -1,11 +1,8 @@
-.angrytext {
-    font-size: 70px;
-    font-weight: bold;
-    color: #4794D3;
-    width: 300px;
-    margin: 90px auto;
+.Mostrar {
+    //    width: 300px;
+    // margin: 90px auto;
     -webkit-animation-name: bounce-in;
-    -webkit-animation-duration: 3s;
+    -webkit-animation-duration: 2s;
     -webkit-animation-timing-function: ease;
     -webkit-animation-delay: 0s;
     -webkit-animation-iteration-count: 1;
@@ -56,4 +53,18 @@
     70% {
         transform: scale(0.9);
     }
+}
+
+.Card99 {
+    margin: 10px;
+    width: 20%;
+    flex-grow: 1;
+    nb-card-header {
+        text-align: center
+    }
+}
+
+.WrapItUp {
+    display: flex;
+    flex-wrap: wrap;
 }

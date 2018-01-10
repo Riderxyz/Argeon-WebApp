@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { GridComponent } from '../grid/grid.component';
 import { RouterModule, Router } from '@angular/router';
 @Component({
