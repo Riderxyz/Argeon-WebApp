@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 
 @Component({
   selector: 'app-grid',

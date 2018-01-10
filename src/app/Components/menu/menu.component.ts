@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
-import { NbThemeService } from '@nebular/theme';
+import { NbThemeService, NbMenuItem, NbMenuService } from '@nebular/theme';
 import { Observable } from 'rxjs/Observable';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -14,7 +15,7 @@ export class MenuComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any;
   themeName = 'cosmic';
-  constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
+  constructor(public router: Router, private themeService: NbThemeService, NBItem: NbMenuItem, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
