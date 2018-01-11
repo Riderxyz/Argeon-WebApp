@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 
 @Component({
   selector: 'app-grid',
@@ -46,7 +46,8 @@ export class GridComponent implements OnInit {
     this.db.list(this.destino).valueChanges()
       .subscribe((s) => {
         this.menuItems = s
-        this.execute = false;
+       // this.execute = false;
+       console.log(this.settings)
       })
   }
   getcolunas() {
