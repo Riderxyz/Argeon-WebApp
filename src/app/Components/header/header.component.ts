@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { RouterModule, Router } from '@angular/router';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
 
+  goToHome() {
+    this.router.navigateByUrl('/home')
+  }
 }

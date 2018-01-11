@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
-import { NbThemeService } from '@nebular/theme';
+import { NbThemeService, NbMenuItem, NbMenuService } from '@nebular/theme';
 import { Observable } from 'rxjs/Observable';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
   settings: Array<any>;
@@ -14,6 +15,18 @@ export class MenuComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any;
   themeName = 'cosmic';
+  menu: NbMenuItem[] = [
+    {
+      title: 'Home',
+      icon: 'nb-home',
+      url: '/home',
+
+    },
+    {
+      title: 'Noticias',
+      icon: 'nb-gear',
+      url: '/home'
+    }]
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
@@ -58,12 +71,18 @@ export class MenuComponent implements OnInit {
 
 
   Gerar(Botao) {
-
     setTimeout(() => {
       this.router.navigateByUrl(Botao.Destino)
     }, 30);
 
   }
+  Ativar() {
 
+
+    if (this.menu[0].link == 'home') {
+      this.router.navigateByUrl('home')
+    }
+    console.log(this.menu[0].link)
+  }
 
 }

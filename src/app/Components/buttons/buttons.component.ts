@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { GridComponent } from '../grid/grid.component';
 import { RouterModule, Router } from '@angular/router';
 @Component({
@@ -112,14 +112,7 @@ export class ButtonsComponent implements OnInit {
   Gerar(Botao) {
     this.cacheSrv.TituloObj.Grid = Botao.Name;
     this.cacheSrv.DatabaseObj.Destino = Botao.Destino
-    this.cacheSrv.DatabaseObj.Executar = Botao.Execute
     this.cacheSrv.callComponentMethod();
     //this.router.navigateByUrl('/noticias')
   }
-
-  callMethod = function () {
-    this.cacheSrv.callComponentMethod();
-  }
-
-
 }

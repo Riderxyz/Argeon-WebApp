@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeService } from '@nebular/theme';
 import { GridComponent } from '../../Components/grid/grid.component';
 import { HeaderComponent } from '../../Components/header/header.component';
-import { CacheServiceService } from './../../Service/cache-service.service';
+import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { ButtonsComponent } from '../../Components/buttons/buttons.component';
 
 @Component({
@@ -21,22 +21,18 @@ export class HomeComponent implements OnInit {
   menuItems: any;
   themeName = 'cosmic';
   layout: any = {};
-   protected layoutState$: Subscription;
+  protected layoutState$: Subscription;
   themeSubscription: any;
   settings: Array<any>;
-  menu: NbMenuItem[] = [
-    {
-      title: 'PAGE LEVEL MENU',
-      group: true,
-    }]
+
   constructor(public db: AngularFireDatabase, public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     // this.cacheSrv.TituloObj.Grid = 'Reinos'
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
       //this.layoutState$ = this.stateService.onLayoutState()
-     // .subscribe((layout: string) => this.layout = layout);
-   });
+      // .subscribe((layout: string) => this.layout = layout);
+    });
   }
   ngOnInit() {
 
@@ -72,11 +68,11 @@ export class HomeComponent implements OnInit {
   }
 
   Gerar(Botao) {
-  
+
     setTimeout(() => {
       this.router.navigateByUrl('/noticias')
     }, 30);
-    
+
   }
   ngOnDestroy() {
     //this.layoutState.unsubscribe();
