@@ -19,12 +19,13 @@ export class MenuComponent implements OnInit {
     {
       title: 'Home',
       icon: 'nb-home',
-      link: 'home',
-      
+      url: '/home',
+
     },
     {
       title: 'Noticias',
       icon: 'nb-gear',
+      url: '/home'
     }]
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
@@ -75,13 +76,13 @@ export class MenuComponent implements OnInit {
     }, 30);
 
   }
-/*   Ativar(){
+  Ativar() {
 
 
     if (this.menu[0].link == 'home') {
       this.router.navigateByUrl('home')
     }
-console.log(this.menu[0].link)
-} */
+    console.log(this.menu[0].link)
+  }
 
 }
