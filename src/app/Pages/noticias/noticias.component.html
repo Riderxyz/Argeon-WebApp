@@ -22,7 +22,11 @@
 
         <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of DataBase1">
             <nb-card-header>{{item.nome}}</nb-card-header>
-            <nb-card-body></nb-card-body>
+            <nb-card-body>
+                <div style=" text-align: center; ">
+                    <img width="50%" height="50%" src="{{item.url_imagem}}">
+                </div>
+            </nb-card-body>
             <nb-card-footer></nb-card-footer>
         </nb-card>
     </nb-layout-column>

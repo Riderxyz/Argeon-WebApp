@@ -35,7 +35,7 @@ export class NoticiasComponent implements OnInit {
   }
 
   getNoticias1() {
-    this.db.list('Grimorio').valueChanges()
+    this.db.list('Clans').valueChanges()
       .subscribe((s) => {
         this.DataBase1 = s
       })
@@ -43,12 +43,17 @@ export class NoticiasComponent implements OnInit {
 
 
   onClick(dado) {
-console.log(dado);
-    
- 
+    console.log(dado);
+
+
     this.modal.alert()
-    .title(dado.nome)
-    .body('In Angular')
-    .open();
+      .title(dado.nome)
+      .body(`
+      <div>
+      {{dado.nome}}
+     <img width="100vh" height="200vh" src="` + dado.url_imagem + `">
+      </div>
+    `)
+      .open();
   }
 };
