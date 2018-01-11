@@ -7,7 +7,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
   settings: Array<any>;
@@ -15,7 +15,18 @@ export class MenuComponent implements OnInit {
   items: Observable<any[]>;
   menuItems: any;
   themeName = 'cosmic';
-  constructor(public router: Router, private themeService: NbThemeService, NBItem: NbMenuItem, public cacheSrv: CacheServiceService) {
+  menu: NbMenuItem[] = [
+    {
+      title: 'Home',
+      icon: 'nb-home',
+      link: 'home',
+      
+    },
+    {
+      title: 'Noticias',
+      icon: 'nb-gear',
+    }]
+  constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
@@ -59,12 +70,18 @@ export class MenuComponent implements OnInit {
 
 
   Gerar(Botao) {
-
     setTimeout(() => {
       this.router.navigateByUrl(Botao.Destino)
     }, 30);
 
   }
+/*   Ativar(){
 
+
+    if (this.menu[0].link == 'home') {
+      this.router.navigateByUrl('home')
+    }
+console.log(this.menu[0].link)
+} */
 
 }

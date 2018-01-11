@@ -24,11 +24,7 @@ export class HomeComponent implements OnInit {
   protected layoutState$: Subscription;
   themeSubscription: any;
   settings: Array<any>;
-  menu: NbMenuItem[] = [
-    {
-      title: 'PAGE LEVEL MENU',
-      group: true,
-    }]
+
   constructor(public db: AngularFireDatabase, public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     // this.cacheSrv.TituloObj.Grid = 'Reinos'
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {

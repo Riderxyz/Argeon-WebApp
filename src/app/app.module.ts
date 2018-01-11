@@ -25,6 +25,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuth } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+//Modals
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule, Modal, bootstrap4Mode } from 'ngx-modialog/plugins/bootstrap'
+bootstrap4Mode()
 //Paginas
 import { HomeComponent } from './Pages/home/home.component';
 import { NoticiasComponent } from './Pages/noticias/noticias.component';
@@ -68,6 +72,8 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
     NbUserModule,
     NbCheckboxModule,
     Ng2SmartTableModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
