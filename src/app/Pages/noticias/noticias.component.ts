@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeService } from '@nebular/theme';
 import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { Overlay } from 'ngx-modialog';
+import { Modal } from 'ngx-modialog/plugins/bootstrap'
 @Component({
   selector: 'app-noticias',
   templateUrl: './noticias.component.html',
@@ -14,9 +16,8 @@ export class NoticiasComponent implements OnInit {
   DataBase2: any;
   classe: string;
   Omega: string
-  constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase) {
-    this.getNoticias1()
-    this.getNoticias2()
+  constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, public modal: Modal) {
+    this.getNoticias1();
     this.Omega = 'blue'
   }
 
@@ -39,11 +40,15 @@ export class NoticiasComponent implements OnInit {
         this.DataBase1 = s
       })
   }
-  getNoticias2() {
-    this.db.list('Reinos').valueChanges()
-      .subscribe((s) => {
-        this.DataBase2 = s
-      })
-  }
 
-}
+
+  onClick(dado) {
+console.log(dado);
+    
+ 
+    this.modal.alert()
+    .title(dado.nome)
+    .body('In Angular')
+    .open();
+  }
+};
