@@ -3,7 +3,7 @@ import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeS
 import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Overlay } from 'ngx-modialog';
 import { Modal } from 'ngx-modialog/plugins/bootstrap'
 @Component({
@@ -15,15 +15,15 @@ export class NoticiasComponent implements OnInit {
   DataBase1: any;
   DataBase2: any;
   classe: string;
-  Omega: string
+  Omega: string;
+  Set_envio: AngularFireList<any>;
   constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, public modal: Modal) {
     this.getNoticias1();
     this.Omega = 'blue'
+    this.Set_envio = db.list('https://argeon-337.firebaseio.com/Fichas de Usuario');
   }
-
   ngOnInit() {
   }
-
   ativar() {
 
     if (this.classe != null) {
@@ -33,15 +33,12 @@ export class NoticiasComponent implements OnInit {
       this.classe = 'Mostrar'
     }
   }
-
   getNoticias1() {
     this.db.list('Clans').valueChanges()
       .subscribe((s) => {
         this.DataBase1 = s
       })
   }
-
-
   onClick(dado) {
     console.log(dado);
 
