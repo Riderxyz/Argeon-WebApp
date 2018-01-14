@@ -3,5 +3,14 @@
         <div class="logo" (click)="goToHome()">Argeon - WebApp</div>
       </div>
       <nb-search type="rotate-layout" tag="rotate-layout"></nb-search>
+      <div>
+          
+      </div>
+      <div *ngIf="Logado">
+        {{UsernameDisplay}}Bem vindo Senhor
+      </div>
+      <div *ngIf="!Logado">
+        Por favor, execute o Login
+      </div>
     </div>
     
