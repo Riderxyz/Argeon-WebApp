@@ -1,3 +1,4 @@
+import { LoginSrvService } from './../../Service/LoginSrv/login-srv.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
@@ -10,10 +11,23 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(public router: Router) { }
+  user: Observable<firebase.User>;
+  Logado: boolean = false
+  UsernameDisplay:any
+  constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
+    this.UsernameDisplay = this.LoginSrv.GetUsername()
+    this.afAuth.authState.subscribe(
+      (auth) => {
+        if (auth != null) {
+          this.user = afAuth.authState;
+          this.Logado = true
+        }
+      }
+    )
+  }
 
   ngOnInit() {
+
   }
 
   goToHome() {

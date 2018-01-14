@@ -6,7 +6,9 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoginSrvService {
   user: Observable<firebase.User>;
+  UserID:string
   Logado: boolean = false
+  Username: any
   constructor(public afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(
       (auth) => {
@@ -16,11 +18,16 @@ export class LoginSrvService {
         }
       }
     )
+    this.afAuth.authState.subscribe(user => {
+      if(user) this.UserID = user.uid
+      console.log(this.UserID)
+      console.log(user)
+      this.SetNameuser(user.displayName)
+      console.log(this.Username)
+    })
   }
-
-
   Login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     console.log(this.afAuth.auth)
     this.Logado = true
     console.log(this.Logado)
@@ -30,10 +37,11 @@ export class LoginSrvService {
     this.Logado = false
   }
 
-  /*   loginWithGoogle() {
-      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    }
-    logout() {
-      this.afAuth.auth.signOut();
-    } */
+
+SetNameuser(Usuario){
+    this.Username = Usuario
+  }
+GetUsername(){
+    return this.Username
+}
 }
