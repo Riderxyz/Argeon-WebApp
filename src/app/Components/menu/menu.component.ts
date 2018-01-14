@@ -19,13 +19,11 @@ export class MenuComponent implements OnInit {
     {
       title: 'Home',
       icon: 'nb-home',
-      url: '/home',
 
     },
     {
       title: 'Noticias',
       icon: 'nb-gear',
-      url: '/home'
     }]
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
@@ -77,11 +75,8 @@ export class MenuComponent implements OnInit {
 
   }
   Ativar() {
+    this.router.navigateByUrl('home')
 
-
-    if (this.menu[0].link == 'home') {
-      this.router.navigateByUrl('home')
-    }
     console.log(this.menu[0].link)
   }
 
