@@ -34,7 +34,7 @@ export class NoticiasComponent implements OnInit {
     }
   }
   getNoticias1() {
-    this.db.list('Clans').valueChanges()
+    this.db.list('Grimorio').valueChanges()
       .subscribe((s) => {
         this.DataBase1 = s
       })
