@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.LoginSrv.loginWithGoogle()
+    this.LoginSrv.Login()
+  }
+
+  logout() {
+    this.LoginSrv.Logout()
   }
 }
