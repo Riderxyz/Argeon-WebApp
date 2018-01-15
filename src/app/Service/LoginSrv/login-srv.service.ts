@@ -18,19 +18,13 @@ export class LoginSrvService {
         }
       }
     )
-    this.afAuth.authState.subscribe(user => {
-      if(user) this.UserID = user.uid
-      console.log(this.UserID)
-      console.log(user)
-      this.SetNameuser(user.displayName)
-      console.log(this.Username)
-    })
+
   }
   Login() {
+    console.log('Autenticação plugin',this.afAuth.authState)
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    console.log(this.afAuth.auth)
-    this.Logado = true
-    console.log(this.Logado)
+    console.log(this.afAuth)
+    this.Logado = true  
   }
   Logout() {
     this.afAuth.auth.signOut();
@@ -39,9 +33,12 @@ export class LoginSrvService {
 
 
 SetNameuser(Usuario){
+  console.log('Sendo ativado com sucesso', Usuario)
     this.Username = Usuario
   }
 GetUsername(){
+  console.log('Função GetUsername ',this.Username)
+
     return this.Username
 }
 }
