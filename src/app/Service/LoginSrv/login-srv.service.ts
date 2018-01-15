@@ -21,7 +21,7 @@ export class LoginSrvService {
 
   }
   Login() {
-    console.log('Autenticação plugin',this.afAuth.authState)
+    //console.log('Autenticação plugin',this.afAuth.authState)
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     console.log(this.afAuth)
     this.Logado = true  

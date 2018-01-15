@@ -25,10 +25,16 @@ export class LoginComponent implements OnInit {
     this.afAuth.authState.subscribe(user => {
         if (user) this.UsernameDisplay = user.displayName
         console.log(user)
+        //
+        console.log()
       })
 
-      //this.SetNameuser(user.displayName)
-      console.log('Aqui esta o que eu preciso', this.UsernameDisplay)
+      setTimeout(() => {
+        console.log('Aqui esta o que eu preciso', this.UsernameDisplay)
+        this.LoginSrv.SetNameuser(this.UsernameDisplay)
+        this.router.navigateByUrl('/home')
+      }, 5500);
+      
    
   }
 
