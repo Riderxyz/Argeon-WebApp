@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoginSrvService {
   user: Observable<firebase.User>;
-  UserID:string
+  UserID: string
   Logado: boolean = false
   Username: any
   constructor(public afAuth: AngularFireAuth) {
@@ -18,27 +18,22 @@ export class LoginSrvService {
         }
       }
     )
-
   }
   Login() {
-    //console.log('Autenticação plugin',this.afAuth.authState)
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     console.log(this.afAuth)
-    this.Logado = true  
+    this.Logado = true
   }
   Logout() {
     this.afAuth.auth.signOut();
     this.Logado = false
   }
-
-
-SetNameuser(Usuario){
-  console.log('Sendo ativado com sucesso', Usuario)
+  SetNameuser(Usuario) {
+    console.log('Sendo ativado com sucesso', Usuario)
     this.Username = Usuario
   }
-GetUsername(){
-  console.log('Função GetUsername ',this.Username)
-
+  GetUsername() {
+    console.log('Função GetUsername ', this.Username)
     return this.Username
-}
+  }
 }
