@@ -11,7 +11,8 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  UsernameDisplay: any
+  Username_NameDisplay: any
+  Username_ImageDisplay
   user: Observable<firebase.User>;
   constructor(public LoginSrv: LoginSrvService, public router: Router, public cacheSrv: CacheServiceService, public afAuth: AngularFireAuth) {
     //this.UsernameDisplay = 'teste123'
@@ -23,17 +24,17 @@ export class LoginComponent implements OnInit {
   login() {
     this.LoginSrv.Login()
     this.afAuth.authState.subscribe(user => {
-        if (user) this.UsernameDisplay = user.displayName
+        if (user) this.Username_NameDisplay = user.displayName,
+          this.Username_ImageDisplay = user.photoURL
         console.log(user)
-        //
-        console.log()
       })
-
       setTimeout(() => {
-        console.log('Aqui esta o que eu preciso', this.UsernameDisplay)
-        this.LoginSrv.SetNameuser(this.UsernameDisplay)
+        console.log('Aqui esta o que eu preciso', this.Username_NameDisplay)
+        this.LoginSrv.SetNameuser(this.Username_NameDisplay)
+        this.LoginSrv.SetImageuser(this.Username_ImageDisplay)
+        console.log('Em Login',this.Username_ImageDisplay)
         this.router.navigateByUrl('/home')
-      }, 5500);
+      }, 6000);
       
    
   }

@@ -14,8 +14,12 @@ export class HeaderComponent implements OnInit {
   user: Observable<firebase.User>;
   Logado: boolean = false
   UsernameDisplay:any
+  AvatarDisplay:any
   constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
+    //this.UsernameDisplay = 'Iago Favilla'
+    this.AvatarDisplay = this.LoginSrv.GetImageuser()
     this.UsernameDisplay = this.LoginSrv.GetUsername()
+
     this.afAuth.authState.subscribe(
       (auth) => {
         if (auth != null) {

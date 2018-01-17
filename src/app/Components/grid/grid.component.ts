@@ -35,9 +35,10 @@ export class GridComponent implements OnInit {
         this.titulo = this.cacheSrv.TituloObj.Grid;
         this.execute = this.cacheSrv.DatabaseObj.Executar;
         this.destino = this.cacheSrv.DatabaseObj.Destino;
+           
         this.getmenu();
-        this.getcolunas();
       }
+      
     );
   }
   ngOnInit() {
@@ -47,28 +48,31 @@ export class GridComponent implements OnInit {
       .subscribe((s) => {
         this.menuItems = s
        // this.execute = false;
-       console.log(this.settings)
+        console.log(this.settings)
+        setTimeout(() => {
+            this.getcolunas()
+         }, 500);
       })
   }
   getcolunas() {
-    if (this.cacheSrv.DatabaseObj.Destino == 'Reinos') {
+    if (this.destino == 'Reinos') {
       this.ColunaExibida = this.colunas.Reinos
     };
-    if (this.cacheSrv.DatabaseObj.Destino == 'Grimorio') {
+    if (this.destino == 'Grimorio') {
       this.ColunaExibida = this.colunas.Magia
     };
-    if (this.cacheSrv.DatabaseObj.Destino == 'Fichas de Usuario') {
+    if (this.destino == 'Fichas de Usuario') {
       this.ColunaExibida = this.colunas.Jogadores
     };
-    if (this.cacheSrv.DatabaseObj.Destino == 'Clans') {
+    if (this.destino == 'Clans') {
       this.ColunaExibida = this.colunas.Clan
     };
-    if (this.cacheSrv.DatabaseObj.Destino == 'Potions') {
+    if (this.destino == 'Potions') {
       this.ColunaExibida = this.colunas.Clan
     };
-    if (this.cacheSrv.DatabaseObj.Destino == 'MenuPrincipal') {
-      this.ColunaExibida = this.colunas.Menu
-      console.log(this.cacheSrv.DatabaseObj.Destino)
+    if (this.destino == 'MenuPrincipal') {
+          this.ColunaExibida = this.colunas.Menu
+      console.log(this.destino)
     };
     this.colunas.Reinos = {
       nome: {
@@ -140,3 +144,4 @@ export class GridComponent implements OnInit {
   }
 
 }
+
