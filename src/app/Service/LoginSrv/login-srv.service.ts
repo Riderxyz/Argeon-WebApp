@@ -6,9 +6,10 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoginSrvService {
   user: Observable<firebase.User>;
-  UserID: string
-  Logado: boolean = false
-  Username: any
+  UserID: string;
+  Logado: boolean = false;
+  Username: any;
+  Avatar: any;
   constructor(public afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(
       (auth) => {
@@ -32,8 +33,14 @@ export class LoginSrvService {
     console.log('Sendo ativado com sucesso', Usuario)
     this.Username = Usuario
   }
+  SetImageuser(imagem) {
+    this.Avatar = imagem
+  }
   GetUsername() {
     console.log('Função GetUsername ', this.Username)
     return this.Username
+  }
+  GetImageuser(){
+    return this.Avatar
   }
 }
