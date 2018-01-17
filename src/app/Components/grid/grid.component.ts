@@ -37,6 +37,11 @@ export class GridComponent implements OnInit {
         this.destino = this.cacheSrv.DatabaseObj.Destino;
            
         this.getmenu();
+        this.getcolunas();
+        setTimeout(() => {
+           this.getmenu();
+            this.getcolunas()
+         }, 500);
       }
       
     );
@@ -49,9 +54,6 @@ export class GridComponent implements OnInit {
         this.menuItems = s
        // this.execute = false;
         console.log(this.settings)
-        setTimeout(() => {
-            this.getcolunas()
-         }, 500);
       })
   }
   getcolunas() {
