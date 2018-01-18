@@ -75,9 +75,9 @@ export class MenuComponent implements OnInit {
 
   }
   Ativar() {
-    this.router.navigateByUrl('home')
+    //this.router.navigateByUrl('home')
 
-    console.log(this.menu[0].link)
+    console.log(sessionStorage.getItem('Omega'))
   }
 
 }

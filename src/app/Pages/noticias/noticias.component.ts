@@ -20,7 +20,7 @@ export class NoticiasComponent implements OnInit {
   constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, public modal: Modal) {
     this.getNoticias1();
     this.Omega = 'blue'
-    //this.Set_envio = db.list('https://argeon-337.firebaseio.com/Fichas de Usuario');
+    // this.Set_envio = db.list('https://argeon-337.firebaseio.com/Fichas de Usuario');
   }
   ngOnInit() {
   }

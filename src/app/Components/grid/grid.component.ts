@@ -35,13 +35,12 @@ export class GridComponent implements OnInit {
         this.titulo = this.cacheSrv.TituloObj.Grid;
         this.execute = this.cacheSrv.DatabaseObj.Executar;
         this.destino = this.cacheSrv.DatabaseObj.Destino;
-           
         this.getmenu();
         this.getcolunas();
         setTimeout(() => {
            this.getmenu();
             this.getcolunas()
-         }, 500);
+         }, 50);
       }
       
     );
