@@ -24,19 +24,20 @@ export class LoginComponent implements OnInit {
   login() {
     this.LoginSrv.Login()
     this.afAuth.authState.subscribe(user => {
-        if (user) this.Username_NameDisplay = user.displayName,
-          this.Username_ImageDisplay = user.photoURL
-        console.log(user)
-      })
-      setTimeout(() => {
-        console.log('Aqui esta o que eu preciso', this.Username_NameDisplay)
-        this.LoginSrv.SetNameuser(this.Username_NameDisplay)
-        this.LoginSrv.SetImageuser(this.Username_ImageDisplay)
-        console.log('Em Login',this.Username_ImageDisplay)
-        this.router.navigateByUrl('/home')
-      }, 6000);
-      
-   
+      if (user) this.Username_NameDisplay = user.displayName,
+        this.Username_ImageDisplay = user.photoURL
+      console.log(user)
+    })
+    setTimeout(() => {
+      sessionStorage.setItem('Omega', this.Username_NameDisplay)
+      console.log('Aqui esta o que eu preciso', this.Username_NameDisplay)
+      this.LoginSrv.SetNameuser(this.Username_NameDisplay)
+      this.LoginSrv.SetImageuser(this.Username_ImageDisplay)
+      console.log('Em Login', this.Username_ImageDisplay)
+      this.router.navigateByUrl('/home')
+    }, 6000);
+
+
   }
 
   logout() {
