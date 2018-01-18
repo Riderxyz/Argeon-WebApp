@@ -12,6 +12,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 export class MenuComponent implements OnInit {
   settings: Array<any>;
   themeSubscription: any;
+  teste:any
   items: Observable<any[]>;
   menuItems: any;
   themeName = 'cosmic';
@@ -76,8 +77,8 @@ export class MenuComponent implements OnInit {
   }
   Ativar() {
     //this.router.navigateByUrl('home')
-
-    console.log(sessionStorage.getItem('Omega'))
+    this.teste = sessionStorage.getItem('Omega')
+    console.log('VINDO DO SESSION!!!',this.teste)
   }
 
 }
