@@ -22,7 +22,8 @@
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/@nebular/theme/styles/prebuilt/cosmic.css",
-        "../node_modules/nebular-icons/scss/nebular-icons.scss"
+        "../node_modules/nebular-icons/scss/nebular-icons.scss",
+        "../node_modules/socicon/css/socicon.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

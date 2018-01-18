@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { RouterModule, Router } from '@angular/router';
 
 @Injectable()
 export class LoginSrvService {
@@ -10,7 +11,10 @@ export class LoginSrvService {
   Logado: boolean = false;
   Username: any;
   Avatar: any;
-  constructor(public afAuth: AngularFireAuth) {
+  Username_NameDisplay: any
+  Username_ImageDisplay: any
+  usuario = {NameDisplay:null, ImageDisplay:null, Token:null}
+  constructor(public afAuth: AngularFireAuth, public router: Router) {
     this.afAuth.authState.subscribe(
       (auth) => {
         if (auth != null) {
@@ -24,10 +28,25 @@ export class LoginSrvService {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     console.log(this.afAuth)
     this.Logado = true
+    this.afAuth.authState.subscribe(user => {
+      if (user) this.usuario.NameDisplay = user.displayName,
+        this.usuario.ImageDisplay = user.photoURL,
+        this.usuario.Token = user.uid
+      console.log(user)
+    })
+    setTimeout(() => {
+      sessionStorage.setItem('SetNameuser', this.usuario.NameDisplay)
+      sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay)
+      sessionStorage.setItem('SetImageuser', this.usuario.Token)
+      this.router.navigateByUrl('/home')
+      console.log(sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay))
+    }, 6000);
   }
   Logout() {
     this.afAuth.auth.signOut();
     this.Logado = false
+    sessionStorage.removeItem('SetNameuser');
+    sessionStorage.removeItem('SetImageuser');
   }
   SetNameuser(Usuario) {
     console.log('Sendo ativado com sucesso', Usuario)
