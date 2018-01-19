@@ -15,11 +15,15 @@ export class HeaderComponent implements OnInit {
   Logado: boolean = false
   UsernameDisplay:any
   AvatarDisplay:any
+  Login:any;
+  Rotate:any;
+  Show:boolean;
   constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
     //this.UsernameDisplay = 'Iago Favilla'
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
     this.UsernameDisplay = sessionStorage.getItem('SetNameuser')
-    
+    this.Login = 'OMEGA'
+    this.Rotate = null
 
     this.afAuth.authState.subscribe(
       (auth) => {
@@ -35,6 +39,13 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  GoToLogin(){
+    this.Rotate = 'RotateToLogin'
+    setTimeout(() => {
+      this.router.navigateByUrl('/login')
+      this.Show = false
+    }, 3000);
+  }
   goToHome() {
     this.router.navigateByUrl('/home')
   }

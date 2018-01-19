@@ -1,6 +1,6 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <app-header></app-header>
+    <app-header style="width:100%"></app-header>
   </nb-layout-header>
   <nb-layout-column>
     <nb-card class="centro">
@@ -11,6 +11,7 @@
         <button class="btn btn-primary" (click)="login()">
           <i class="socicon-google"></i> Login With Google
         </button>
+        <i class="fa fa-chevron-up"></i>
         <button class="btn btn-default" (click)="logout()">Logout</button>
         <button class="btn btn-default">{{Username_NameDisplay }}</button>
       </nb-card-body>

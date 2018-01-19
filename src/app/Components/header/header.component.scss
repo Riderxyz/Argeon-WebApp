@@ -21,3 +21,35 @@
         }
     }
 }
+
+.RotateToLogin{
+-webkit-animation-name: RotateToLogin;
+-webkit-animation-duration: 0.3s;
+-webkit-animation-timing-function: linear;
+-webkit-animation-delay: 0s;
+-webkit-animation-iteration-count: 10;
+-webkit-animation-direction: normal;
+-webkit-animation-fill-mode: none;
+
+animation-name: RotateToLogin;
+animation-duration: 0.3s;
+animation-timing-function: linear;
+animation-delay: 0s;
+animation-iteration-count: 10;
+animation-direction: normal;
+animation-fill-mode: none;
+
+}
+
+@-webkit-keyframes RotateToLogin {
+ 100%{
+   -webkit-transform: rotate(360deg);
+   transform: rotate(360deg);
+ }
+}
+
+@keyframes RotateToLogin {
+ 100%{
+   transform: rotate(360deg);
+ }
+}

@@ -24,7 +24,10 @@
   </nb-actions>
 
   <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="!Logado">
-    <nb-action icon="nb-grid-b" class="toggle-layout"></nb-action>
     <nb-action class="control-item" icon="fa fa-chevron-up"></nb-action>
+    <nb-action>
+        <button class="btn btn-primary" (click)="GoToLogin()" *ngIf="!Show"><i class="fa fa-2x fa-chevron-up {{Rotate}}"></i>Login</button>
+  </nb-action>
   </nb-actions>
+
 </div>
