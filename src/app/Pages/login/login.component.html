@@ -3,14 +3,16 @@
     <app-header></app-header>
   </nb-layout-header>
   <nb-layout-column>
-    <div class="container">
-      <div>
-          
-        <h1>Login To Your Account</h1>
-        <button class="btn btn-default" (click)="login()"> <div><i class="socicon-google"></i></div>Login With Google</button>
+    <nb-card class="centro">
+      <nb-card-header>
+        <h1>Login</h1>
+      </nb-card-header>
+      <nb-card-body>
+        <button class="btn btn-primary" (click)="login()">
+          <i class="socicon-google"></i> Login With Google
+        </button>
         <button class="btn btn-default" (click)="logout()">Logout</button>
         <button class="btn btn-default">{{Username_NameDisplay }}</button>
-        
-      </div>
-    </div>
+      </nb-card-body>
+    </nb-card>
   </nb-layout-column>
