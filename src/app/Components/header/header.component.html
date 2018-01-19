@@ -9,16 +9,22 @@
   </div>
   <div *ngIf="!Logado">
     Por favor, execute o Login
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
   </div>
-  
 
 
-  <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;">
-    
+
+  <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="Logado">
+
     <nb-action>
       <nb-user [name]="UsernameDisplay" [picture]="AvatarDisplay"></nb-user>
     </nb-action>
     <nb-action icon="nb-grid-b" class="toggle-layout"></nb-action>
     <nb-action class="control-item" icon="nb-email"></nb-action>
+  </nb-actions>
+
+  <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="!Logado">
+    <nb-action icon="nb-grid-b" class="toggle-layout"></nb-action>
+    <nb-action class="control-item" icon="fa fa-chevron-up"></nb-action>
   </nb-actions>
 </div>
