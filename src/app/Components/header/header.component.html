@@ -15,19 +15,23 @@
 
 
   <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="Logado">
+    <nb-action>
 
+    </nb-action>
     <nb-action>
       <nb-user [name]="UsernameDisplay" [picture]="AvatarDisplay"></nb-user>
     </nb-action>
-    <nb-action icon="nb-grid-b" class="toggle-layout"></nb-action>
-    <nb-action class="control-item" icon="nb-email"></nb-action>
+    <nb-action>
+      <button class="btn btn-primary logout" (click)="GoToLogin()" *ngIf="!Show">
+        <i class="fa fa-2x fa-chevron-down {{Rotate}} "></i>Sair</button>
+    </nb-action>
   </nb-actions>
 
   <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="!Logado">
-    <nb-action class="control-item" icon="fa fa-chevron-up"></nb-action>
     <nb-action>
-        <button class="btn btn-primary" (click)="GoToLogin()" *ngIf="!Show"><i class="fa fa-2x fa-chevron-up {{Rotate}}"></i>Login</button>
-  </nb-action>
+      <button class="btn btn-primary logout" (click)="GoToLogin()" *ngIf="!Show">
+        <i class="fa fa-2x fa-chevron-up {{Rotate}} "></i>Login</button>
+    </nb-action>
   </nb-actions>
 
 </div>

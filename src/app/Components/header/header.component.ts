@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
     //this.UsernameDisplay = 'Iago Favilla'
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
-    this.UsernameDisplay = sessionStorage.getItem('SetNameuser')
+    this.UsernameDisplay = 'Bem Vindo(a)'+ ' ' + sessionStorage.getItem('SetNameuser')
     this.Login = 'OMEGA'
     this.Rotate = null
 
