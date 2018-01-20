@@ -24,7 +24,8 @@
         "../node_modules/@nebular/theme/styles/prebuilt/cosmic.css",
         "../node_modules/nebular-icons/scss/nebular-icons.scss",
         "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../node_modules/socicon/css/socicon.css"
+        "../node_modules/socicon/css/socicon.css",
+        "../node_modules/dragula/dist/dragula.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
