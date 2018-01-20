@@ -17,6 +17,7 @@ import {
   NbCheckboxModule,
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import {DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula'
 
 //AngularFire
 import { AngularFireModule } from 'angularfire2';
@@ -33,6 +34,7 @@ bootstrap4Mode()
 import { HomeComponent } from './Pages/home/home.component';
 import { NoticiasComponent } from './Pages/noticias/noticias.component';
 import { LoginComponent } from './Pages/login/login.component';
+import { FichaComponent } from './Pages/ficha/ficha.component';
 //Componentes
 import { GridComponent } from './Components/grid/grid.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -49,6 +51,7 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
     HomeComponent,
     NoticiasComponent,
     LoginComponent,
+    FichaComponent,
     //Componentes
     GridComponent,
     HeaderComponent,
@@ -60,6 +63,7 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
+    DragulaModule,
     NbActionsModule,
     NbCardModule,
     NbLayoutModule,
@@ -76,7 +80,6 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
     BootstrapModalModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
     RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'login', component: LoginComponent, data: {
           breadcrumbs: true,
@@ -94,7 +97,15 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
           breadcrumbs: true,
           text: 'Noticias'
         }
-      }
+      },
+      {
+        path: 'fichas', component: FichaComponent, data: {
+          breadcrumbs: true,
+          text: 'Fichas'
+        }
+      },
+    
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]),
   ],
   providers: [NbSidebarService,
