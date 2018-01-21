@@ -1,35 +1,35 @@
 <nb-layout>
-  <nb-layout-header fixed>
-    <app-header style="width:100%"></app-header>
-  </nb-layout-header>
-  <nb-layout-column>
-    <div>
-      <div class='wrapper'>
-        <div class='container' [dragula]='"bag-task1"' >
-            <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of DataBase1">
-                <nb-card-header>{{item.nome}}</nb-card-header>
-                <nb-card-body>
-                    <div style=" text-align: center; ">
-                        <img width="50%" height="50%" src="{{item.url_imagem}}">
-                    </div>
-                </nb-card-body>
-                <nb-card-footer></nb-card-footer>
-            </nb-card>
-</div>
+    <nb-layout-header fixed>
+        <app-header style="width:100%"></app-header>
+    </nb-layout-header>
+    <nb-layout-column>
+        <div>
+            <div class='wrapper'>
+                <div class='container' [dragula]='"bag-task1"'>
+                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Database1">
+                        <nb-card-header>{{item.Alcunha}}</nb-card-header>
+                        <nb-card-body>
+                            <div style=" text-align: center; ">
+                                <img width="50%" height="50%" src="{{item.url_imagem}}">
+                            </div>
+                        </nb-card-body>
+                        <nb-card-footer></nb-card-footer>
+                    </nb-card>
+                </div>
 
 
-        <div class='container' [dragula]='"bag-task1"'>
-            <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of DataBase1">
-                <nb-card-header>{{item.nome}}</nb-card-header>
-                <nb-card-body>
-                    <div style=" text-align: center; ">
-                        <img width="50%" height="50%" src="{{item.url_imagem}}">
-                    </div>
-                </nb-card-body>
-                <nb-card-footer></nb-card-footer>
-            </nb-card>
+                <div class='container' [dragula]='"bag-task1"'>
+                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Database1">
+                        <nb-card-header>{{item.Alcunha}}</nb-card-header>
+                        <nb-card-body>
+                            <div style=" text-align: center; ">
+                                <img width="50%" height="50%" src="{{item.url_imagem}}">
+                            </div>
+                        </nb-card-body>
+                        <nb-card-footer></nb-card-footer>
+                    </nb-card>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </nb-layout-column>
+    </nb-layout-column>
 </nb-layout>
