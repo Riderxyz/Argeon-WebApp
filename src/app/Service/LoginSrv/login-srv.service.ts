@@ -37,8 +37,11 @@ export class LoginSrvService {
     setTimeout(() => {
       sessionStorage.setItem('SetNameuser', this.usuario.NameDisplay)
       sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay)
-      sessionStorage.setItem('SetImageuser', this.usuario.Token)
-      this.router.navigateByUrl('/home')
+      sessionStorage.setItem('SetTokenuser', this.usuario.Token)
+      if (this.usuario.Token != null) {
+        this.router.navigateByUrl('/fichas')
+      }
+      
       console.log(sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay))
     }, 6000);
   }
@@ -47,6 +50,7 @@ export class LoginSrvService {
     this.Logado = false
     sessionStorage.removeItem('SetNameuser');
     sessionStorage.removeItem('SetImageuser');
+    sessionStorage.removeItem('SetTokenuser');
   }
   SetNameuser(Usuario) {
     console.log('Sendo ativado com sucesso', Usuario)

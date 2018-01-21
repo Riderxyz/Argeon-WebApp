@@ -10,7 +10,6 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-  items: Observable<any[]>;
   menuItems: any
   ColunaExibida: any
   colunas = { Reinos: null, Jogadores: null, Magia: null, Clan: null, Potions: null, Menu: null }
