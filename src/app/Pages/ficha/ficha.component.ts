@@ -21,13 +21,23 @@ export class FichaComponent implements OnInit {
   options: any = {
     removeOnSpill: true
   }
+  many: Array<string> = ['The', 'possibilities', 'are', 'endless!'];
+  many2: Array<string> = ['Explore', 'them'];
+  Omegateste = [];
+
   Database1: any
-  constructor(public dragSrv: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
-    dragSrv.setOptions('bag-task1', {
+  ImagePlayer: any
+  FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reinos: null }
+  constructor(public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
+    dragulaService.setOptions('bag-task1', {
       copy: false,
       removeOnSpill: true
     })
+
+
+
     this.userId = sessionStorage.getItem('SetTokenuser')
+    this.ImagePlayer = sessionStorage.getItem('SetImageuser')
     console.log(this.userId)
     this.Envio = db.object('Fichas de Usuario/' + this.userId);
     this.getNoticias()
@@ -36,10 +46,24 @@ export class FichaComponent implements OnInit {
       this.enviar()
     }, 1500);
 
-
   }
 
+
   ngOnInit() {
+    this.dragulaService.drag.subscribe(value => {
+      console.log('inda existe', value[1].innerText)
+      console.log('Array inicial', this.many)
+      console.log('Array inicial', this.many2)
+      this.Omegateste.push(
+        value[1].innerText
+)
+      console.log(this.Omegateste)
+    })
+    this.dragulaService.drop.subscribe(value => {
+      console.log('Não existe mais', value[1].innerText)
+      console.log('Array inicial', this.many)
+      console.log('Array inicial', this.many2)
+    })
   }
   getNoticias() {
     this.db.list('Fichas de Usuario', ref => ref.orderByKey()).valueChanges()
@@ -48,19 +72,15 @@ export class FichaComponent implements OnInit {
 
       })
   }
-
   teste() {
-    console.log('OMEGA', this.Database1)
-
-
     var dados: any
-    this.db.object('Fichas de Usuario').valueChanges()
+    this.db.object('Fichas de Usuario/' + this.userId).snapshotChanges()
       .subscribe((s) => {
         dados = s
-        console.log('dados 1', dados)
+        console.log('dados 1', dados.payload.val())
       })
     var dados2: any
-    this.db.list('Fichas de Usuario', ref => ref.orderByKey()).valueChanges()
+    this.db.list('Fichas de Usuario/').valueChanges()
       .subscribe((w) => {
         dados2 = w
         console.log('dados 2', dados2)
@@ -76,6 +96,8 @@ export class FichaComponent implements OnInit {
       IdadeChar: '500',
       Clan: 'Algum ae',
       Reinos: 'Thyr Zak',
+      Img_Player: this.ImagePlayer,
+      Img_Char: 'Asa',
       userId: this.userId
     })
   }
