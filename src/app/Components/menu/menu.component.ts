@@ -12,7 +12,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 export class MenuComponent implements OnInit {
   settings: Array<any>;
   themeSubscription: any;
-  teste:any
+  teste: any
   items: Observable<any[]>;
   menuItems: any;
   themeName = 'cosmic';
@@ -65,6 +65,19 @@ export class MenuComponent implements OnInit {
         glow: `adjust-hue(${colors.primary}, 10deg)`,
       },
     },
+    {
+      class: 'btn-hero-warning',
+      container: 'warning-container',
+      Destino: 'fichas',
+      NameButton: 'Fichas',
+      cosmic: {
+        gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
+        gradientRight: colors.warning,
+        bevel: `shade(${colors.warning}, 14%)`,
+        shadow: 'rgba (33, 7, 77, 0.5)',
+        glow: `adjust-hue(${colors.warning}, 5deg)`,
+      },
+    },
     ]
   }
 
@@ -78,7 +91,7 @@ export class MenuComponent implements OnInit {
   Ativar() {
     //this.router.navigateByUrl('home')
     this.teste = sessionStorage.getItem('Omega')
-    console.log('VINDO DO SESSION!!!',this.teste)
+    console.log('VINDO DO SESSION!!!', this.teste)
   }
 
 }

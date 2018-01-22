@@ -29,11 +29,11 @@ export class FichaComponent implements OnInit {
     })
     this.userId = sessionStorage.getItem('SetTokenuser')
     console.log(this.userId)
-    this.Envio = db.list('Fichas de Usuario');
+    this.Envio = db.object('Fichas de Usuario/' + this.userId);
     this.getNoticias()
     setTimeout(() => {
       this.teste()
-      //this.enviar()
+      this.enviar()
     }, 1500);
 
 
@@ -52,38 +52,30 @@ export class FichaComponent implements OnInit {
   teste() {
     console.log('OMEGA', this.Database1)
 
-    this.Database1.forEach(element => {
-      console.log(element.userId)
-      if (element.userId == this.userId) {
-        console.log(this.Database1.userId)
-        console.log('Aqui estou eu. Guie-me')
-      }
-    });
-
 
     var dados: any
-    this.db.object('Fichas de Usuario/').valueChanges()
+    this.db.object('Fichas de Usuario').valueChanges()
       .subscribe((s) => {
         dados = s
-        console.log(dados)
+        console.log('dados 1', dados)
       })
     var dados2: any
     this.db.list('Fichas de Usuario', ref => ref.orderByKey()).valueChanges()
       .subscribe((w) => {
         dados2 = w
-        console.log(dados2)
+        console.log('dados 2', dados2)
       })
 
   }
   enviar() {
-    this.Envio.push({
-      NomePlayer: 'this.Personagem.NomePlayer',
-      NomeChar: 'this.Personagem.NomeChar',
-      Alcunha: 'this.Personagem.Alcunha',
-      IdadePlayer: 'this.Personagem.IdadePlayer',
-      IdadeChar: 'this.Personagem.IdadeChar',
-      Clan: 'this.Personagem.Clan',
-      Reinos: 'this.Personagem.Reinos',
+    this.Envio.set({
+      NomePlayer: 'Teste',
+      NomeChar: 'Orion teste',
+      Alcunha: 'Omega Max',
+      IdadePlayer: '30',
+      IdadeChar: '500',
+      Clan: 'Algum ae',
+      Reinos: 'Thyr Zak',
       userId: this.userId
     })
   }
