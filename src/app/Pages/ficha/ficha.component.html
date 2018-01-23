@@ -5,18 +5,18 @@
     <nb-layout-column>
         <div class='wrapper'>
             <div class='container' [dragula]='"another-bag"' [dragulaModel]='many'>
-              <div *ngFor='let text of many' [innerHtml]='text'></div>
+                <div *ngFor='let text of many' [innerHtml]='text'></div>
             </div>
             <div class='container' [dragula]='"another-bag"' [dragulaModel]='many2'>
-              <div *ngFor='let text of many2' [innerHtml]='text'></div>
+                <div *ngFor='let text of many2' [innerHtml]='text'></div>
             </div>
-          </div>
+        </div>
 
 
     </nb-layout-column>
 </nb-layout>
 
-        <!--         <div>
+<!--         <div>
             <div class='wrapper'>
                 <div class='container' [dragula]='"bag-task1"'>
                     <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Database1">

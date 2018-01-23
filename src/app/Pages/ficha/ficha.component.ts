@@ -29,9 +29,9 @@ export class FichaComponent implements OnInit {
   ImagePlayer: any
   FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reinos: null }
   constructor(public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
-    dragulaService.setOptions('bag-task1', {
-      copy: false,
-      removeOnSpill: true
+    dragulaService.setOptions('another-bag', {
+      copy: true,
+      removeOnSpill: false
     })
 
 
@@ -51,18 +51,18 @@ export class FichaComponent implements OnInit {
 
   ngOnInit() {
     this.dragulaService.drag.subscribe(value => {
-      console.log('inda existe', value[1].innerText)
-      console.log('Array inicial', this.many)
-      console.log('Array inicial', this.many2)
+      //console.log('inda existe', value[1].innerText)
+      //console.log('Array inicial', this.many)
+      // console.log('Array inicial2', this.many2)
       this.Omegateste.push(
         value[1].innerText
-)
+      )
       console.log(this.Omegateste)
     })
     this.dragulaService.drop.subscribe(value => {
       console.log('Não existe mais', value[1].innerText)
       console.log('Array inicial', this.many)
-      console.log('Array inicial', this.many2)
+      console.log('Array inicial2', this.many2)
     })
   }
   getNoticias() {
