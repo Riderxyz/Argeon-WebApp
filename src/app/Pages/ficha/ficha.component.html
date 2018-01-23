@@ -4,27 +4,25 @@
     </nb-layout-header>
     <nb-layout-column>
 
-
         <nb-card class="Card99">
-            <nb-card-header>Ola Player</nb-card-header>
-
+            <nb-card-header (click)="enviar()">Ola Player</nb-card-header>
             <nb-card-body>
-                <p>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar tellus id ex pretium, quis tincidunt sapien malesuada. Cras vitae euismod libero.
-         Phasellus pulvinar vehicula mauris, maximus interdum purus dictum vel. 
-         Etiam dictum velit quis ante luctus, vitae ultricies leo commodo. Aenean non augue vitae augue fermentum porta. Maecenas dignissim nisl sit amet sapien hendrerit, ut rhoncus neque pharetra. Morbi tristique quam sit amet sapien consequat auctor nec sed nulla. Morbi pellentesque, nunc et molestie semper, odio sapien tincidunt purus, non pellentesque eros quam a sem.
-
-
-                </p>
+                <form>
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Seu nome</label>
+                        <input type="text" [(ngModel)]="FichasData.NomePlayer" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                            <label>Nome do seu Personagem</label>
+                            <input type="text" class="form-control">
+                        </div>
+                </div>
+                </form>
             </nb-card-body>
-
-
             <nb-card-footer></nb-card-footer>
         </nb-card>
-
-
-
-        <div class='wrapper'>
+        <div class='wrapper' style="overflow-y: scroll; height:60vh;">
             <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Database1' [dragulaOptions]="options">
                 <h1>Magias disponiveis</h1>
                 <nb-card class="Card99" *ngFor="let item of Database1">
@@ -32,7 +30,7 @@
                     <nb-card-footer></nb-card-footer>
                 </nb-card>
             </div>
-            <div class='container' [dragula]='"bag-task2"' [dragulaModel]='Database1' [dragulaOptions]="options">
+            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Database1' [dragulaOptions]="options">
                 <h1>Suas Magias</h1>
                 <nb-card class="Card99" *ngFor="let item of Database1">
                     <nb-card-header>{{item.observacao}}</nb-card-header>
@@ -41,6 +39,9 @@
             </div>
         </div>
     </nb-layout-column>
+    <nb-layout-footer fixed>
+        <h1>Okay</h1>
+    </nb-layout-footer>
 </nb-layout>
 
 <!--         <div>
