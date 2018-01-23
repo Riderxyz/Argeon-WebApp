@@ -21,7 +21,7 @@ export class FichaComponent implements OnInit {
   Envio: any
   options: any = {
     removeOnSpill: false,
-    copy: true
+    copy: false
   }
   many: Array<string> = ['Okay'];
   many2: Array<string> = ['teste'];
@@ -36,8 +36,8 @@ export class FichaComponent implements OnInit {
     this.Envio = db.object('Fichas de Usuario/' + this.userId);
     this.getNoticias()
     setTimeout(() => {
-      this.teste()
-      //this.enviar()
+      //this.teste()
+      this.enviar()
     }, 1500);
   }
   ngOnInit() {
@@ -57,7 +57,7 @@ export class FichaComponent implements OnInit {
     })
   }
   getNoticias() {
-    this.db.list('Clans').valueChanges()
+    this.db.list('Grimorio').valueChanges()
       .subscribe((s) => {
         this.Database1 = s
         console.log(this.Database1)
@@ -84,8 +84,9 @@ export class FichaComponent implements OnInit {
 
   }
   enviar() {
-    this.Envio.set({
-      NomePlayer: 'Teste',
+    console.log(this.FichasData.NomePlayer)
+/*     this.Envio.set({
+      NomePlayer: this.FichasData.NomePlayer,
       NomeChar: 'Orion teste',
       Alcunha: 'Omega Max',
       IdadePlayer: '30',
@@ -94,7 +95,8 @@ export class FichaComponent implements OnInit {
       Reinos: 'Thyr Zak',
       Img_Player: this.ImagePlayer,
       Img_Char: 'Asa',
-      userId: this.userId
-    })
+      userId: this.userId,
+      Magias:{Omega:'Inject', Omega2:'advice', Omega3:'in me'}
+    }) */
   }
 }
