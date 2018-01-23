@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { DragulaDirective } from 'ng2-dragula/components/dragula.directive';
@@ -19,23 +20,16 @@ export class FichaComponent implements OnInit {
   userId: string;
   Envio: any
   options: any = {
-    removeOnSpill: true
+    removeOnSpill: false,
+    copy: true
   }
-  many: Array<string> = ['The', 'possibilities', 'are', 'endless!'];
-  many2: Array<string> = ['Explore', 'them'];
+  many: Array<string> = ['Okay'];
+  many2: Array<string> = ['teste'];
   Omegateste = [];
-
   Database1: any
   ImagePlayer: any
   FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reinos: null }
   constructor(public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
-    dragulaService.setOptions('another-bag', {
-      copy: true,
-      removeOnSpill: false
-    })
-
-
-
     this.userId = sessionStorage.getItem('SetTokenuser')
     this.ImagePlayer = sessionStorage.getItem('SetImageuser')
     console.log(this.userId)
@@ -43,12 +37,9 @@ export class FichaComponent implements OnInit {
     this.getNoticias()
     setTimeout(() => {
       this.teste()
-      this.enviar()
+      //this.enviar()
     }, 1500);
-
   }
-
-
   ngOnInit() {
     this.dragulaService.drag.subscribe(value => {
       //console.log('inda existe', value[1].innerText)
@@ -61,15 +52,20 @@ export class FichaComponent implements OnInit {
     })
     this.dragulaService.drop.subscribe(value => {
       console.log('Não existe mais', value[1].innerText)
-      console.log('Array inicial', this.many)
+      //console.log('Array inicial', this.many)
       console.log('Array inicial2', this.many2)
     })
   }
   getNoticias() {
-    this.db.list('Fichas de Usuario', ref => ref.orderByKey()).valueChanges()
+    this.db.list('Clans').valueChanges()
       .subscribe((s) => {
         this.Database1 = s
-
+        console.log(this.Database1)
+        this.Database1.forEach(x => {
+          //console.log(x.nome)
+          this.many.push(x.nome)
+          //console.log(this.many)
+        });
       })
   }
   teste() {
@@ -83,7 +79,7 @@ export class FichaComponent implements OnInit {
     this.db.list('Fichas de Usuario/').valueChanges()
       .subscribe((w) => {
         dados2 = w
-        console.log('dados 2', dados2)
+        //console.log('dados 2', dados2)
       })
 
   }
