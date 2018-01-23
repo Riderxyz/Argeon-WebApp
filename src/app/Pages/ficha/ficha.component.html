@@ -3,16 +3,43 @@
         <app-header style="width:100%"></app-header>
     </nb-layout-header>
     <nb-layout-column>
+
+
+        <nb-card class="Card99">
+            <nb-card-header>Ola Player</nb-card-header>
+
+            <nb-card-body>
+                <p>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar tellus id ex pretium, quis tincidunt sapien malesuada. Cras vitae euismod libero.
+         Phasellus pulvinar vehicula mauris, maximus interdum purus dictum vel. 
+         Etiam dictum velit quis ante luctus, vitae ultricies leo commodo. Aenean non augue vitae augue fermentum porta. Maecenas dignissim nisl sit amet sapien hendrerit, ut rhoncus neque pharetra. Morbi tristique quam sit amet sapien consequat auctor nec sed nulla. Morbi pellentesque, nunc et molestie semper, odio sapien tincidunt purus, non pellentesque eros quam a sem.
+
+
+                </p>
+            </nb-card-body>
+
+
+            <nb-card-footer></nb-card-footer>
+        </nb-card>
+
+
+
         <div class='wrapper'>
-            <div class='container' [dragula]='"another-bag"' [dragulaModel]='many'>
-                <div *ngFor='let text of many' [innerHtml]='text'></div>
+            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Database1' [dragulaOptions]="options">
+                <h1>Magias disponiveis</h1>
+                <nb-card class="Card99" *ngFor="let item of Database1">
+                    <nb-card-header>{{item.nome}}</nb-card-header>
+                    <nb-card-footer></nb-card-footer>
+                </nb-card>
             </div>
-            <div class='container' [dragula]='"another-bag"' [dragulaModel]='many2'>
-                <div *ngFor='let text of many2' [innerHtml]='text'></div>
+            <div class='container' [dragula]='"bag-task2"' [dragulaModel]='Database1' [dragulaOptions]="options">
+                <h1>Suas Magias</h1>
+                <nb-card class="Card99" *ngFor="let item of Database1">
+                    <nb-card-header>{{item.observacao}}</nb-card-header>
+                    <nb-card-footer></nb-card-footer>
+                </nb-card>
             </div>
         </div>
-
-
     </nb-layout-column>
 </nb-layout>
 
