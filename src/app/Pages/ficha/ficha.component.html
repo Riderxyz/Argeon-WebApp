@@ -15,24 +15,58 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nome do seu Personagem</label>
-                            <input type="text" class="form-control">
+                            <input [(ngModel)]="FichasData.NomeChar" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Alcunha</label>
+                            <input type="text" [(ngModel)]="FichasData.Alcunha" [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Sua idade</label>
+                            <input [(ngModel)]="FichasData.IdadePlayer" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Idade do seu personagem</label>
+                            <input [(ngModel)]="FichasData.IdadeChar" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="form-group dropdownArrow newSelect">
+                                <label for="DropDownApps">Reinos</label>
+                                <select [(ngModel)]="FichasData.Reino" class="form-control" [ngModelOptions]="{standalone: true}">
+                                    <option [value]="item.value" *ngFor="let item of  Reinos">{{item.nome}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="form-group dropdownArrow newSelect">
+                                <label for="DropDownApps">Clãs</label>
+                                <select [(ngModel)]="FichasData.Clan" class="form-control" [ngModelOptions]="{standalone: true}">
+                                    <option [value]="item.nome" *ngFor="let item of  Clans">{{item.nome}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
             </nb-card-body>
-            <nb-card-footer></nb-card-footer>
+            <nb-card-footer>
+
+            </nb-card-footer>
         </nb-card>
-        <div class='wrapper' style="overflow-y: scroll; height:60vh;">
-            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Database1' [dragulaOptions]="options">
+        <div class='wrapper'>
+            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Grimorio' [dragulaOptions]="options">
                 <h1>Magias disponiveis</h1>
-                <nb-card class="Card99" *ngFor="let item of Database1">
+                <nb-card class="Card99" *ngFor="let item of Grimorio">
                     <nb-card-header>{{item.nome}}</nb-card-header>
                     <nb-card-footer></nb-card-footer>
                 </nb-card>
             </div>
-            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Database1' [dragulaOptions]="options">
+            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Grimorio' [dragulaOptions]="options">
                 <h1>Suas Magias</h1>
-                <nb-card class="Card99" *ngFor="let item of Database1">
+                <nb-card class="Card99" *ngFor="let item of Grimorio">
                     <nb-card-header>{{item.observacao}}</nb-card-header>
                     <nb-card-footer></nb-card-footer>
                 </nb-card>
@@ -47,7 +81,7 @@
 <!--         <div>
             <div class='wrapper'>
                 <div class='container' [dragula]='"bag-task1"'>
-                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Database1">
+                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Grimorio">
                         <nb-card-header>{{item.Alcunha}}</nb-card-header>
                         <nb-card-body>
                             <div style=" text-align: center; ">
@@ -60,7 +94,7 @@
 
 
                 <div class='container' [dragula]='"bag-task1"'>
-                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Database1">
+                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Grimorio">
                         <nb-card-header>{{item.Alcunha}}</nb-card-header>
                         <nb-card-body>
                             <div style=" text-align: center; ">
