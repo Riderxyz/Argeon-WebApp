@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 //Nebular
 import {
   NbActionsModule,
@@ -17,7 +18,7 @@ import {
   NbCheckboxModule,
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import {DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula'
+import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula'
 
 //AngularFire
 import { AngularFireModule } from 'angularfire2';
@@ -60,6 +61,7 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -104,7 +106,7 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
           text: 'Fichas'
         }
       },
-    
+
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]),
   ],
