@@ -7,6 +7,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 
+
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
@@ -16,74 +17,65 @@ import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 
   styleUrls: ['./ficha.component.scss']
 })
 export class FichaComponent implements OnInit {
-  //items: FirebaseListObservable<Item[]> = null;
   userId: string;
   Envio: any
   options: any = {
     removeOnSpill: false,
     copy: false
   }
-  many: Array<string> = ['Okay'];
-  many2: Array<string> = ['teste'];
+  options2: any = {
+    removeOnSpill: true,
+    copy: false
+  }
+  MagiaGrimorio: Array<string> = [];
+  MagiaPlayer: Array<string> = [];
   Omegateste = [];
   Grimorio: any
   Reinos: any
   Clans: any
   ImagePlayer: any
-  FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reino: null }
-  constructor(public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
+
+  themeName = 'cosmic';
+  settings: Array<any>;
+  themeSubscription: any;
+
+  FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reino: null };
+
+  constructor(private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
     this.userId = sessionStorage.getItem('SetTokenuser')
     this.ImagePlayer = sessionStorage.getItem('SetImageuser')
     console.log(this.userId)
     this.Envio = db.object('Fichas de Usuario/' + this.userId);
-    this.getNoticias()
+    this.getDados();
+    this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
+      this.themeName = theme.name;
+      this.init(theme.variables);
+    });
     setTimeout(() => {
       //this.teste()
       //this.enviar()
     }, 1500);
-
-
-    dragulaService.drag.subscribe((value) => {
-      console.log(`drag: ${value[0]}`);
-      this.onDrag(value.slice(1));
-    });
-    dragulaService.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
-      this.onDrop(value.slice(1));
-    });
- 
-  }
+ }
   ngOnInit() {
     this.dragulaService.drag.subscribe(value => {
-      this.Omegateste.push(
-        value[1].innerText
-      )
       //console.log(this.Omegateste)
     })
     this.dragulaService.drop.subscribe(value => {
       console.log('Não existe mais', value[1].innerText)
-      //console.log('Array inicial', this.many)
-      //console.log('Array inicial2', this.many2)
+      //console.log('Array inicial', this.MagiaGrimorio)
+      console.log('Array Final2', this.MagiaPlayer)
     })
   }
 
-  private onDrag(args) {
-    let [e, el] = args;
-    console.log('Drag',args)
-  }
-  
-  private onDrop(args) {
-    let [e, el] = args;
-    console.log('Drop',args)
-  }
-
-
-
-  getNoticias() {
+  getDados() {
     this.db.list('Grimorio').valueChanges()
       .subscribe((s) => {
         this.Grimorio = s
-        //console.log(this.Grimorio)
+        for (let i = 0; i < this.Grimorio.length; i++) {
+          const magias = this.Grimorio[i].nome;
+          console.log(magias)
+          this.MagiaGrimorio.push(magias)
+        }
       })
     this.db.list('Reinos').valueChanges()
       .subscribe((s) => {
@@ -109,22 +101,49 @@ export class FichaComponent implements OnInit {
         dados2 = w
         //console.log('dados 2', dados2)
       })
-
   }
-  enviar() {
-    console.log(this.FichasData)
-    /*     this.Envio.set({
-          NomePlayer: this.FichasData.NomePlayer,
-          NomeChar: 'Orion teste',
-          Alcunha: 'Omega Max',
-          IdadePlayer: '30',
-          IdadeChar: '500',
-          Clan: 'Algum ae',
-          Reinos: 'Thyr Zak',
-          Img_Player: this.ImagePlayer,
-          Img_Char: 'Asa',
-          userId: this.userId,
-          Magias:{Omega:'Inject', Omega2:'advice', Omega3:'in me'}
-        }) */
+ init(colors: any) {
+  this.settings = [{
+    class: 'btn-hero-danger',
+    container: 'danger-container',
+    NameButton: 'Cancelar',
+    Salvar: false,
+    cosmic: {
+      gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
+      gradientRight: colors.primary,
+      bevel: `shade(${colors.primary}, 14%)`,
+      shadow: 'rgba (6, 7, 64, 0.5)',
+      glow: `adjust-hue(${colors.primary}, 10deg)`,
+    },
+  }, {
+    class: 'btn-hero-success',
+    container: 'success-container',
+    NameButton: 'Salvar',
+    Salvar: true,
+    cosmic: {
+      gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
+      gradientRight: colors.warning,
+      bevel: `shade(${colors.warning}, 14%)`,
+      shadow: 'rgba (33, 7, 77, 0.5)',
+      glow: `adjust-hue(${colors.warning}, 5deg)`,
+    },
+  }]
+}
+
+  enviar(item) {
+    console.log(item.Salvar)
+/*     this.Envio.set({
+      NomePlayer: 'this.FichasData.NomePlayer',
+      NomeChar: 'Orion teste',
+      Alcunha: 'Omega Max',
+      IdadePlayer: '30',
+      IdadeChar: '500',
+      Clan: 'Algum ae',
+      Reinos: 'Thyr Zak',
+      Img_Player: this.ImagePlayer,
+      Img_Char: 'Asa',
+      userId: this.userId,
+      Magias: this.MagiaPlayer 
+    })*/
   }
 }

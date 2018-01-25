@@ -9,7 +9,7 @@
     </nb-sidebar>
     <nb-layout-column>
         <nb-card class="Card99">
-            <nb-card-header (click)="enviar()">Ola Player</nb-card-header>
+            <nb-card-header (click)="enviar()" style="text-align:center">Criar Ficha</nb-card-header>
             <nb-card-body>
                 <form>
                     <div class="row">
@@ -59,53 +59,42 @@
             <nb-card-footer>
             </nb-card-footer>
         </nb-card>
-        <div class='wrapper'>
-            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Grimorio' [dragulaOptions]="options">
-                <h1>Magias disponiveis</h1>
-                <nb-card class="Card99" *ngFor="let item of Grimorio">
-                    <nb-card-header>{{item.nome}}</nb-card-header>
-                    <nb-card-footer></nb-card-footer>
-                </nb-card>
+        <div class="wrapper_Magico">
+            <div class='row' style="text-align:center">
+                <div class="col-md-6">
+                    <h1>Magias do Grimorio</h1>
+                </div>
+                <div class="col-md-6">
+                    <h1>Suas Magias</h1>
+                </div>
             </div>
-            <div class='container' [dragula]='"bag-task1"' [dragulaModel]='Grimorio' [dragulaOptions]="options">
-                <h1>Suas Magias</h1>
-                <nb-card class="Card99" *ngFor="let item of Grimorio">
-                    <nb-card-header>{{item.observacao}}</nb-card-header>
-                    <nb-card-footer></nb-card-footer>
-                </nb-card>
+            <div class='row '>
+                <div class='container col-md-6 colunas teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaGrimorio' [dragulaOptions]="options">
+
+                    <nb-card class="Card99" *ngFor="let text of MagiaGrimorio">
+                        <nb-card-header [innerHtml]='text'></nb-card-header>
+
+                    </nb-card>
+                </div>
+                <div class='container col-md-6 colunas2 teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaPlayer' [dragulaOptions]="options2">
+
+                    <nb-card class="Card99" *ngFor="let text of MagiaPlayer">
+                        <nb-card-header [innerHtml]='text'></nb-card-header>
+
+                    </nb-card>
+                </div>
             </div>
+
+
         </div>
     </nb-layout-column>
     <nb-layout-footer fixed>
-        <h1>Okay</h1>
+            <div class="row">
+                    <div class="example-container" *ngFor="let hb of settings">
+                      <div class="container-btn" style="padding-right: 7px !important;">
+                        <button class="btn {{ hb.class }} btn-demo" (click)="enviar(hb)">{{ hb.NameButton }}</button>
+                      </div>
+                    </div>
+                  </div>
     </nb-layout-footer>
 </nb-layout>
-
-<!--         <div>
-            <div class='wrapper'>
-                <div class='container' [dragula]='"bag-task1"'>
-                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Grimorio">
-                        <nb-card-header>{{item.Alcunha}}</nb-card-header>
-                        <nb-card-body>
-                            <div style=" text-align: center; ">
-                                <img width="50%" height="50%" src="{{ImagePlayer}}">
-                            </div>
-                        </nb-card-body>
-                        <nb-card-footer></nb-card-footer>
-                    </nb-card>
-                </div>
-
-
-                <div class='container' [dragula]='"bag-task1"'>
-                    <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Grimorio">
-                        <nb-card-header>{{item.Alcunha}}</nb-card-header>
-                        <nb-card-body>
-                            <div style=" text-align: center; ">
-                                <img width="50%" height="50%" src="{{ImagePlayer}}">
-                            </div>
-                        </nb-card-body>
-                        <nb-card-footer></nb-card-footer>
-                    </nb-card>
-                </div>
-            </div>
-        </div> -->

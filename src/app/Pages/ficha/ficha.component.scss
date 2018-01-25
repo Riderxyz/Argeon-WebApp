@@ -1,18 +1,26 @@
-.wrapper {
-  display: flex;
+.wrapper_Magico {
+  //display: flex;
   //flex-wrap: wrap;
   font-size: 1rem;
   line-height: 1.25;
   background: #3d3780;
   color: #d1d1ff;
-  margin-bottom: 1.5rem;
+//margin-bottom: 1.5rem;
   border-radius: .5rem;
   border-color: #3d3780;
   box-shadow: 0 8px 20px 0 rgba(40,37,89,0.6);
   font-weight: 400;
+
+}
+.colunas{
+box-shadow: 6px 0px 25px 0px #000000 !important;
+}
+.colunas2{
+  box-shadow: -6px 0px 25px 0px #000000 !important;
+  }
+  
+
+.teste{
   overflow-y: scroll; 
   height:40vh;
 }
-
-
-
