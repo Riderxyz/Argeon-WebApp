@@ -41,35 +41,59 @@ export class FichaComponent implements OnInit {
       //this.teste()
       //this.enviar()
     }, 1500);
+
+
+    dragulaService.drag.subscribe((value) => {
+      console.log(`drag: ${value[0]}`);
+      this.onDrag(value.slice(1));
+    });
+    dragulaService.drop.subscribe((value) => {
+      console.log(`drop: ${value[0]}`);
+      this.onDrop(value.slice(1));
+    });
+ 
   }
   ngOnInit() {
     this.dragulaService.drag.subscribe(value => {
       this.Omegateste.push(
         value[1].innerText
       )
-      console.log(this.Omegateste)
+      //console.log(this.Omegateste)
     })
     this.dragulaService.drop.subscribe(value => {
       console.log('Não existe mais', value[1].innerText)
       //console.log('Array inicial', this.many)
-      console.log('Array inicial2', this.many2)
+      //console.log('Array inicial2', this.many2)
     })
   }
+
+  private onDrag(args) {
+    let [e, el] = args;
+    console.log('Drag',args)
+  }
+  
+  private onDrop(args) {
+    let [e, el] = args;
+    console.log('Drop',args)
+  }
+
+
+
   getNoticias() {
     this.db.list('Grimorio').valueChanges()
       .subscribe((s) => {
         this.Grimorio = s
-        console.log(this.Grimorio)
+        //console.log(this.Grimorio)
       })
     this.db.list('Reinos').valueChanges()
       .subscribe((s) => {
         this.Reinos = s
-        console.log(this.Reinos)
+        //console.log(this.Reinos)
       })
     this.db.list('Clans').valueChanges()
       .subscribe((s) => {
         this.Clans = s
-        console.log(this.Clans)
+        //console.log(this.Clans)
       })
   }
   teste() {
@@ -77,7 +101,7 @@ export class FichaComponent implements OnInit {
     this.db.object('Fichas de Usuario/' + this.userId).snapshotChanges()
       .subscribe((s) => {
         dados = s
-        console.log('dados 1', dados.payload.val())
+        //console.log('dados 1', dados.payload.val())
       })
     var dados2: any
     this.db.list('Fichas de Usuario/').valueChanges()
