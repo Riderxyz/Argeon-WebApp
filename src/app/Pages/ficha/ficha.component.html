@@ -2,8 +2,12 @@
     <nb-layout-header fixed>
         <app-header style="width:100%"></app-header>
     </nb-layout-header>
+    <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
+        <nb-sidebar-header>
+        </nb-sidebar-header>
+        <app-menu></app-menu>
+    </nb-sidebar>
     <nb-layout-column>
-
         <nb-card class="Card99">
             <nb-card-header (click)="enviar()">Ola Player</nb-card-header>
             <nb-card-body>
@@ -53,7 +57,6 @@
                 </form>
             </nb-card-body>
             <nb-card-footer>
-
             </nb-card-footer>
         </nb-card>
         <div class='wrapper'>

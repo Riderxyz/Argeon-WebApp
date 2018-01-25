@@ -44,6 +44,7 @@ export class MenuComponent implements OnInit {
       container: 'primary-container',
       Destino: 'home',
       NameButton: 'Home',
+      icon:'fa fa-lg fa-home',
       cosmic: {
         gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
         gradientRight: colors.primary,
@@ -57,6 +58,7 @@ export class MenuComponent implements OnInit {
       container: 'success-container',
       Destino: 'noticias',
       NameButton: 'Noticias',
+      icon:'fa fa-lg fa-newspaper-o',
       cosmic: {
         gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
         gradientRight: colors.primary,
@@ -70,6 +72,7 @@ export class MenuComponent implements OnInit {
       container: 'warning-container',
       Destino: 'fichas',
       NameButton: 'Fichas',
+      icon:'fa fa-lg fa-id-card-o',
       cosmic: {
         gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
         gradientRight: colors.warning,
