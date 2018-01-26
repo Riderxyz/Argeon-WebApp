@@ -20,7 +20,6 @@ export class ButtonsComponent implements OnInit {
     });
   }
   ngOnInit() {
-
   }
   init(colors: any) {
     this.settings = [{

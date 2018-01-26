@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   AvatarDisplay:any
   Login:any;
   Rotate:any;
-  teste:any;
   Show:boolean;
   constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
     //this.UsernameDisplay = 'Iago Favilla'
@@ -31,17 +30,14 @@ export class HeaderComponent implements OnInit {
         if (auth != null) {
           this.user = afAuth.authState;
           this.Logado = true
+        }else{
+          this.LoginSrv.Logout()
         }
       }
     )
   }
 
-  ngOnInit() {
-
-  }
-  teste2(){
-    console.log(this.teste)
-  }
+  ngOnInit() {}
 
   GoToLogin(){
     this.Rotate = 'RotateToLogin'
