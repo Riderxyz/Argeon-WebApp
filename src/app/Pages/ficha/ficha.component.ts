@@ -29,7 +29,6 @@ export class FichaComponent implements OnInit {
   }
   MagiaGrimorio: Array<string> = [];
   MagiaPlayer: Array<string> = [];
-  Omegateste = [];
   Grimorio: any
   Reinos: any
   Clans: any
@@ -40,7 +39,6 @@ export class FichaComponent implements OnInit {
   themeSubscription: any;
 
   FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reino: null };
-
   constructor(private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
     this.userId = sessionStorage.getItem('SetTokenuser')
     this.ImagePlayer = sessionStorage.getItem('SetImageuser')
@@ -55,95 +53,80 @@ export class FichaComponent implements OnInit {
       //this.teste()
       //this.enviar()
     }, 1500);
- }
+  }
   ngOnInit() {
     this.dragulaService.drag.subscribe(value => {
-      //console.log(this.Omegateste)
+
     })
     this.dragulaService.drop.subscribe(value => {
       console.log('Não existe mais', value[1].innerText)
-      //console.log('Array inicial', this.MagiaGrimorio)
       console.log('Array Final2', this.MagiaPlayer)
     })
   }
-
   getDados() {
     this.db.list('Grimorio').valueChanges()
       .subscribe((s) => {
         this.Grimorio = s
         for (let i = 0; i < this.Grimorio.length; i++) {
           const magias = this.Grimorio[i].nome;
-          console.log(magias)
           this.MagiaGrimorio.push(magias)
         }
       })
     this.db.list('Reinos').valueChanges()
       .subscribe((s) => {
         this.Reinos = s
-        //console.log(this.Reinos)
       })
     this.db.list('Clans').valueChanges()
       .subscribe((s) => {
         this.Clans = s
-        //console.log(this.Clans)
       })
   }
-  teste() {
-    var dados: any
-    this.db.object('Fichas de Usuario/' + this.userId).snapshotChanges()
-      .subscribe((s) => {
-        dados = s
-        //console.log('dados 1', dados.payload.val())
-      })
-    var dados2: any
-    this.db.list('Fichas de Usuario/').valueChanges()
-      .subscribe((w) => {
-        dados2 = w
-        //console.log('dados 2', dados2)
-      })
+  init(colors: any) {
+    this.settings = [{
+      class: 'btn-hero-danger',
+      NameButton: 'Cancelar',
+      Salvar: false,
+      cosmic: {
+        gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
+        gradientRight: colors.primary,
+        bevel: `shade(${colors.primary}, 14%)`,
+        shadow: 'rgba (6, 7, 64, 0.5)',
+        glow: `adjust-hue(${colors.primary}, 10deg)`,
+      },
+    }, {
+      class: 'btn-hero-success',
+      NameButton: 'Salvar',
+      Salvar: true,
+      cosmic: {
+        gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
+        gradientRight: colors.warning,
+        bevel: `shade(${colors.warning}, 14%)`,
+        shadow: 'rgba (33, 7, 77, 0.5)',
+        glow: `adjust-hue(${colors.warning}, 5deg)`,
+      },
+    }]
   }
- init(colors: any) {
-  this.settings = [{
-    class: 'btn-hero-danger',
-    container: 'danger-container',
-    NameButton: 'Cancelar',
-    Salvar: false,
-    cosmic: {
-      gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
-      gradientRight: colors.primary,
-      bevel: `shade(${colors.primary}, 14%)`,
-      shadow: 'rgba (6, 7, 64, 0.5)',
-      glow: `adjust-hue(${colors.primary}, 10deg)`,
-    },
-  }, {
-    class: 'btn-hero-success',
-    container: 'success-container',
-    NameButton: 'Salvar',
-    Salvar: true,
-    cosmic: {
-      gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
-      gradientRight: colors.warning,
-      bevel: `shade(${colors.warning}, 14%)`,
-      shadow: 'rgba (33, 7, 77, 0.5)',
-      glow: `adjust-hue(${colors.warning}, 5deg)`,
-    },
-  }]
-}
 
-  enviar(item) {
+  salvar(item) {
     console.log(item.Salvar)
-/*     this.Envio.set({
-      NomePlayer: 'this.FichasData.NomePlayer',
-      NomeChar: 'Orion teste',
-      Alcunha: 'Omega Max',
-      IdadePlayer: '30',
-      IdadeChar: '500',
-      Clan: 'Algum ae',
-      Reinos: 'Thyr Zak',
-      Img_Player: this.ImagePlayer,
-      Img_Char: 'Asa',
-      userId: this.userId,
-      Magias: this.MagiaPlayer 
-    })*/
+    if (item.Salvar == false) {
+      console.log('Não salva')
+    } else {
+      console.log('Salva')
+
+      this.Envio.set({
+        NomePlayer: this.FichasData.NomePlayer,
+        NomeChar: this.FichasData.NomeChar,
+        Alcunha: this.FichasData.Alcunha,
+        IdadePlayer: this.FichasData.IdadePlayer,
+        IdadeChar: this.FichasData.IdadeChar,
+        Clan: this.FichasData.Clan,
+        Reinos: this.FichasData.Reino,
+        Img_Player: this.ImagePlayer,
+        Img_Char: 'Asa',
+        userId: this.userId,
+        Magias: this.MagiaPlayer
+      })
+    }
   }
-}
+}  

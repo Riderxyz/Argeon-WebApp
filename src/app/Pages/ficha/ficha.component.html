@@ -70,31 +70,25 @@
             </div>
             <div class='row '>
                 <div class='container col-md-6 colunas teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaGrimorio' [dragulaOptions]="options">
-
                     <nb-card class="Card99" *ngFor="let text of MagiaGrimorio">
                         <nb-card-header [innerHtml]='text'></nb-card-header>
-
                     </nb-card>
                 </div>
                 <div class='container col-md-6 colunas2 teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaPlayer' [dragulaOptions]="options2">
-
                     <nb-card class="Card99" *ngFor="let text of MagiaPlayer">
                         <nb-card-header [innerHtml]='text'></nb-card-header>
-
                     </nb-card>
                 </div>
             </div>
-
-
         </div>
     </nb-layout-column>
     <nb-layout-footer fixed>
-            <div class="row">
-                    <div class="example-container" *ngFor="let hb of settings">
-                      <div class="container-btn" style="padding-right: 7px !important;">
-                        <button class="btn {{ hb.class }} btn-demo" (click)="enviar(hb)">{{ hb.NameButton }}</button>
-                      </div>
-                    </div>
-                  </div>
+        <div class="row">
+            <div class="example-container" *ngFor="let hb of settings">
+                <div class="container-btn" style="padding-right: 7px !important;">
+                    <button class="btn {{ hb.class }} btn-demo" (click)="salvar(hb)">{{ hb.NameButton }}</button>
+                </div>
+            </div>
+        </div>
     </nb-layout-footer>
 </nb-layout>
