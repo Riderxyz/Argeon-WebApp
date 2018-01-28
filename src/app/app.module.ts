@@ -49,12 +49,12 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
 @NgModule({
   declarations: [
     AppComponent,
-//Paginas
+    //Paginas
     HomeComponent,
     NoticiasComponent,
     LoginComponent,
     FichaComponent,
-//Componentes
+    //Componentes
     GridComponent,
     HeaderComponent,
     ButtonsComponent,
@@ -106,6 +106,12 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
         path: 'fichas', component: FichaComponent, data: {
           breadcrumbs: true,
           text: 'Fichas'
+        },
+      },
+      {
+        path: 'criar_ficha', component: CriarFichasComponent, data: {
+          breadcrumbs: true,
+          text: 'Criando Fichas'
         }
       },
 
