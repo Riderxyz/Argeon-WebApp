@@ -36,6 +36,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { NoticiasComponent } from './Pages/noticias/noticias.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { FichaComponent } from './Pages/ficha/ficha.component';
+import { CriarFichasComponent } from './Pages/criar-fichas/criar-fichas.component';
 //Componentes
 import { GridComponent } from './Components/grid/grid.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -48,16 +49,17 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
 @NgModule({
   declarations: [
     AppComponent,
-    //Paginas
+//Paginas
     HomeComponent,
     NoticiasComponent,
     LoginComponent,
     FichaComponent,
-    //Componentes
+//Componentes
     GridComponent,
     HeaderComponent,
     ButtonsComponent,
     MenuComponent,
+    CriarFichasComponent,
   ],
   imports: [
     BrowserModule,
