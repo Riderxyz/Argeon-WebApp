@@ -8,87 +8,14 @@
         <app-menu></app-menu>
     </nb-sidebar>
     <nb-layout-column>
-        <nb-card class="Card99">
-            <nb-card-header (click)="enviar()" style="text-align:center">Criar Ficha</nb-card-header>
+        <nb-card class="angrytext">
+            <nb-card-header>
+                Fichas
+            </nb-card-header>
             <nb-card-body>
-                <form>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label>Seu nome</label>
-                            <input type="text" [(ngModel)]="FichasData.NomePlayer" [ngModelOptions]="{standalone: true}" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Nome do seu Personagem</label>
-                            <input [(ngModel)]="FichasData.NomeChar" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label>Alcunha</label>
-                            <input type="text" [(ngModel)]="FichasData.Alcunha" [ngModelOptions]="{standalone: true}" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Sua idade</label>
-                            <input [(ngModel)]="FichasData.IdadePlayer" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Idade do seu personagem</label>
-                            <input [(ngModel)]="FichasData.IdadeChar" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <div class="form-group dropdownArrow newSelect">
-                                <label for="DropDownApps">Reinos</label>
-                                <select [(ngModel)]="FichasData.Reino" class="form-control" [ngModelOptions]="{standalone: true}">
-                                    <option [value]="item.value" *ngFor="let item of  Dropdowns.Reinos">{{item.nome}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <div class="form-group dropdownArrow newSelect">
-                                <label for="DropDownApps">Clãs</label>
-                                <select [(ngModel)]="FichasData.Clan" class="form-control" [ngModelOptions]="{standalone: true}">
-                                    <option [value]="item.nome" *ngFor="let item of  Dropdowns.Clans">{{item.nome}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <ng2-smart-table [settings]="settings" [source]="dadosFicha">
+                </ng2-smart-table>
             </nb-card-body>
-            <nb-card-footer>
-            </nb-card-footer>
         </nb-card>
-        <div class="wrapper_Magico">
-            <div class='row' style="text-align:center">
-                <div class="col-md-6">
-                    <h1>Magias do Grimorio</h1>
-                </div>
-                <div class="col-md-6">
-                    <h1>Suas Magias</h1>
-                </div>
-            </div>
-            <div class='row '>
-                <div class='container col-md-6 colunas teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaGrimorio' [dragulaOptions]="options">
-                    <nb-card class="Card99" *ngFor="let text of MagiaGrimorio">
-                        <nb-card-header [innerHtml]='text'></nb-card-header>
-                    </nb-card>
-                </div>
-                <div class='container col-md-6 colunas2 teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaPlayer' [dragulaOptions]="options2">
-                    <nb-card class="Card99" *ngFor="let text of MagiaPlayer">
-                        <nb-card-header [innerHtml]='text'></nb-card-header>
-                    </nb-card>
-                </div>
-            </div>
-        </div>
     </nb-layout-column>
-    <nb-layout-footer fixed>
-        <div class="row">
-            <div class="example-container" *ngFor="let hb of settings">
-                <div class="container-btn" style="padding-right: 7px !important;">
-                    <button class="btn {{ hb.class }} btn-demo" (click)="salvar(hb)">{{ hb.NameButton }}</button>
-                </div>
-            </div>
-        </div>
-    </nb-layout-footer>
 </nb-layout>

@@ -18,63 +18,70 @@ import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 
 })
 export class FichaComponent implements OnInit {
   userId: string;
-  Envio: any
-  options: any = {
-    removeOnSpill: false,
-    copy: false
-  }
-  options2: any = {
-    removeOnSpill: true,
-    copy: false
-  }
-  MagiaGrimorio: Array<string> = [];
-  MagiaPlayer: Array<string> = [];
-  Dropdowns ={
-  Grimorio: null,
-  Reinos: null,
-  Clans: null,
-  }
   ImagePlayer: any
-  
+  dadosFicha: any
   themeName = 'cosmic';
-  settings: Array<any>;
+  gridJogadores: any
   themeSubscription: any;
-  FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reino: null };
+  settings: any = {
+    actions: { add: false, edit: false, delete: false }, columns: {
+      nome: {
+        title: 'Nome:'
+      },
+    }
+  }
   constructor(private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
     this.userId = sessionStorage.getItem('SetTokenuser')
-    this.ImagePlayer = sessionStorage.getItem('SetImageuser')
-    //console.log(this.userId)
-    this.Envio = db.object('Fichas de Usuario/' + this.userId);
+
     this.getDados();
+    this.coluna();
+    setTimeout(() => {
+      this.getDados();
+      this.coluna()
+      this.settings = { actions: { add: false, edit: false, delete: false }, columns: this.gridJogadores };
+    }, 1);
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.Buttons(theme.variables);
     });
-    setTimeout(() => {
-      //this.teste()
-      //this.enviar()
-    }, 1500);
   }
   ngOnInit() {
 
   }
   getDados() {
-    this.db.list('Grimorio').valueChanges()
+    this.db.list('Fichas de Usuario').valueChanges()
       .subscribe((s) => {
-        this.Dropdowns.Grimorio = s
-        for (let i = 0; i < this.Dropdowns.Grimorio.length; i++) {
-          const magias = this.Dropdowns.Grimorio[i].nome;
-          this.MagiaGrimorio.push(magias)
-        }
+        this.dadosFicha = s
+        console.log(this.dadosFicha)
       })
-    this.db.list('Reinos').valueChanges()
-      .subscribe((s) => {
-        this.Dropdowns.Reinos = s
-      })
-    this.db.list('Clans').valueChanges()
-      .subscribe((s) => {
-        this.Dropdowns.Clans = s
-      })
+  }
+  coluna() {
+    this.gridJogadores = {
+      NomePlayer: {
+        title: 'Nome do Jogador:'
+      },
+      NomeChar: {
+        title: 'Nome do Personagem'
+      },
+      Alcunha: {
+        title: 'Alcunha do Personagem'
+      },
+      Reinos: {
+        title: 'Reinos'
+      },
+      Clan: {
+        title: 'Clã'
+      },
+      IdadePlayer: {
+        title: 'Idade do jogador'
+      },
+      IdadeChar: {
+        title: 'Idade do personagem'
+      },
+    }
+
+    this.settings = { actions: { add: false, edit: false, delete: false }, columns: this.gridJogadores };
+
   }
   Buttons(colors: any) {
     this.settings = [
@@ -102,27 +109,5 @@ export class FichaComponent implements OnInit {
         },
       }
     ]
-  }
-  salvar(item) {
-    //console.log(item.Salvar)
-    if (item.Salvar == false) {
-      console.log('Não salva')
-    } else {
-      console.log('Salva')
-
-      this.Envio.set({
-        NomePlayer: this.FichasData.NomePlayer,
-        NomeChar: this.FichasData.NomeChar,
-        Alcunha: this.FichasData.Alcunha,
-        IdadePlayer: this.FichasData.IdadePlayer,
-        IdadeChar: this.FichasData.IdadeChar,
-        Clan: this.FichasData.Clan,
-        Reinos: this.FichasData.Reino,
-        Img_Player: this.ImagePlayer,
-        Img_Char: 'Asa',
-        userId: this.userId,
-        Magias: this.MagiaPlayer
-      })
-    }
   }
 }  
