@@ -3,16 +3,6 @@
     <div class="logo" (click)="teste2()">Argeon - WebApp</div>
   </div>
   <nb-search type="rotate-layout" tag="rotate-layout"></nb-search>
-  <div *ngIf="Logado">
-
-    Bem vindo Senhor
-  </div>
-  <div *ngIf="!Logado">
-    Por favor, execute o Login
-    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-  </div>
-
-
 
   <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="Logado">
     <nb-action>
