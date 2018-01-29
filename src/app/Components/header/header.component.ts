@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 export class HeaderComponent implements OnInit {
   user: Observable<firebase.User>;
   Logado: boolean = false
+  userUID:any;
   UsernameDisplay:any
   AvatarDisplay:any
   Login:any;
@@ -20,12 +21,12 @@ export class HeaderComponent implements OnInit {
   Show:boolean;
   constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
     //this.UsernameDisplay = 'Iago Favilla'
+    this.userUID = sessionStorage.getItem('SetTokenuser')
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
     this.UsernameDisplay = 'Bem Vindo(a)'+ ' ' + sessionStorage.getItem('SetNameuser')
-    this.Login = 'OMEGA'
     this.Rotate = null
 
-    this.afAuth.authState.subscribe(
+ /*    this.afAuth.authState.subscribe(
       (auth) => {
         if (auth != null) {
           this.user = afAuth.authState;
@@ -34,7 +35,12 @@ export class HeaderComponent implements OnInit {
           this.LoginSrv.Logout()
         }
       }
-    )
+    ) */
+    if (this.userUID == null) {
+      this.Logado = false
+    } else {
+      this.Logado = true
+    }
   }
 
   ngOnInit() {}

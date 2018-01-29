@@ -2,24 +2,20 @@
   <nb-layout-header fixed>
     <app-header style="width:100%"></app-header>
   </nb-layout-header>
-  <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
-    <nb-sidebar-header>
-    </nb-sidebar-header>
-    <app-menu></app-menu>
-  </nb-sidebar>
+
   <nb-layout-column>
     <nb-card class="Card99">
         <toaster-container [toasterconfig]="config"></toaster-container>
-      <nb-card-header (click)="showToast()" style="text-align:center">Criar Ficha</nb-card-header>
+      <nb-card-header (click)="showToast()" style="text-align:center"><h3>Criar Ficha</h3></nb-card-header>
       <nb-card-body>
         <form>
           <div class="row">
             <div class="form-group col-md-6">
-              <label>Seu nome</label>
+              <label>*Seu nome</label>
               <input type="text" [(ngModel)]="FichasData.NomePlayer" [ngModelOptions]="{standalone: true}" class="form-control">
             </div>
             <div class="form-group col-md-6">
-              <label>Nome do seu Personagem</label>
+              <label>*Nome do seu Personagem</label>
               <input [(ngModel)]="FichasData.NomeChar" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
             </div>
           </div>
@@ -29,7 +25,7 @@
               <input type="text" [(ngModel)]="FichasData.Alcunha" [ngModelOptions]="{standalone: true}" class="form-control">
             </div>
             <div class="form-group col-md-4">
-              <label>Sua idade</label>
+              <label>*Sua idade</label>
               <input [(ngModel)]="FichasData.IdadePlayer" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
             </div>
             <div class="form-group col-md-4">
@@ -42,7 +38,7 @@
               <div class="form-group dropdownArrow newSelect">
                 <label for="DropDownApps">Reinos</label>
                 <select [(ngModel)]="FichasData.Reino" class="form-control" [ngModelOptions]="{standalone: true}">
-                  <option [value]="item.value" *ngFor="let item of  Dropdowns.Reinos">{{item.nome}}</option>
+                  <option [value]="item.nome" *ngFor="let item of  Dropdowns.Reinos">{{item.nome}}</option>
                 </select>
               </div>
             </div>
