@@ -8,6 +8,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import 'style-loader!angular2-toaster/toaster.css';
 @Component({
   selector: 'app-criar-fichas',
   templateUrl: './criar-fichas.component.html',
@@ -26,41 +27,37 @@ export class CriarFichasComponent implements OnInit {
   }
   MagiaGrimorio: Array<string> = [];
   MagiaPlayer: Array<string> = [];
-  Dropdowns ={
-  Grimorio: null,
-  Reinos: null,
-  Clans: null,
+  Dropdowns = {
+    Grimorio: null,
+    Reinos: null,
+    Clans: null,
   }
- 
-//toaster
+
+  //toaster
   config: ToasterConfig;
   isNewestOnTop = true;
+  position: 'Okay'
   isHideOnClick = true;
   isDuplicatesPrevented = false;
   isCloseButton = true;
-//image
+  toasterText: string
+  //image
   ImagePlayer: any
   themeName = 'cosmic';
   settings: Array<any>;
   themeSubscription: any;
   FichasData = { NomePlayer: null, NomeChar: null, Alcunha: null, IdadePlayer: null, IdadeChar: null, Clan: null, Reino: null };
-  constructor(private toasterService: ToasterService,private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
+  constructor(private toasterService: ToasterService, private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
     this.userId = sessionStorage.getItem('SetTokenuser')
     this.ImagePlayer = sessionStorage.getItem('SetImageuser')
-    //console.log(this.userId)
     this.Envio = db.object('Fichas de Usuario/' + this.userId);
     this.getDados();
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.Buttons(theme.variables);
     });
-    setTimeout(() => {
-      //this.teste()
-      //this.enviar()
-    }, 1500);
   }
   ngOnInit() {
-
   }
   getDados() {
     this.db.list('Grimorio').valueChanges()
@@ -108,67 +105,72 @@ export class CriarFichasComponent implements OnInit {
     ]
   }
 
-
-
-  showToast() {
+  showToast(position: string, cor: string, body: string, time: number) {
     this.config = new ToasterConfig({
-      positionClass: 'toast-top-right',
-      timeout: 5000,
+      positionClass: position,
+      timeout: 1000,
       newestOnTop: this.isNewestOnTop,
       tapToDismiss: this.isHideOnClick,
       preventDuplicates: this.isDuplicatesPrevented,
-      animation: 'flyLeft',
-      limit: 1,
+      animation: 'slideUp',
+      limit: 3,
     });
     const toast: Toast = {
-      type: 'success',
-      //title: ,
-      body: 'Aqui esta',
-      timeout: 5000,
+      type: cor,
+      body: body,
+      timeout: time,
       showCloseButton: this.isCloseButton,
       bodyOutputType: BodyOutputType.TrustedHtml,
     };
     this.toasterService.popAsync(toast);
   }
-
-
-
-
+  ValidarRegistro() {
+    //var retorno: boolean = false;
+    this.toasterText = '';
+    if (this.FichasData.NomePlayer == null || this.FichasData.NomePlayer == '') {
+      this.toasterText = this.toasterText + '<br><h5>Você não informou seu nome</h5>'
+    }
+    if (this.FichasData.NomeChar == null || this.FichasData.NomeChar == '') {
+      this.toasterText = this.toasterText + '<br><h5>Você não informou o nome do seu personagem</h5>'
+    }
+    if (this.FichasData.IdadePlayer == null || this.FichasData.IdadePlayer == '') {
+      this.toasterText = this.toasterText + '<br><h5>Você não informou sua idade</h5>'
+    }
+    return (this.toasterText == '')
+  }
   salvar(item) {
-    //console.log(item.Salvar)
+    if (this.FichasData.Reino == null) {
+      this.FichasData.Reino = 'Vento Verde'
+    }
+    if (this.FichasData.Clan == null) {
+      this.FichasData.Clan = 'Lobo Solitario'
+    }
     if (item.Salvar == false) {
-      console.log('Não salva')
       this.router.navigateByUrl('/fichas')
     } else {
-      console.log('Salva')
-
-      this.Envio.set({
-        NomePlayer: this.FichasData.NomePlayer,
-        NomeChar: this.FichasData.NomeChar,
-        Alcunha: this.FichasData.Alcunha,
-        IdadePlayer: this.FichasData.IdadePlayer,
-        IdadeChar: this.FichasData.IdadeChar,
-        Clan: this.FichasData.Clan,
-        Reinos: this.FichasData.Reino,
-        Img_Player: this.ImagePlayer,
-        Img_Char: 'Asa',
-        userId: this.userId,
-        Magias: this.MagiaPlayer
-      })
-      setTimeout(() => {
-      this.router.navigateByUrl('/fichas')  
-      }, 100);
-      
+      if (!this.ValidarRegistro()) {
+        this.showToast('toast-top-full-width', 'error', this.toasterText, 2000)
+      } else {
+       this.Envio.set({
+          NomePlayer: this.FichasData.NomePlayer,
+          NomeChar: this.FichasData.NomeChar,
+          Alcunha: this.FichasData.Alcunha,
+          IdadePlayer: this.FichasData.IdadePlayer,
+          IdadeChar: this.FichasData.IdadeChar,
+          Clan: this.FichasData.Clan,
+          Reinos: this.FichasData.Reino,
+          Img_Player: this.ImagePlayer,
+          Img_Char: 'Asa',
+          userId: this.userId,
+          Magias: this.MagiaPlayer
+        })
+        var successMsg = '<h5>Ficha criada com sucesso</h5>'
+        this.showToast('toast-top-right', 'success', successMsg, 2000)
+        setTimeout(() => {
+          this.router.navigateByUrl('/fichas')
+        }, 2100);
+      }
     }
-
-
-
-
-  
-
-
-
-
 
   }
 

@@ -17,11 +17,12 @@
                 </ng2-smart-table>
             </nb-card-body>
             <nb-card-footer>
+                    <toaster-container [toasterconfig]="config"></toaster-container>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="example-container" *ngFor="let hb of Omega">
                               <div class="container-btn">
-                                <button class="btn {{ hb.class }} btn-demo" (click)="criarFichas(hb)">{{ hb.NameButton }}</button>
+                                <button class="btn {{ hb.class }} btn-demo" (click)="criarFichas()">{{ hb.NameButton }}</button>
                               </div>
                             </div>
                           </div>

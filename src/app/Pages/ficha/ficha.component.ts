@@ -6,8 +6,8 @@ import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeS
 import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
-
-
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import 'style-loader!angular2-toaster/toaster.css';
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
@@ -19,11 +19,12 @@ import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 
 export class FichaComponent implements OnInit {
   userId: string;
   ImagePlayer: any
+  config: ToasterConfig;
   dadosFicha: any
   themeName = 'cosmic';
   gridJogadores: any
   themeSubscription: any;
-  Omega:any
+  Omega: any
   settings: any = {
     actions: { add: false, edit: false, delete: false }, columns: {
       nome: {
@@ -31,7 +32,7 @@ export class FichaComponent implements OnInit {
       },
     }
   }
-  constructor(private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
+  constructor(private toasterService: ToasterService, private themeService: NbThemeService, public dragulaService: DragulaService, public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, ) {
     this.userId = sessionStorage.getItem('SetTokenuser')
 
     this.getDados();
@@ -82,19 +83,19 @@ export class FichaComponent implements OnInit {
   }
   Buttons(colors: any) {
     this.Omega = [
-/*       {
-        class: 'btn-hero-danger',
-        NameButton: 'Cancelar',
-        Salvar: false,
-        cosmic: {
-          gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
-          gradientRight: colors.primary,
-          bevel: `shade(${colors.primary}, 14%)`,
-          shadow: 'rgba (6, 7, 64, 0.5)',
-          glow: `adjust-hue(${colors.primary}, 10deg)`,
-        },
-      }, */
-      
+      /*       {
+              class: 'btn-hero-danger',
+              NameButton: 'Cancelar',
+              Salvar: false,
+              cosmic: {
+                gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
+                gradientRight: colors.primary,
+                bevel: `shade(${colors.primary}, 14%)`,
+                shadow: 'rgba (6, 7, 64, 0.5)',
+                glow: `adjust-hue(${colors.primary}, 10deg)`,
+              },
+            }, */
+
       {
         class: 'btn-hero-primary',
         NameButton: 'Criar Ficha',
@@ -110,11 +111,33 @@ export class FichaComponent implements OnInit {
     ]
   }
 
-
-  criarFichas(item) {
+  showToast() {
+    this.config = new ToasterConfig({
+      positionClass: 'toast-top-full-width',
+      timeout: 5000,
+      newestOnTop: true,
+      tapToDismiss: true,
+      preventDuplicates: true,
+      animation: 'slideUp',
+      limit: 5,
+    });
+    const toast: Toast = {
+      type: 'error',
+      body: 'Você precisa estar logado para criar uma ficha',
+      timeout: 1000,
+      showCloseButton: true,
+      bodyOutputType: BodyOutputType.TrustedHtml,
+    };
+    this.toasterService.popAsync(toast);
+  }
+  criarFichas() {
+    if (this.userId == null) {
+      this.showToast()
+    } else {
       setTimeout(() => {
-      this.router.navigateByUrl('/criar_ficha')  
+        this.router.navigateByUrl('/criar_ficha')
       }, 100);
-      
+
     }
   }
+}
