@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 //Nebular
@@ -30,6 +32,8 @@ import { AppComponent } from './app.component';
 //Modals
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule, Modal, bootstrap4Mode } from 'ngx-modialog/plugins/bootstrap'
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import {ToasterModule} from 'angular2-toaster';
 bootstrap4Mode()
 //Paginas
 import { HomeComponent } from './Pages/home/home.component';
@@ -63,6 +67,8 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     FormsModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
@@ -72,6 +78,7 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
     NbCardModule,
     NbLayoutModule,
     NbMenuModule,
+    ToasterModule,
     NbRouteTabsetModule,
     NbSearchModule,
     NbSidebarModule,
@@ -123,6 +130,7 @@ import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
     NbMenuModule.forRoot().providers,
     CacheServiceService,
     LoginSrvService,
+    ToasterService,
     AngularFireAuth],
   bootstrap: [AppComponent],
 
