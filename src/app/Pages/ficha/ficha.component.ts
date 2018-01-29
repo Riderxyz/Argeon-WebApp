@@ -23,6 +23,7 @@ export class FichaComponent implements OnInit {
   themeName = 'cosmic';
   gridJogadores: any
   themeSubscription: any;
+  Omega:any
   settings: any = {
     actions: { add: false, edit: false, delete: false }, columns: {
       nome: {
@@ -35,11 +36,7 @@ export class FichaComponent implements OnInit {
 
     this.getDados();
     this.coluna();
-    setTimeout(() => {
-      this.getDados();
-      this.coluna()
-      this.settings = { actions: { add: false, edit: false, delete: false }, columns: this.gridJogadores };
-    }, 1);
+    this.settings = { actions: { add: false, edit: false, delete: false }, columns: this.gridJogadores };
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.Buttons(theme.variables);
@@ -84,8 +81,8 @@ export class FichaComponent implements OnInit {
 
   }
   Buttons(colors: any) {
-    this.settings = [
-      {
+    this.Omega = [
+/*       {
         class: 'btn-hero-danger',
         NameButton: 'Cancelar',
         Salvar: false,
@@ -96,9 +93,11 @@ export class FichaComponent implements OnInit {
           shadow: 'rgba (6, 7, 64, 0.5)',
           glow: `adjust-hue(${colors.primary}, 10deg)`,
         },
-      }, {
-        class: 'btn-hero-success',
-        NameButton: 'Salvar',
+      }, */
+      
+      {
+        class: 'btn-hero-primary',
+        NameButton: 'Criar Ficha',
         Salvar: true,
         cosmic: {
           gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
@@ -110,4 +109,12 @@ export class FichaComponent implements OnInit {
       }
     ]
   }
-}  
+
+
+  criarFichas(item) {
+      setTimeout(() => {
+      this.router.navigateByUrl('/criar_ficha')  
+      }, 100);
+      
+    }
+  }

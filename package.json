@@ -31,6 +31,7 @@
     "nebular-icons": "1.0.6",
     "ng2-dragula": "^1.5.0",
     "ng2-smart-table": "^1.2.2",
+    "angular2-toaster": "4.0.2",
     "ngx-modialog": "^5.0.0",
     "primeng": "^5.2.0-rc.2",
     "rxjs": "^5.5.2",
@@ -38,7 +39,7 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.1",
+    "@angular/cli": "1.6.6",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
     "@types/jasmine": "~2.8.2",

@@ -9,13 +9,24 @@
     </nb-sidebar>
     <nb-layout-column>
         <nb-card class="angrytext">
-            <nb-card-header>
-                Fichas
+            <nb-card-header style="text-align:center">
+               <h2> Fichas de Usuarios</h2>
             </nb-card-header>
             <nb-card-body>
                 <ng2-smart-table [settings]="settings" [source]="dadosFicha">
                 </ng2-smart-table>
             </nb-card-body>
+            <nb-card-footer>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="example-container" *ngFor="let hb of Omega">
+                              <div class="container-btn">
+                                <button class="btn {{ hb.class }} btn-demo" (click)="criarFichas(hb)">{{ hb.NameButton }}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+            </nb-card-footer>
         </nb-card>
     </nb-layout-column>
 </nb-layout>

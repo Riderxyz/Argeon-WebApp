@@ -1,3 +1,4 @@
+@import 'node_modules/angular2-toaster/toaster';
 .wrapper_Magico {
     //display: flex;
     //flex-wrap: wrap;
@@ -11,11 +12,11 @@
     font-weight: 400;
 }
 
-.colunas {
+.coluna {
     box-shadow: 6px 0px 25px 0px #000000 !important;
 }
 
-.colunas2 {
+.coluna2 {
     box-shadow: -6px 0px 25px 0px #000000 !important;
 }
 
