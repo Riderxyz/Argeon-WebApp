@@ -13,15 +13,14 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap'
 })
 export class NoticiasComponent implements OnInit {
   DataBase1: any;
-
+  display:boolean = false
   DataBase2: any;
   classe: string;
-  Omega: string;
+  //Omega: string;
   Set_envio: AngularFireList<any>;
   constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, public modal: Modal) {
     this.getNoticias1();
-    this.Omega = 'blue'
-    //this.Set_envio = db.list('https://argeon-337.firebaseio.com/Fichas de Usuario');
+    //this.Omega = 'blue'
   }
   ngOnInit() {
   }
@@ -34,8 +33,12 @@ export class NoticiasComponent implements OnInit {
       this.classe = 'Mostrar'
     }
   }
+
+  showDialog() {
+    this.display = true;
+}
   getNoticias1() {
-    this.db.list('Grimorio').valueChanges()
+    this.db.list('MenuNotas').valueChanges()
       .subscribe((s) => {
         this.DataBase1 = s
       })
@@ -46,11 +49,19 @@ export class NoticiasComponent implements OnInit {
 
     this.modal.alert()
       .title(dado.nome)
+      .bodyClass('okay')
       .body(`
-      <div>
-      {{dado.nome}}
-     <img width="100vh" height="200vh" src="` + dado.url_imagem + `">
+      <div class:"okay">
+      <div style="text-align:center;">
+          <br>
+          <img width="300" height="300" src=` + dado.url_imagem + `>
       </div>
+      <div>
+          <p>
+              ` + dado.observacao + `
+          </p>
+      </div>
+  </div>
     `)
       .open();
   }

@@ -9,14 +9,21 @@
         <app-menu></app-menu>
     </nb-sidebar>
     <nb-layout-column class="WrapItUp Mostrar"> 
-        <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of DataBase1">
-            <nb-card-header>{{item.nome}}</nb-card-header>
-            <nb-card-body>
-                <div style=" text-align: center; ">
-                    <img width="50%" height="50%" src="{{item.url_imagem}}">
-                </div>
-            </nb-card-body>
-            <nb-card-footer></nb-card-footer>
-        </nb-card>
+
+        <!--     <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of DataBase1">
+                <nb-card-header>{{item.nome}}</nb-card-header>
+                <nb-card-body>
+                    <div style=" text-align: center; ">
+                        <img width="50%" height="50%" src="{{item.url_imagem}}">
+                    </div>
+                </nb-card-body>
+                <nb-card-footer></nb-card-footer>
+            </nb-card> -->
+
+        <p-dialog header="Title" [(visible)]="display">
+                Content
+            </p-dialog>
+            
+            <button type="text" (click)="showDialog()" icon="fa-external-link-square" label="Show"></button>
     </nb-layout-column>
 </nb-layout>
