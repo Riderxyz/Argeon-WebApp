@@ -17,14 +17,13 @@ export class GridComponent implements OnInit {
   titulo: string;
   execute: boolean
   settings: any = {
+   
     actions: { add: false, edit: false, delete: false }, columns: {
       nome: {
         title: 'Nome:'
       },
-    }
+    }, 
   }
-  //settings = {actions: {add: false,edit: false,delete: false }, columns: {}};
-  // settings = {actions: {add: false,edit: false,delete: false }, columns: {}};
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
     this.execute = false
     this.titulo = 'Escolha uma Grid'

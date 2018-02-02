@@ -53,6 +53,7 @@ import { FormsModule } from '@angular/forms';
   import { CacheServiceService } from './Service/CacheSrv/cache-service.service';
   import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
   import { AppRoutingModule } from "./app.routing.module";
+  import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,9 @@ import { FormsModule } from '@angular/forms';
     ModalModule.forRoot(),
     BootstrapModalModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD-PhVKAW9B9GJ1Zqb2ReV9ARAftvhziE4'
+    })
   ],
   providers: [NbSidebarService,
     NbSidebarModule.forRoot().providers,
