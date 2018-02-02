@@ -22,7 +22,6 @@ import { FormsModule } from '@angular/forms';
   import { Ng2SmartTableModule } from 'ng2-smart-table';
   import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula'
 //PrimeNG
-import {DialogModule} from 'primeng/dialog';
 
 //AngularFire
   import { AngularFireModule } from 'angularfire2';
@@ -95,7 +94,6 @@ import {DialogModule} from 'primeng/dialog';
     AppRoutingModule,
     Ng2SmartTableModule,
     ModalModule.forRoot(),
-    DialogModule,
     BootstrapModalModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
   ],
