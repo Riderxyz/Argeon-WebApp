@@ -11,10 +11,56 @@
 
   <nb-layout-column>
     <div class="angrytext">
+        <nb-card class="">
+            <nb-card-header style="text-align: center">
+              <h1>BEM VINDOS À ARGEON</h1>
+            </nb-card-header>
+            <nb-card-body>
+              <div style=" text-align: start; ">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tellus nulla, vulputate a condimentum et, aliquet sit amet lectus. Maecenas gravida ullamcorper quam eu pretium. Quisque urna ex, dapibus sed imperdiet eu, accumsan non urna. Nullam felis nibh, tincidunt sit amet nibh vitae, rutrum fringilla lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam ultrices justo sed nibh viverra, nec vestibulum lorem sagittis. Morbi dictum laoreet metus. Mauris pellentesque egestas pharetra. Integer mi enim, pulvinar et tincidunt ut, maximus porta enim. Vivamus posuere elementum augue, at ultrices magna hendrerit et. Duis facilisis, felis ac interdum pulvinar, tortor elit maximus quam, et elementum lectus ipsum vel ante. Proin sit amet orci faucibus, tempor ante ut, eleifend augue.</p>
+              </div>
+            </nb-card-body>
+            <nb-card-footer></nb-card-footer>
+          </nb-card>
       <app-buttons></app-buttons>
     </div>
     <app-grid></app-grid>
-
-
+    <div class="angrytext">
+      <div class="WrapItUp Mostrar">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="elevation">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+        <div>
+          <nb-card class="Card99">
+            <nb-card-header>Como nos encontrar</nb-card-header>
+            <nb-card-body>
+              <div style=" text-align: start; ">
+                <p>Estamos nos encontrando todo o 1º e 3º domingo aqui, na Quinta da Boa Vista, no Estado do Rio de janeiro</p>
+              </div>
+            </nb-card-body>
+            <nb-card-footer></nb-card-footer>
+          </nb-card>
+          <br>
+          <nb-card class="Card99">
+            <nb-card-header>Admnistradores(Arautos)</nb-card-header>
+            <nb-card-body>
+              <div style=" text-align: start; ">
+                <ul class="mb-5">
+                  <li>
+                    <h5>Carlos Oliveira</h5>
+                    <p>Arauto chefe de Argeon</p>
+                  </li>
+                  <li>Far from the countries Vokalia and Consonantia</li>
+                  <li>There live the blind texts.</li>
+                  <li>Right at the coast of the Semantics.</li>
+                  <li>A small river named Duden flows</li>
+                </ul>
+              </div>
+            </nb-card-body>
+            <nb-card-footer></nb-card-footer>
+          </nb-card>
+        </div>
+      </div>
+    </div>
   </nb-layout-column>
 </nb-layout>

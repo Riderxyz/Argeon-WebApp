@@ -24,6 +24,9 @@ export class HomeComponent implements OnInit {
   protected layoutState$: Subscription;
   themeSubscription: any;
   settings: Array<any>;
+  lat: number = -22.90717096;
+  lng: number = -43.22418451;
+  elevation: number = 15
 
   constructor(public db: AngularFireDatabase, public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
     // this.cacheSrv.TituloObj.Grid = 'Reinos'
