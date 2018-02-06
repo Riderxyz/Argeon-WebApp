@@ -71,21 +71,6 @@ export class HomeComponent implements OnInit {
     }, 30);
 
   }
-
-
-ativar(){
-
-  swal({
-    position: 'top-end',
-    type: 'success',
-    title: 'Your work has been saved',
-    showConfirmButton: true,
-    
-    //timer: 1500
-  })
-  swal.showLoading();
-}
-
   ngOnDestroy() {
     //this.layoutState.unsubscribe();
   }

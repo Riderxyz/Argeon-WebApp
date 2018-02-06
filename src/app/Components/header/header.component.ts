@@ -5,7 +5,6 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -31,15 +30,8 @@ export class HeaderComponent implements OnInit {
     } else {
       this.Logado = true
     }
-    this.cacheSrv.componentMethodCalled$.subscribe(
-      () => {
-        this.goToHome()
-        console.log('Aqui estou eu, sendo ativado pelo login service')
-      })
   }
-
   ngOnInit() { }
-
   GoToLogin() {
     this.Rotate = 'RotateToLogin'
     setTimeout(() => {

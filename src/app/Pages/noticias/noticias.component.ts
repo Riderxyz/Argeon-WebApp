@@ -4,8 +4,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Overlay } from 'ngx-modialog';
-import { Modal } from 'ngx-modialog/plugins/bootstrap'
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-noticias',
   templateUrl: './noticias.component.html',
@@ -18,7 +17,7 @@ export class NoticiasComponent implements OnInit {
   classe: string;
   //Omega: string;
   Set_envio: AngularFireList<any>;
-  constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase, public modal: Modal) {
+  constructor(public router: Router, public cacheSrv: CacheServiceService, public db: AngularFireDatabase) {
     this.getNoticias1();
     //this.Omega = 'blue'
   }
@@ -45,24 +44,14 @@ export class NoticiasComponent implements OnInit {
   }
   onClick(dado) {
     console.log(dado);
-
-
-    this.modal.alert()
-      .title(dado.nome)
-      .bodyClass('okay')
-      .body(`
-      <div class:"okay">
-      <div style="text-align:center;">
-          <br>
-          <img width="300" height="300" src=` + dado.url_imagem + `>
-      </div>
-      <div>
-          <p>
-              ` + dado.observacao + `
-          </p>
-      </div>
-  </div>
-    `)
-      .open();
+    swal({
+      title: dado.nome,
+      text: dado.observaco,
+      imageUrl: dado.url_imagem,
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      animation: false
+    })
   }
 };
