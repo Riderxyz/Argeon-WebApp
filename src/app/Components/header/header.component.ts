@@ -13,29 +13,29 @@ import { Observable } from 'rxjs/Observable';
 export class HeaderComponent implements OnInit {
   user: Observable<firebase.User>;
   Logado: boolean = false
-  userUID:any;
-  UsernameDisplay:any
-  AvatarDisplay:any
-  Login:any;
-  Rotate:any;
-  Show:boolean;
-  constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv:LoginSrvService) { 
+  userUID: any;
+  UsernameDisplay: any
+  AvatarDisplay: any
+  Login: any;
+  Rotate: any;
+  Show: boolean;
+  constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv: LoginSrvService) {
     //this.UsernameDisplay = 'Iago Favilla'
     this.userUID = sessionStorage.getItem('SetTokenuser')
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
-    this.UsernameDisplay = 'Bem Vindo(a)'+ ' ' + sessionStorage.getItem('SetNameuser')
+    this.UsernameDisplay = 'Bem Vindo(a)' + ' ' + sessionStorage.getItem('SetNameuser')
     this.Rotate = null
 
- /*    this.afAuth.authState.subscribe(
-      (auth) => {
-        if (auth != null) {
-          this.user = afAuth.authState;
-          this.Logado = true
-        }else{
-          this.LoginSrv.Logout()
-        }
-      }
-    ) */
+    /*    this.afAuth.authState.subscribe(
+         (auth) => {
+           if (auth != null) {
+             this.user = afAuth.authState;
+             this.Logado = true
+           }else{
+             this.LoginSrv.Logout()
+           }
+         }
+       ) */
     if (this.userUID == null) {
       this.Logado = false
     } else {
@@ -43,16 +43,16 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  GoToLogin(){
+  GoToLogin() {
     this.Rotate = 'RotateToLogin'
     setTimeout(() => {
       this.router.navigateByUrl('/login')
       this.Show = false
     }, 3000);
   }
- 
+
   goToHome() {
     this.router.navigateByUrl('/home')
   }
