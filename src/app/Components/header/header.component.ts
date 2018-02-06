@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
     this.cacheSrv.componentMethodCalled$.subscribe(
       () => {
         this.goToHome()
+        console.log('Aqui estou eu, sendo ativado pelo login service')
       })
   }
 
