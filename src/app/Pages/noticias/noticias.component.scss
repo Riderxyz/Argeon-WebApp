@@ -69,3 +69,10 @@
 .okay{
     text-align: center !important;
 }
+::ng-deep .swal2-popup .swal2-title{
+    color:white !important;
+}
+
+::ng-deep .swal2-popup #swal2-content{
+    color:white !important;
+}
