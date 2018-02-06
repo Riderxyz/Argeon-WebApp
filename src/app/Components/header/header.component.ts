@@ -5,6 +5,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -19,28 +20,21 @@ export class HeaderComponent implements OnInit {
   Login: any;
   Rotate: any;
   Show: boolean;
-  constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv: LoginSrvService) {
+  constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv: LoginSrvService, public cacheSrv:CacheServiceService) {
     //this.UsernameDisplay = 'Iago Favilla'
     this.userUID = sessionStorage.getItem('SetTokenuser')
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
     this.UsernameDisplay = 'Bem Vindo(a)' + ' ' + sessionStorage.getItem('SetNameuser')
     this.Rotate = null
-
-    /*    this.afAuth.authState.subscribe(
-         (auth) => {
-           if (auth != null) {
-             this.user = afAuth.authState;
-             this.Logado = true
-           }else{
-             this.LoginSrv.Logout()
-           }
-         }
-       ) */
     if (this.userUID == null) {
       this.Logado = false
     } else {
       this.Logado = true
     }
+    this.cacheSrv.componentMethodCalled$.subscribe(
+      () => {
+        this.goToHome()
+      })
   }
 
   ngOnInit() { }

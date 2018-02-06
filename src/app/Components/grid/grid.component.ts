@@ -40,7 +40,6 @@ export class GridComponent implements OnInit {
             this.getcolunas()
          }, 50);
       }
-      
     );
   }
   ngOnInit() {
