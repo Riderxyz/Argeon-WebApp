@@ -45,13 +45,12 @@ export class NoticiasComponent implements OnInit {
   onClick(dado) {
     console.log(dado);
     swal({
-      title: dado.nome,
-      text: dado.observaco,
+      title: dado.nome, 
+      text: dado.observacao,
       imageUrl: dado.url_imagem,
       imageWidth: 200,
       imageHeight: 200,
-      imageAlt: 'Custom image',
-      animation: false
+      background:'#3d3780'
     })
   }
 };
