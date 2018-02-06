@@ -13,7 +13,7 @@ export class LoginSrvService {
   Avatar: any;
   Username_NameDisplay: any
   Username_ImageDisplay: any
-  usuario = {NameDisplay:null, ImageDisplay:null, Token:null}
+  usuario = { NameDisplay: null, ImageDisplay: null, Token: null }
   constructor(public afAuth: AngularFireAuth, public router: Router) {
     this.afAuth.authState.subscribe(
       (auth) => {
@@ -34,14 +34,19 @@ export class LoginSrvService {
         this.usuario.Token = user.uid
       console.log(user)
     })
+    if (this.usuario.Token != null) {
+      console.log('Fora do timeout', this.usuario)
+      // this.router.navigateByUrl('/fichas')
+    }
     setTimeout(() => {
       sessionStorage.setItem('SetNameuser', this.usuario.NameDisplay)
       sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay)
       sessionStorage.setItem('SetTokenuser', this.usuario.Token)
       if (this.usuario.Token != null) {
-        this.router.navigateByUrl('/fichas')
+        console.log('dentro do timeout', this.usuario)
+        // this.router.navigateByUrl('/fichas')
       }
-      
+
       console.log(sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay))
     }, 6000);
   }
@@ -51,6 +56,7 @@ export class LoginSrvService {
     sessionStorage.removeItem('SetNameuser');
     sessionStorage.removeItem('SetImageuser');
     sessionStorage.removeItem('SetTokenuser');
+    this.router.navigateByUrl('/home')
   }
   SetNameuser(Usuario) {
     console.log('Sendo ativado com sucesso', Usuario)
@@ -63,7 +69,7 @@ export class LoginSrvService {
     console.log('Função GetUsername ', this.Username)
     return this.Username
   }
-  GetImageuser(){
+  GetImageuser() {
     return this.Avatar
   }
 }
