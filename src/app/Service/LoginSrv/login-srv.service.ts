@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { RouterModule, Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { NgZone } from '@angular/core';
 @Injectable()
 export class LoginSrvService {
   user: Observable<firebase.User>;
@@ -16,7 +17,7 @@ export class LoginSrvService {
   Username_NameDisplay: any
   Username_ImageDisplay: any
   usuario = { NameDisplay: null, ImageDisplay: null, Token: null }
-  constructor(public afAuth: AngularFireAuth, public router: Router, public cacheSrv:CacheServiceService) {
+  constructor(public afAuth: AngularFireAuth, public router: Router, public cacheSrv:CacheServiceService,public zone:NgZone) {
     this.afAuth.authState.subscribe(
       (auth) => {
         if (auth != null) {
@@ -66,14 +67,11 @@ export class LoginSrvService {
     if (show) {  
     swal({
       position: 'center',
-      //type: 'success',
       title: 'Entrando...',
       showConfirmButton: false,
       showCancelButton: false,
       allowEscapeKey: false,
       allowOutsideClick: false
-      
-      //timer: 1500
     })
     swal.showLoading();
   }else {
@@ -96,17 +94,16 @@ if (this.genero == 'male') {
     title: text,
     showConfirmButton: true,
     onClose:()=>{
-      this.cacheSrv.callComponentMethod();
+//      this.cacheSrv.callComponentMethod();
+      this.zone.run(() => {
+        this.router.navigateByUrl('/home');
+      });
     }
 })
 }
 goToHome(){
   this.router.navigate(['/home'])
 }
-
-
-
-
   SetNameuser(Usuario) {
     console.log('Sendo ativado com sucesso', Usuario)
     this.Username = Usuario
