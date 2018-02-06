@@ -31,11 +31,9 @@ import { FormsModule } from '@angular/forms';
   import { environment } from '../environments/environment';
   import { AppComponent } from './app.component';
 //Modals
-  import { ModalModule } from 'ngx-modialog';
-  import { BootstrapModalModule, Modal, bootstrap4Mode } from 'ngx-modialog/plugins/bootstrap'
   import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
   import { ToasterModule } from 'angular2-toaster';
-  bootstrap4Mode()
+
 //Paginas
   import { HomeComponent } from './Pages/home/home.component';
   import { NoticiasComponent } from './Pages/noticias/noticias.component';
@@ -94,8 +92,6 @@ import { FormsModule } from '@angular/forms';
     NbCheckboxModule,
     AppRoutingModule,
     Ng2SmartTableModule,
-    ModalModule.forRoot(),
-    BootstrapModalModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD-PhVKAW9B9GJ1Zqb2ReV9ARAftvhziE4'

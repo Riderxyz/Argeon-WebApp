@@ -9,7 +9,6 @@ import { NgZone } from '@angular/core';
 @Injectable()
 export class LoginSrvService {
   user: Observable<firebase.User>;
-  //UserID: string;
   Logado: boolean = false;
   Username: any;
   genero:any;
@@ -41,18 +40,6 @@ export class LoginSrvService {
         sessionStorage.setItem('SetTokenuser', this.usuario.Token)
         this.ativar(false)
   })
-    //this.Logout()
-/*     setTimeout(() => {
-      sessionStorage.setItem('SetNameuser', this.usuario.NameDisplay)
-      sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay)
-      sessionStorage.setItem('SetTokenuser', this.usuario.Token)
-      if (this.usuario.Token != null) {
-        console.log('dentro do timeout', this.usuario)
-        this.router.navigateByUrl('/home')
-      }
-
-      console.log(sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay))
-    }, 6000);*/
   }
   Logout() {
     this.afAuth.auth.signOut();
@@ -94,7 +81,6 @@ if (this.genero == 'male') {
     title: text,
     showConfirmButton: true,
     onClose:()=>{
-//      this.cacheSrv.callComponentMethod();
       this.zone.run(() => {
         this.router.navigateByUrl('/home');
       });
