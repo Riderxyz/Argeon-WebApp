@@ -1,15 +1,10 @@
-import { NoticiasComponent } from './../noticias/noticias.component';
 import { RouterModule, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeService } from '@nebular/theme';
-import { GridComponent } from '../../Components/grid/grid.component';
-import { HeaderComponent } from '../../Components/header/header.component';
-import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
-import { ButtonsComponent } from '../../Components/buttons/buttons.component';
+
 
 @Component({
   selector: 'app-home',
@@ -28,8 +23,7 @@ export class HomeComponent implements OnInit {
   lng: number = -43.22418451;
   elevation: number = 15
 
-  constructor(public db: AngularFireDatabase, public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
-    // this.cacheSrv.TituloObj.Grid = 'Reinos'
+  constructor(public db: AngularFireDatabase, public router: Router, private themeService: NbThemeService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
@@ -77,6 +71,21 @@ export class HomeComponent implements OnInit {
     }, 30);
 
   }
+
+
+ativar(){
+
+  swal({
+    position: 'top-end',
+    type: 'success',
+    title: 'Your work has been saved',
+    showConfirmButton: true,
+    
+    //timer: 1500
+  })
+  swal.showLoading();
+}
+
   ngOnDestroy() {
     //this.layoutState.unsubscribe();
   }
