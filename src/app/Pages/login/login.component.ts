@@ -5,6 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,4 +31,19 @@ export class LoginComponent implements OnInit {
   logout() {
     this.LoginSrv.Logout()
   }
+
+
+
+
+  toast(){
+    swal({
+      position: 'center',
+      type: 'error',
+      title: 'asassaaa',
+      toast:true,
+      width:'100rem',
+      showConfirmButton: true,
+      customClass:'red'
+  })
+}
 }
