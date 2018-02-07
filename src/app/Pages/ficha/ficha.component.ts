@@ -123,7 +123,7 @@ export class FichaComponent implements OnInit {
     });
     const toast: Toast = {
       type: 'error',
-      body: 'Você precisa estar logado para criar uma ficha',
+      title: 'Você precisa estar logado para criar uma ficha',
       timeout: 1000,
       showCloseButton: true,
       bodyOutputType: BodyOutputType.TrustedHtml,
