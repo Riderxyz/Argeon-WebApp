@@ -100,6 +100,20 @@ export class FichaComponent implements OnInit {
         class: 'btn-hero-primary',
         NameButton: 'Criar Ficha',
         Salvar: true,
+        goTo:'criar_ficha',
+        cosmic: {
+          gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
+          gradientRight: colors.warning,
+          bevel: `shade(${colors.warning}, 14%)`,
+          shadow: 'rgba (33, 7, 77, 0.5)',
+          glow: `adjust-hue(${colors.warning}, 5deg)`,
+        },
+      },
+      {
+        class: 'btn-hero-warning',
+        NameButton: 'Editar Ficha',
+        Salvar: true,
+        goTo:'editar_ficha',
         cosmic: {
           gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
           gradientRight: colors.warning,
@@ -114,7 +128,7 @@ export class FichaComponent implements OnInit {
   showToast() {
     this.config = new ToasterConfig({
       positionClass: 'toast-top-full-width',
-      timeout: 5000,
+      timeout: 5000, 
       newestOnTop: true,
       tapToDismiss: true,
       preventDuplicates: true,

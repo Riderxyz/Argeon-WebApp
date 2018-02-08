@@ -10,11 +10,7 @@ import { NgZone } from '@angular/core';
 export class LoginSrvService {
   user: Observable<firebase.User>;
   Logado: boolean = false;
-  Username: any;
   genero: any;
-  Avatar: any;
-  Username_NameDisplay: any
-  Username_ImageDisplay: any
   usuario = { NameDisplay: null, ImageDisplay: null, Token: null }
   constructor(public afAuth: AngularFireAuth, public router: Router, public cacheSrv: CacheServiceService, public zone: NgZone) {
     this.afAuth.authState.subscribe(
