@@ -58,23 +58,8 @@ export class FichaComponent implements OnInit {
       NomePlayer: {
         title: 'Nome do Jogador:'
       },
-      NomeChar: {
-        title: 'Nome do Personagem'
-      },
-      Alcunha: {
-        title: 'Alcunha do Personagem'
-      },
-      Reinos: {
-        title: 'Reinos'
-      },
-      Clan: {
-        title: 'Clã'
-      },
       IdadePlayer: {
         title: 'Idade do jogador'
-      },
-      IdadeChar: {
-        title: 'Idade do personagem'
       },
     }
 
@@ -144,12 +129,12 @@ export class FichaComponent implements OnInit {
     };
     this.toasterService.popAsync(toast);
   }
-  criarFichas() {
+  criarFichas(item) {
     if (this.userId == null) {
       this.showToast()
     } else {
       setTimeout(() => {
-        this.router.navigateByUrl('/criar_ficha')
+        this.router.navigateByUrl('/editar_ficha')
       }, 100);
 
     }

@@ -94,13 +94,10 @@ export class MenuComponent implements OnInit {
     },
     ]
   }
-
-
   Gerar(Botao) {
     setTimeout(() => {
       this.router.navigateByUrl(Botao.Destino)
     }, 30);
-
   }
   Ativar() {
     //this.router.navigateByUrl('home')

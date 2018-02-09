@@ -26,11 +26,11 @@ box-shadow: 6px 0px 25px 0px #000000 !important;
 }
 
 .row{
-  text-align:center
+  text-align:center;
+  display: flex;
+  justify-content: center;
+
 }
-
-
-
 
 .angrytext {
   font-size: 70px;
