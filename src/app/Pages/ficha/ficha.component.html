@@ -19,15 +19,16 @@
             <nb-card-footer>
                     <toaster-container [toasterconfig]="config"></toaster-container>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="example-container" *ngFor="let hb of Omega">
-                              <div class="container-btn">
-                                <button class="btn {{ hb.class }} btn-demo" (click)="criarFichas()">{{ hb.NameButton }}</button>
-                              </div>
-                            </div>
+                        <div class="example-container" *ngFor="let hb of Omega">
+                          <div class="container-btn" style="padding-right: 7px !important;">
+                            <button class="btn {{ hb.class }} btn-demo" (click)="criarFichas(hb)">{{ hb.NameButton }}</button>
                           </div>
                         </div>
+                      </div>
             </nb-card-footer>
         </nb-card>
     </nb-layout-column>
 </nb-layout>
+
+
+

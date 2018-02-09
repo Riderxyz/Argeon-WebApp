@@ -152,7 +152,7 @@ export class CriarFichasComponent implements OnInit {
         this.showToast('toast-top-full-width', 'error', this.toasterText, 2000)
       } else {
        this.Envio.set({
-          NomePlayer: this.FichasData.NomePlayer,
+       NomePlayer: this.FichasData.NomePlayer,
           NomeChar: this.FichasData.NomeChar,
           Alcunha: this.FichasData.Alcunha,
           IdadePlayer: this.FichasData.IdadePlayer,
@@ -161,8 +161,9 @@ export class CriarFichasComponent implements OnInit {
           Reinos: this.FichasData.Reino,
           Img_Player: this.ImagePlayer,
           Img_Char: 'Asa',
-          userId: this.userId,
-          Magias: this.MagiaPlayer
+          userId: this.userId, 
+          Magias: this.MagiaPlayer,
+          MagiasPendentes: this.MagiaGrimorio
         })
         var successMsg = '<h5>Ficha criada com sucesso</h5>'
         this.showToast('toast-top-right', 'success', successMsg, 2000)

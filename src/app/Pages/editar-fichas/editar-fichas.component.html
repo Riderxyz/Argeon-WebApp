@@ -1,12 +1,14 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <app-header style="width:100%"></app-header>
+    <div  style="text-align:center">
+    <h3>Edite sua Ficha</h3>
+  </div>
   </nb-layout-header>
 
   <nb-layout-column>
     <nb-card class="Card99">
         <toaster-container [toasterconfig]="config"></toaster-container>
-      <nb-card-header style="text-align:center"><h3>Criar Ficha</h3></nb-card-header>
+      <nb-card-header></nb-card-header>
       <nb-card-body>
         <form>
           <div class="row">
@@ -38,7 +40,7 @@
               <div class="form-group dropdownArrow newSelect">
                 <label for="DropDownApps">Reinos</label>
                 <select [(ngModel)]="FichasData.Reino" class="form-control" [ngModelOptions]="{standalone: true}">
-                  <option [value]="item.nome" *ngFor="let item of  Dropdowns.Reinos">{{item.nome}}</option>
+                  <option [value]="item.nome" *ngFor="let item of Dropdowns.Reinos">{{item.nome}}</option>
                 </select>
               </div>
             </div>
@@ -46,7 +48,7 @@
               <div class="form-group dropdownArrow newSelect">
                 <label for="DropDownApps">Clãs</label>
                 <select [(ngModel)]="FichasData.Clan" class="form-control" [ngModelOptions]="{standalone: true}">
-                  <option [value]="item.nome" *ngFor="let item of  Dropdowns.Clans">{{item.nome}}</option>
+                  <option [value]="item.nome" *ngFor="let item of Dropdowns.Clans">{{item.nome}}</option>
                 </select>
               </div>
             </div>
