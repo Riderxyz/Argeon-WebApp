@@ -68,19 +68,6 @@ export class FichaComponent implements OnInit {
   }
   Buttons(colors: any) {
     this.Omega = [
-      /*       {
-              class: 'btn-hero-danger',
-              NameButton: 'Cancelar',
-              Salvar: false,
-              cosmic: {
-                gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
-                gradientRight: colors.primary,
-                bevel: `shade(${colors.primary}, 14%)`,
-                shadow: 'rgba (6, 7, 64, 0.5)',
-                glow: `adjust-hue(${colors.primary}, 10deg)`,
-              },
-            }, */
-
       {
         class: 'btn-hero-primary',
         NameButton: 'Criar Ficha',
@@ -134,7 +121,7 @@ export class FichaComponent implements OnInit {
       this.showToast()
     } else {
       setTimeout(() => {
-        this.router.navigateByUrl('/editar_ficha')
+        this.router.navigateByUrl(item.goTo)
       }, 100);
 
     }
