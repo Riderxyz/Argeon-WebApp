@@ -42,6 +42,9 @@ export class EditarFichasComponent implements OnInit {
     isDuplicatesPrevented = false;
     isCloseButton = true;
     toasterText: string
+    //tema
+    themeSubscription: any;
+    themeName = 'cosmic';
   constructor(private toasterService: ToasterService,
     private themeService: NbThemeService,
     public dragulaService: DragulaService,
@@ -51,7 +54,11 @@ export class EditarFichasComponent implements OnInit {
     this.userId = sessionStorage.getItem('SetTokenuser')
     this.Envio = db.object('Fichas de Usuario/' + this.userId);
     this.getDados()
-    console.log(this.Envio);
+    this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
+      this.themeName = theme.name;
+      this.Buttons(theme.variables);
+    });
+  
 
   }
 
@@ -60,9 +67,6 @@ export class EditarFichasComponent implements OnInit {
 
   getDados() {
     this.Envio.valueChanges().subscribe((userData) => {
-      var X = this.userId
-      console.log(userData)
-      console.log(this.userId);
       this.FichasData.Alcunha = userData.Alcunha
       this.FichasData.Clan = userData.Clan
       this.FichasData.IdadeChar = userData.IdadeChar
@@ -72,8 +76,6 @@ export class EditarFichasComponent implements OnInit {
       this.FichasData.Reino = userData.Reinos
       this.MagiaPlayer = userData.Magias
       this.MagiaGrimorio = userData.MagiasPendentes
-      //console.log(this.FichasData);
-      //console.log(this.MagiaGrimorio);
     })
 
     this.db.list('Reinos').valueChanges()
@@ -85,7 +87,33 @@ export class EditarFichasComponent implements OnInit {
         this.Dropdowns.Clans = s
       })
   }
-
+  Buttons(colors: any) {
+    this.settings = [
+      {
+        class: 'btn-hero-danger',
+        NameButton: 'Cancelar',
+        Salvar: false,
+        cosmic: {
+          gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
+          gradientRight: colors.primary,
+          bevel: `shade(${colors.primary}, 14%)`,
+          shadow: 'rgba (6, 7, 64, 0.5)',
+          glow: `adjust-hue(${colors.primary}, 10deg)`,
+        },
+      }, {
+        class: 'btn-hero-success',
+        NameButton: 'Salvar',
+        Salvar: true,
+        cosmic: {
+          gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
+          gradientRight: colors.warning,
+          bevel: `shade(${colors.warning}, 14%)`,
+          shadow: 'rgba (33, 7, 77, 0.5)',
+          glow: `adjust-hue(${colors.warning}, 5deg)`,
+        },
+      }
+    ]
+  }
 
   showToast(position: string, cor: string, body: string, time: number) {
     this.config = new ToasterConfig({
@@ -134,7 +162,7 @@ export class EditarFichasComponent implements OnInit {
       if (!this.ValidarRegistro()) {
         this.showToast('toast-top-full-width', 'error', this.toasterText, 2000)
       } else {
-       this.Envio.set({
+       this.Envio.update({
        NomePlayer: this.FichasData.NomePlayer,
           NomeChar: this.FichasData.NomeChar,
           Alcunha: this.FichasData.Alcunha,
@@ -142,13 +170,11 @@ export class EditarFichasComponent implements OnInit {
           IdadeChar: this.FichasData.IdadeChar,
           Clan: this.FichasData.Clan,
           Reinos: this.FichasData.Reino,
-          Img_Player: this.ImagePlayer,
-          Img_Char: 'Asa',
           userId: this.userId, 
           Magias: this.MagiaPlayer,
           MagiasPendentes: this.MagiaGrimorio
         })
-        var successMsg = '<h5>Ficha criada com sucesso</h5>'
+        var successMsg = '<h5>Ficha editada com sucesso</h5>'
         this.showToast('toast-top-right', 'success', successMsg, 2000)
         setTimeout(() => {
           this.router.navigateByUrl('/fichas')
