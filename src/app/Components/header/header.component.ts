@@ -5,6 +5,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbThemeService } from '@nebular/theme';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -19,8 +20,12 @@ export class HeaderComponent implements OnInit {
   Login: any;
   Rotate: any;
   Show: boolean;
-  constructor(public router: Router, public afAuth: AngularFireAuth, public LoginSrv: LoginSrvService, public cacheSrv:CacheServiceService) {
-    //this.UsernameDisplay = 'Iago Favilla'
+  constructor(public router: Router,
+    public afAuth: AngularFireAuth,
+    public LoginSrv: LoginSrvService,
+    public cacheSrv: CacheServiceService,
+    public sidebarSrv: NbSidebarService) {
+    //this.sidebarSrv.toggle
     this.userUID = sessionStorage.getItem('SetTokenuser')
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
     this.UsernameDisplay = 'Bem Vindo(a)' + ' ' + sessionStorage.getItem('SetNameuser')
@@ -39,7 +44,10 @@ export class HeaderComponent implements OnInit {
       this.Show = false
     }, 3000);
   }
-
+  toggleSidebar(): boolean {
+    this.sidebarSrv.toggle(true, 'menu-sidebar');
+    return false;
+  }
   goToHome() {
     this.router.navigateByUrl('/home')
   }

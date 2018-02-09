@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeService } from '@nebular/theme';
+import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 
 @Component({
@@ -13,7 +13,6 @@ import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeS
 })
 export class HomeComponent implements OnInit {
   items: Observable<any[]>;
-  menuItems: any;
   themeName = 'cosmic';
   layout: any = {};
   protected layoutState$: Subscription;

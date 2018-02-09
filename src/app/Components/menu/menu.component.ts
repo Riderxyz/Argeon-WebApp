@@ -19,16 +19,27 @@ export class MenuComponent implements OnInit {
   menu: NbMenuItem[] = [
     {
       title: 'Home',
-      icon: 'nb-home',
-
+      icon: 'fa fa-lg fa-home',
+      target:"home",
     },
     {
       title: 'Noticias',
-      icon: 'nb-gear',
+      icon: 'fa fa-lg fa-newspaper-o',
+      target:"noticias"
+    },
+    {
+      title: 'Fichas',
+      icon: 'fa fa-lg fa-id-card-o',
+      target:"fichas"
     }]
-  constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService) {
+  constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService,public menuSrv: NbMenuService) {
+    this.menuSrv.onItemClick().subscribe((omega)=>{
+      console.log('itemclik',omega.item)
+      this.router.navigateByUrl(omega.item.target)
+    })
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
+      
       this.init(theme.variables);
       //this.layoutState$ = this.stateService.onLayoutState()
       // .subscribe((layout: string) => this.layout = layout);
@@ -93,8 +104,17 @@ export class MenuComponent implements OnInit {
   }
   Ativar() {
     //this.router.navigateByUrl('home')
-    this.teste = sessionStorage.getItem('Omega')
-    console.log('VINDO DO SESSION!!!', this.teste)
+        this.menuSrv.getSelectedItem().subscribe((s)=>{
+        console.log(s)
+      })
+      
+
+    for (var i = 0; i < this.menu.length; i++) {
+      var element = this.menu[i];
+      console.log(element[i])
+      
+    }
+    
   }
 
 }
