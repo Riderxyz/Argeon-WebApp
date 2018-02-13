@@ -5,9 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class CacheServiceService {
-  UsuarioObj: any = { username: null };
-  DatabaseObj: any = { Destino: null, Executar: null };
-  TituloObj: any = { Grid: null, notification: null };
+  UsuarioToken: any =  null
   constructor() { }
 
   // Observable string sources
@@ -21,6 +19,14 @@ export class CacheServiceService {
     this.componentMethodCallSource.next();
   }
 
-
-
+checkData(data){
+  if (data == undefined) {
+    console.log('Fuck Yes!', data)
+    return true
+  }else{
+    console.log('Meeehhh', data)
+    return false
+  }
+}
+//SetTokenuser
 }

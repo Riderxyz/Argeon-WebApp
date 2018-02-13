@@ -50,10 +50,14 @@ export class FichaComponent implements OnInit {
     this.db.list('Fichas de Usuario').valueChanges()
       .subscribe((s) => {
         this.dadosFicha = s
-        console.log(this.dadosFicha)
       })
   }
   coluna() {
+    this.db.list('ClassesBase').valueChanges()
+      .subscribe((classes) => {
+        //console.log('Classes', classes)
+      })
+
     this.gridJogadores = {
       NomePlayer: {
         title: 'Nome do Jogador:'
@@ -71,8 +75,8 @@ export class FichaComponent implements OnInit {
       {
         class: 'btn-hero-primary',
         NameButton: 'Criar Ficha',
-        Salvar: true,
-        goTo:'criar_ficha',
+        mostrar: true,
+        goTo: 'criar_ficha',
         cosmic: {
           gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
           gradientRight: colors.warning,
@@ -84,8 +88,8 @@ export class FichaComponent implements OnInit {
       {
         class: 'btn-hero-warning',
         NameButton: 'Editar Ficha',
-        Salvar: true,
-        goTo:'editar_ficha',
+        mostrar: true,
+        goTo: 'editar_ficha',
         cosmic: {
           gradientLeft: `adjust-hue(${colors.warning}, 10deg)`,
           gradientRight: colors.warning,
@@ -100,7 +104,7 @@ export class FichaComponent implements OnInit {
   showToast() {
     this.config = new ToasterConfig({
       positionClass: 'toast-top-full-width',
-      timeout: 5000, 
+      timeout: 5000,
       newestOnTop: true,
       tapToDismiss: true,
       preventDuplicates: true,
@@ -117,13 +121,29 @@ export class FichaComponent implements OnInit {
     this.toasterService.popAsync(toast);
   }
   criarFichas(item) {
-    if (this.userId == null) {
-      this.showToast()
-    } else {
-      setTimeout(() => {
-        this.router.navigateByUrl(item.goTo)
-      }, 100);
+    var x
+   this.db.object('Fichas de Usuario/' + this.userId).valueChanges()
+    .subscribe((s)=>{
+      x = s
+    })
+    setTimeout(() => {
+      if (this.cacheSrv.checkData(x)) {
+        console.log('okay, estou aqui', x)
+      } else {
+        console.log('Naahhh, ainda não')
+      } 
+    }, 500);
+     
+    // this.cacheSrv.checkData(x)
 
-    }
+ 
+      if (this.userId == null) {
+        this.showToast()
+      } else {
+        setTimeout(() => {
+          this.router.navigateByUrl(item.goTo)
+        }, 100);
+  
+      } 
   }
 }
