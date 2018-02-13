@@ -34,15 +34,12 @@ export class MenuComponent implements OnInit {
     }]
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService,public menuSrv: NbMenuService) {
     this.menuSrv.onItemClick().subscribe((omega)=>{
-      console.log('itemclik',omega.item)
       this.router.navigateByUrl(omega.item.target)
     })
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       
       this.init(theme.variables);
-      //this.layoutState$ = this.stateService.onLayoutState()
-      // .subscribe((layout: string) => this.layout = layout);
     });
   }
 

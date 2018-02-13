@@ -69,12 +69,12 @@ export class CriarFichasComponent implements OnInit {
         }
       })
     this.db.list('Reinos').valueChanges()
-      .subscribe((s) => {
-        this.Dropdowns.Reinos = s
+      .subscribe((reinos) => {
+        this.Dropdowns.Reinos = reinos
       })
     this.db.list('Clans').valueChanges()
-      .subscribe((s) => {
-        this.Dropdowns.Clans = s
+      .subscribe((clans) => {
+        this.Dropdowns.Clans = clans
       })
   }
   Buttons(colors: any) {

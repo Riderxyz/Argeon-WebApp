@@ -45,6 +45,7 @@ export class EditarFichasComponent implements OnInit {
     //tema
     themeSubscription: any;
     themeName = 'cosmic';
+    settings: Array<any>;
   constructor(private toasterService: ToasterService,
     private themeService: NbThemeService,
     public dragulaService: DragulaService,
