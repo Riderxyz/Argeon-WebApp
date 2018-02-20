@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class CacheServiceService {
   UsuarioToken: any =  null
+  TituloObj:any = {Grid:null}
+  DatabaseObj:any = {Destino:null}
   constructor() { }
 
   // Observable string sources

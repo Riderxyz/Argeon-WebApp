@@ -18,11 +18,6 @@ export class MenuComponent implements OnInit {
   themeName = 'cosmic';
   menu: NbMenuItem[] = [
     {
-      title: 'Home',
-      icon: 'fa fa-lg fa-home',
-      target:"home",
-    },
-    {
       title: 'Noticias',
       icon: 'fa fa-lg fa-newspaper-o',
       target:"noticias"
@@ -31,7 +26,23 @@ export class MenuComponent implements OnInit {
       title: 'Fichas',
       icon: 'fa fa-lg fa-id-card-o',
       target:"fichas"
+    },
+    {
+      title: 'Clans',
+      icon: 'fa fa-lg fa-first-order',      
+      //target:"Clans"
+    },
+    {
+      title: 'Magias',
+      icon: 'fa fa-lg fa-superpowers',      
+      //target:"Magia"
+    },
+    {
+      title: 'Panteão',
+      icon: 'fa fa-lg fa-star',      
+      //target:"Pantheon"
     }]
+    //
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService,public menuSrv: NbMenuService) {
     this.menuSrv.onItemClick().subscribe((omega)=>{
       this.router.navigateByUrl(omega.item.target)
@@ -96,19 +107,6 @@ export class MenuComponent implements OnInit {
       this.router.navigateByUrl(Botao.Destino)
     }, 30);
   }
-  Ativar() {
-    //this.router.navigateByUrl('home')
-        this.menuSrv.getSelectedItem().subscribe((s)=>{
-        console.log(s)
-      })
-      
 
-    for (var i = 0; i < this.menu.length; i++) {
-      var element = this.menu[i];
-      console.log(element[i])
-      
-    }
-    
-  }
 
 }

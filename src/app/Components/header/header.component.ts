@@ -5,7 +5,7 @@ import { CacheServiceService } from './../../Service/CacheSrv/cache-service.serv
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
-import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbSidebarModule, NbLayoutModule,NbMenuItem, NbSidebarService, NbThemeService, NbMenuService } from '@nebular/theme';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,12 +20,19 @@ export class HeaderComponent implements OnInit {
   Login: any;
   Rotate: any;
   Show: boolean;
+  menu: NbMenuItem[] = [
+    {
+      title: 'Argeon - WebApp',
+      icon: 'fa fa-lg fa-home',
+      target:"home",
+      home:true
+    }]
   constructor(public router: Router,
     public afAuth: AngularFireAuth,
     public LoginSrv: LoginSrvService,
     public cacheSrv: CacheServiceService,
-    public sidebarSrv: NbSidebarService) {
-    //this.sidebarSrv.toggle
+    public sidebarSrv: NbSidebarService,
+    public menuSrv: NbMenuService) {
     this.userUID = sessionStorage.getItem('SetTokenuser')
     this.AvatarDisplay = sessionStorage.getItem('SetImageuser')
     this.UsernameDisplay = 'Bem Vindo(a)' + ' ' + sessionStorage.getItem('SetNameuser')
@@ -49,6 +56,6 @@ export class HeaderComponent implements OnInit {
     return false;
   }
   goToHome() {
-    this.router.navigateByUrl('/home')
+    //this.router.navigateByUrl('/home')
   }
 }
