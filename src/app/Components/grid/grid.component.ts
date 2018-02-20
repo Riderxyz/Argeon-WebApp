@@ -49,7 +49,6 @@ export class GridComponent implements OnInit {
       .subscribe((s) => {
         this.menuItems = s
        // this.execute = false;
-        console.log(this.settings)
       })
   }
   getcolunas() {
@@ -70,7 +69,6 @@ export class GridComponent implements OnInit {
     };
     if (this.destino == 'MenuPrincipal') {
           this.ColunaExibida = this.colunas.Menu
-      console.log(this.destino)
     };
     this.colunas.Reinos = {
       nome: {

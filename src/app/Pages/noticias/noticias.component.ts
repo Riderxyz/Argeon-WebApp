@@ -43,7 +43,6 @@ export class NoticiasComponent implements OnInit {
       })
   }
   onClick(dado) {
-    console.log(dado);
     swal({
       title: dado.nome, 
       text: dado.observacao,
