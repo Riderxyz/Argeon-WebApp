@@ -29,7 +29,6 @@ export class LoginSrvService {
         this.usuario.NameDisplay = res.user.displayName,
           this.usuario.ImageDisplay = res.user.photoURL,
           this.usuario.Token = res.user.uid
-        console.log(res)
         this.genero = res.additionalUserInfo.profile.gender;
         sessionStorage.setItem('SetNameuser', this.usuario.NameDisplay)
         sessionStorage.setItem('SetImageuser', this.usuario.ImageDisplay)
@@ -74,7 +73,7 @@ export class LoginSrvService {
     swal({
       position: 'center',
       type: 'success',
-      title: text,
+      html: '<h1 style="color:#3f34b0">'+text+'</h1>',
       showConfirmButton: true,
       onClose: () => {
         this.zone.run(() => {
