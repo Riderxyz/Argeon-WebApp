@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbMenuItem, NbThemeService } from '@nebular/theme';
-import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { DragulaService } from 'ng2-dragula';
 import { DragulaDirective } from 'ng2-dragula/components/dragula.directive';
 import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
 import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import 'style-loader!angular2-toaster/toaster.css';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-editar-fichas',
   templateUrl: './editar-fichas.component.html',
@@ -34,19 +33,13 @@ export class EditarFichasComponent implements OnInit {
   userId: string;
   Envio: any;
 
-    //toaster
-    config: ToasterConfig;
-    isNewestOnTop = true;
-    position: 'Okay'
-    isHideOnClick = true;
-    isDuplicatesPrevented = false;
-    isCloseButton = true;
-    toasterText: string
-    //tema
-    themeSubscription: any;
-    themeName = 'cosmic';
-    settings: Array<any>;
-  constructor(private toasterService: ToasterService,
+  //toaster
+  toasterText: string
+  //tema
+  themeSubscription: any;
+  themeName = 'cosmic';
+  settings: Array<any>;
+  constructor(
     private themeService: NbThemeService,
     public dragulaService: DragulaService,
     public router: Router,
@@ -59,7 +52,7 @@ export class EditarFichasComponent implements OnInit {
       this.themeName = theme.name;
       this.Buttons(theme.variables);
     });
-  
+
 
   }
 
@@ -116,24 +109,17 @@ export class EditarFichasComponent implements OnInit {
     ]
   }
 
-  showToast(position: string, cor: string, body: string, time: number) {
-    this.config = new ToasterConfig({
-      positionClass: position,
-      timeout: 1000,
-      newestOnTop: this.isNewestOnTop,
-      tapToDismiss: this.isHideOnClick,
-      preventDuplicates: this.isDuplicatesPrevented,
-      animation: 'slideUp',
-      limit: 3,
-    });
-    const toast: Toast = {
-      type: cor,
-      body: body,
-      timeout: time,
-      showCloseButton: this.isCloseButton,
-      bodyOutputType: BodyOutputType.TrustedHtml,
-    };
-    this.toasterService.popAsync(toast);
+  showToast(position: string, iconType: any, body: string, time: number, cor:any) {
+    swal({
+      position: 'top-end',
+      html:  '<h3 style="color:#fff;">' +  body + '</h3>',
+      showConfirmButton: false,
+      background: cor,
+      // #678D65
+      type: iconType,
+      toast:true,
+      timer: time,
+    })
   }
 
 
@@ -161,22 +147,22 @@ export class EditarFichasComponent implements OnInit {
       this.router.navigateByUrl('/fichas')
     } else {
       if (!this.ValidarRegistro()) {
-        this.showToast('toast-top-full-width', 'error', this.toasterText, 2000)
+        this.showToast('top', 'error', this.toasterText, 2000, '#B83740')
       } else {
-       this.Envio.update({
-       NomePlayer: this.FichasData.NomePlayer,
+        this.Envio.update({
+          NomePlayer: this.FichasData.NomePlayer,
           NomeChar: this.FichasData.NomeChar,
           Alcunha: this.FichasData.Alcunha,
           IdadePlayer: this.FichasData.IdadePlayer,
           IdadeChar: this.FichasData.IdadeChar,
           Clan: this.FichasData.Clan,
           Reinos: this.FichasData.Reino,
-          userId: this.userId, 
+          userId: this.userId,
           Magias: this.MagiaPlayer,
           MagiasPendentes: this.MagiaGrimorio
         })
         var successMsg = '<h5>Ficha editada com sucesso</h5>'
-        this.showToast('toast-top-right', 'success', successMsg, 2000)
+        this.showToast('top-end', 'success', successMsg, 2000,  '#678D65')
         setTimeout(() => {
           this.router.navigateByUrl('/fichas')
         }, 2100);

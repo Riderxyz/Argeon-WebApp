@@ -27,7 +27,8 @@ export class GridComponent implements OnInit {
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
     this.execute = false
     this.titulo = 'Escolha uma Grid'
-    this.settings = { actions: { add: false, edit: false, delete: false }, columns: {} }
+    this.settings = { actions: { add: false, edit: false, delete: false }, 
+    noDataMessage: 'Clique em um botão acima para carregar a tabela', columns: {} }
     this.cacheSrv.componentMethodCalled$.subscribe(
       () => {
         this.titulo = this.cacheSrv.TituloObj.Grid;
@@ -136,7 +137,9 @@ export class GridComponent implements OnInit {
         title: 'Nome:'
       }
     }
-    this.settings = { actions: { add: false, edit: false, delete: false }, columns: this.ColunaExibida };
+    this.settings = { actions: { add: false, edit: false, delete: false },
+    
+     columns: this.ColunaExibida };
   }
 
 }

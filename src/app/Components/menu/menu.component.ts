@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
       icon: 'fa fa-lg fa-id-card-o',
       target:"fichas"
     },
-    {
+/*     {
       title: 'Clans',
       icon: 'fa fa-lg fa-first-order',      
       //target:"Clans"
@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
       title: 'Panteão',
       icon: 'fa fa-lg fa-star',      
       //target:"Pantheon"
-    }]
+    } */]
     //
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService,public menuSrv: NbMenuService) {
     this.menuSrv.onItemClick().subscribe((omega)=>{
