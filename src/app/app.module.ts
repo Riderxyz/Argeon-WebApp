@@ -31,8 +31,6 @@ import { FormsModule } from '@angular/forms';
   import { environment } from '../environments/environment';
   import { AppComponent } from './app.component';
 //Modals
-  import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
-  import { ToasterModule } from 'angular2-toaster';
 
 //Paginas
   import { HomeComponent } from './Pages/home/home.component';
@@ -82,7 +80,6 @@ import { FormsModule } from '@angular/forms';
     NbCardModule,
     NbLayoutModule,
     NbMenuModule,
-    ToasterModule,
     NbRouteTabsetModule,
     NbSearchModule,
     NbSidebarModule,
@@ -102,7 +99,6 @@ import { FormsModule } from '@angular/forms';
     NbMenuModule.forRoot().providers,
     CacheServiceService,
     LoginSrvService,
-    ToasterService,
     AngularFireAuth],
   bootstrap: [AppComponent],
 
