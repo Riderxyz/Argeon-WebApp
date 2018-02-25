@@ -39,6 +39,8 @@ import { FormsModule } from '@angular/forms';
   import { FichaComponent } from './Pages/ficha/ficha.component';
   import { EditarFichasComponent } from './Pages/editar-fichas/editar-fichas.component';
   import { CriarFichasComponent } from './Pages/criar-fichas/criar-fichas.component';
+  import { MagiasComponent } from './Pages/magias/magias.component';
+  import { ClansComponent } from './Pages/clans/clans.component';
 
 //Componentes
   import { GridComponent } from './Components/grid/grid.component';
@@ -59,6 +61,8 @@ import { FormsModule } from '@angular/forms';
     NoticiasComponent,
     LoginComponent,
     FichaComponent,
+    MagiasComponent,
+    ClansComponent,
 //Componentes
     GridComponent,
     HeaderComponent,

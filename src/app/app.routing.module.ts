@@ -9,6 +9,8 @@ import { LoginComponent } from './Pages/login/login.component';
 import { FichaComponent } from './Pages/ficha/ficha.component';
 import { EditarFichasComponent } from './Pages/editar-fichas/editar-fichas.component';
 import { CriarFichasComponent } from './Pages/criar-fichas/criar-fichas.component';
+import { MagiasComponent } from './Pages/magias/magias.component';
+import { ClansComponent } from './Pages/clans/clans.component';
 
 const AppRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -17,6 +19,8 @@ const AppRoutes: Routes = [
     { path: 'fichas', component: FichaComponent },
     { path: 'criar_ficha', component: CriarFichasComponent },
     { path: 'editar_ficha', component: EditarFichasComponent },
+    { path: 'Magias', component: MagiasComponent },
+    { path: 'Clans', component: ClansComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 
 ]

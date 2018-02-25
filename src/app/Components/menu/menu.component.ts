@@ -27,21 +27,21 @@ export class MenuComponent implements OnInit {
       icon: 'fa fa-lg fa-id-card-o',
       target:"fichas"
     },
-/*     {
+    {
       title: 'Clans',
       icon: 'fa fa-lg fa-first-order',      
-      //target:"Clans"
+      target:"Clans"
     },
     {
       title: 'Magias',
       icon: 'fa fa-lg fa-superpowers',      
-      //target:"Magia"
+      target:"Magias"
     },
     {
       title: 'Panteão',
       icon: 'fa fa-lg fa-star',      
       //target:"Pantheon"
-    } */]
+    }]
     //
   constructor(public router: Router, private themeService: NbThemeService, public cacheSrv: CacheServiceService,public menuSrv: NbMenuService) {
     this.menuSrv.onItemClick().subscribe((omega)=>{
@@ -49,7 +49,6 @@ export class MenuComponent implements OnInit {
     })
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
-      
       this.init(theme.variables);
     });
   }
