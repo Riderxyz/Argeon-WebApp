@@ -34,8 +34,6 @@ import {
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
-import { MagiasComponent } from './../Pages/ficha/magias/magias.component';
-import { ClansComponent } from './../Pages/clans/clans.component';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -88,8 +86,7 @@ const NB_THEME_PROVIDERS = [
   imports: [...BASE_MODULES, ...NB_MODULES],
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
   declarations: [...COMPONENTS, ...PIPES,
-		MagiasComponent,
-		ClansComponent],
+		],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
