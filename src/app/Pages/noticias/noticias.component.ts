@@ -23,19 +23,6 @@ export class NoticiasComponent implements OnInit {
   }
   ngOnInit() {
   }
-  ativar() {
-
-    if (this.classe != null) {
-      this.classe = null
-    }
-    else {
-      this.classe = 'Mostrar'
-    }
-  }
-
-  showDialog() {
-    this.display = true;
-}
   getNoticias1() {
     this.db.list('MenuNotas').valueChanges()
       .subscribe((s) => {

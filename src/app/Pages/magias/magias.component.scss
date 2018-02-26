@@ -1,4 +1,4 @@
-.angrytext {
+.Mostrar {
     font-size: 70px;
     font-weight: bold; //color: #4794D3; //width: 300px;
     //margin: 90px auto;
@@ -59,4 +59,26 @@
       transform: scale(0.9);
     }
   }
+  .Card99 {
+    margin: 10px;
+    width: 20%;
+    flex-grow: 1;
+    nb-card-header {
+        text-align: center
+    }
+  }
   
+  .WrapItUp {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .okay{
+    text-align: center !important;
+  }
+  ::ng-deep .swal2-popup .swal2-title{
+    color:white !important;
+  }
+  
+  ::ng-deep .swal2-popup #swal2-content{
+    color:white !important;
+  }

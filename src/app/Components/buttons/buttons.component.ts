@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NbThemeService, NbMenuItem, NbMenuService } from '@nebular/theme';
 import { CacheServiceService } from './../../Service/CacheSrv/cache-service.service';
-import { GridComponent } from '../grid/grid.component';
 import { RouterModule, Router } from '@angular/router';
 @Component({
   selector: 'app-buttons',
