@@ -11,7 +11,7 @@
   <nb-layout-column class="WrapItUp Mostrar">
          <nb-card class="Card99" (click)="onClick(item)" *ngFor="let item of Magia">
               <nb-card-header>{{item.nome}}</nb-card-header>
-              <nb-card-body>
+              <nb-card-body class="center" style="display:flex; align-items:center">
                   <div style=" text-align: center; ">
                       <img width="50%" height="50%" src="{{item.url_imagem}}">
                   </div>
