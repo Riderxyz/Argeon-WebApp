@@ -67,12 +67,12 @@
       <div class='row '>
         <div class='container col-md-6 coluna teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaGrimorio' [dragulaOptions]="options">
           <nb-card class="Card99" *ngFor="let text of MagiaGrimorio">
-            <nb-card-header [innerHtml]='text'></nb-card-header>
+            <nb-card-header [innerHtml]='text.nome'></nb-card-header>
           </nb-card>
         </div>
         <div class='container col-md-6 coluna2 teste' [dragula]='"bag-task1"' [dragulaModel]='MagiaPlayer' [dragulaOptions]="options2">
           <nb-card class="Card99" *ngFor="let text of MagiaPlayer">
-            <nb-card-header [innerHtml]='text'></nb-card-header>
+            <nb-card-header [innerHtml]='text.nome'></nb-card-header>
           </nb-card>
         </div>
       </div>

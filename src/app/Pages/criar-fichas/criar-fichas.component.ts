@@ -8,6 +8,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import swal from 'sweetalert2';
+import { open } from 'inspector';
 @Component({
   selector: 'app-criar-fichas',
   templateUrl: './criar-fichas.component.html',
@@ -24,16 +25,15 @@ export class CriarFichasComponent implements OnInit {
     removeOnSpill: true,
     copy: false
   }
-  MagiaGrimorio: Array<string> = [];
-  MagiaPlayer: Array<string> = [];
+  MagiaGrimorio = [];
+  MagiaPlayer = [];
   Dropdowns = {
     Grimorio: null,
     Reinos: null,
     Clans: null,
   }
-
+  Pontos: any
   //toaster
-
   toasterText: string
   //image
   ImagePlayer: any
@@ -50,6 +50,10 @@ export class CriarFichasComponent implements OnInit {
       this.themeName = theme.name;
       this.Buttons(theme.variables);
     });
+    this.dragulaService.drop.subscribe((value) => {
+      console.log(value)
+      this.CustoMagico()
+    })
   }
   ngOnInit() {
   }
@@ -58,8 +62,9 @@ export class CriarFichasComponent implements OnInit {
       .subscribe((s) => {
         this.Dropdowns.Grimorio = s
         for (let i = 0; i < this.Dropdowns.Grimorio.length; i++) {
-          const magias = this.Dropdowns.Grimorio[i].nome;
+          const magias = this.Dropdowns.Grimorio[i];
           this.MagiaGrimorio.push(magias)
+          //console.log(this.MagiaGrimorio)
         }
       })
     this.db.list('Reinos').valueChanges()
@@ -98,14 +103,13 @@ export class CriarFichasComponent implements OnInit {
       }
     ]
   }
-
-  showToast(position: string, iconType: any, body: string, time: number, cor: any) {
+  showToast(position: any, iconType: any, body: string, time: number, cor: any) {
     swal({
-      position: 'top-end',
+      position: position,
       html: body,
       showConfirmButton: false,
       background: cor,
-      // #678D65
+      width:500,
       type: iconType,
       toast: true,
       timer: time,
@@ -119,7 +123,6 @@ export class CriarFichasComponent implements OnInit {
       this.toasterText = this.toasterText + `<div style="
                           padding:10px;
                           color:#fff;
-                          
                           font-family: 'Ubuntu', serif;
                           text-align: left;
                           ">
@@ -130,7 +133,6 @@ export class CriarFichasComponent implements OnInit {
       this.toasterText = this.toasterText + `<div style="
                          padding:10px;
                          color:#fff;
-                         
                          font-family: 'Ubuntu', serif;
                          text-align: left;
                          >
@@ -141,18 +143,49 @@ export class CriarFichasComponent implements OnInit {
       this.toasterText = this.toasterText + `<div style="
                          padding:10px;
                          color:#fff;
-                         
                          font-family: 'Ubuntu', serif;
                          text-align: left;
                          >
                          <span style="font-weight: bold;">Erro!</span>Você não informou sua idade</div>`
 
+
+    }
+    let pontosFinais = this.FichasData.IdadePlayer - this.Pontos;
+    if (pontosFinais < 0 ) {
+      console.log(pontosFinais);
       
+      this.toasterText = this.toasterText + `<div style="
+                         padding:10px;
+                         color:#fff;
+                         font-family: 'Ubuntu', serif;
+                         text-align: left;
+                         >
+                         <span style="font-weight: bold;">Erro!</span>Suas magias excedem o numero de pontos que você possui</div>`
+
+
     }
     return (this.toasterText == '')
   }
+PlayerPoints(){
+  this.FichasData.IdadePlayer - this.Pontos
+}
+  CustoMagico() {
+    var pontos = 0,
+      average;
+    for (var i = 0; i < this.MagiaPlayer.length; i++) {
+      pontos += this.MagiaPlayer[i].pontos;
+    }
+    average = pontos
+    console.log(average);
+    
+    return average;
+  };
   salvar(item) {
-    if (this.FichasData.Reino == null) {
+    console.clear()
+    
+    this.Pontos = this.CustoMagico();
+    console.log('OA!', this.Pontos);
+      if (this.FichasData.Reino == null) {
       this.FichasData.Reino = 'Vento Verde'
     }
     if (this.FichasData.Clan == null) {
@@ -162,8 +195,9 @@ export class CriarFichasComponent implements OnInit {
       this.router.navigateByUrl('/fichas')
     } else {
       if (!this.ValidarRegistro()) {
-        this.showToast('top', 'error', this.toasterText, 2000, '#B83740')
+        this.showToast('top', 'error', this.toasterText, 3000, '#B83740')
       } else {
+        
         this.Envio.set({
           NomePlayer: this.FichasData.NomePlayer,
           NomeChar: this.FichasData.NomeChar,
@@ -177,19 +211,19 @@ export class CriarFichasComponent implements OnInit {
           userId: this.userId,
           Magias: this.MagiaPlayer,
           MagiasPendentes: this.MagiaGrimorio
-        })
-        var successMsg = '<h5>Ficha criada com sucesso</h5>'
-        this.showToast('top-end', 'success', successMsg, 2000, '#678D65')
-        setTimeout(() => {
-          this.router.navigateByUrl('/fichas')
-        }, 2100);
+        }).then((s) =>{
+          var successMsg = '<h5>Ficha criada com sucesso</h5>'
+          this.showToast('top-end', 'success', successMsg, 2000, '#678D65')
+          setTimeout(() => {
+            this.router.navigateByUrl('/fichas')
+          }, 2100);
+        }) 
+        
+  
       }
-    }
+    } 
 
   }
-
-
-
 
 
 
