@@ -32,7 +32,8 @@ export class CriarFichasComponent implements OnInit {
     Reinos: null,
     Clans: null,
   }
-  Pontos: any
+  PontosGastos: any
+  PontosSaldo:any
   //toaster
   toasterText: string
   //image
@@ -53,6 +54,18 @@ export class CriarFichasComponent implements OnInit {
     this.dragulaService.drop.subscribe((value) => {
       console.log(value)
       this.CustoMagico()
+      this.PontosGastos = this.CustoMagico();
+      if (this.FichasData.IdadePlayer < 20) {
+        this.PontosSaldo = 20
+      } else {
+        this.PontosSaldo = this.FichasData.IdadePlayer
+      }
+
+      if (this.PontosGastos > this.PontosSaldo) {
+        
+      } else {
+        
+      }
     })
   }
   ngOnInit() {
@@ -63,6 +76,9 @@ export class CriarFichasComponent implements OnInit {
         this.Dropdowns.Grimorio = s
         for (let i = 0; i < this.Dropdowns.Grimorio.length; i++) {
           const magias = this.Dropdowns.Grimorio[i];
+          delete magias.url_imagem
+          console.log(magias);
+          
           this.MagiaGrimorio.push(magias)
           //console.log(this.MagiaGrimorio)
         }
@@ -150,7 +166,7 @@ export class CriarFichasComponent implements OnInit {
 
 
     }
-    let pontosFinais = this.FichasData.IdadePlayer - this.Pontos;
+    let pontosFinais = this.FichasData.IdadePlayer - this.PontosGastos;
     if (pontosFinais < 0 ) {
       console.log(pontosFinais);
       
@@ -167,7 +183,7 @@ export class CriarFichasComponent implements OnInit {
     return (this.toasterText == '')
   }
 PlayerPoints(){
-  this.FichasData.IdadePlayer - this.Pontos
+  this.FichasData.IdadePlayer - this.PontosGastos
 }
   CustoMagico() {
     var pontos = 0,
@@ -182,9 +198,7 @@ PlayerPoints(){
   };
   salvar(item) {
     console.clear()
-    
-    this.Pontos = this.CustoMagico();
-    console.log('OA!', this.Pontos);
+    console.log('OA!', this.PontosGastos);
       if (this.FichasData.Reino == null) {
       this.FichasData.Reino = 'Vento Verde'
     }
