@@ -82,13 +82,14 @@ agm-map {
   display: flex !important;
   //flex-wrap: wrap;
 }
- .Card99 {
-    margin-left: 10px;
-    nb-card-header {
-        text-align: center
-    }
-} 
 
+.Card99 {
+  margin-left: 10px;
+
+  nb-card-header {
+    text-align: center;
+  }
+}
 
 .angrytext {
   font-size: 70px;
