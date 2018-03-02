@@ -27,7 +27,7 @@ this.getGrimorio()
   onClick(dados){
     swal({
       title: dados.nome, 
-      text: dados.observacao,
+      text: '<p>' + dados.observacao + '</p>',
       imageUrl: dados.url_imagem,
       imageWidth: 200,
       imageHeight: 200,
