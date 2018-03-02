@@ -11,14 +11,14 @@
       <nb-user [name]="UsernameDisplay" [picture]="AvatarDisplay"></nb-user>
     </nb-action>
     <nb-action>
-      <button class="btn btn-primary logout" (click)="GoToLogin()" >
+      <button class="btn btn-primary logout" (click)="GoToLogin(false)" >
         <i class="fa fa-2x fa-chevron-down {{Rotate}} "></i>Sair</button>
     </nb-action>
   </nb-actions>
 
   <nb-actions size="medium" class="header-container" style=" justify-content: flex-end;" *ngIf="!Logado">
     <nb-action>
-      <button class="btn btn-primary logout" (click)="GoToLogin()">
+      <button class="btn btn-primary logout" (click)="GoToLogin(true)">
         <i class="fa fa-2x fa-chevron-up {{Rotate}} "></i>Login</button>
     </nb-action>
   </nb-actions>

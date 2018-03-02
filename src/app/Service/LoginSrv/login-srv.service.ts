@@ -42,7 +42,12 @@ export class LoginSrvService {
     sessionStorage.removeItem('SetNameuser');
     sessionStorage.removeItem('SetImageuser');
     sessionStorage.removeItem('SetTokenuser');
-    this.router.navigateByUrl('/home')
+    setTimeout(() => {
+      this.router.navigateByUrl('/home');
+    }, 10);
+    this.zone.run(() => {
+      this.router.navigateByUrl('/login');
+    })
   }
 
   ativar(show: any) {
@@ -76,9 +81,12 @@ export class LoginSrvService {
       html: '<h1 style="color:#3f34b0">'+text+'</h1>',
       showConfirmButton: true,
       onClose: () => {
-        this.zone.run(() => {
+        setTimeout(() => {
           this.router.navigateByUrl('/home');
-        });
+        }, 10);
+        this.zone.run(() => {
+          this.router.navigateByUrl('/login');
+        })
       }
     })
   }

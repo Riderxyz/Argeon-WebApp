@@ -57,17 +57,16 @@
   animation-duration: .3s;
   animation-timing-function: linear;
   animation-delay: 0s;
-  animation-iteration-count: 10;
+  animation-iteration-count: 100;
   animation-direction: normal;
   animation-fill-mode: none;
 }
-
-.RotateToLogin {
+.fa-chevron-up:hover {
   -webkit-animation-name: RotateToLogin;
   -webkit-animation-duration: .3s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-delay: 0s;
-  -webkit-animation-iteration-count: 10;
+  -webkit-animation-iteration-count: infinite;
   -webkit-animation-direction: normal;
   -webkit-animation-fill-mode: none;
 
@@ -75,7 +74,26 @@
   animation-duration: .3s;
   animation-timing-function: linear;
   animation-delay: 0s;
-  animation-iteration-count: 10;
+  animation-iteration-count: 100;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+
+.RotateToLogin {
+  -webkit-animation-name: RotateToLogin;
+  -webkit-animation-duration: .3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-iteration-count: 20;
+  -webkit-animation-direction: normal;
+  -webkit-animation-fill-mode: none;
+
+  animation-name: RotateToLogin;
+  animation-duration: .3s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: 100;
   animation-direction: normal;
   animation-fill-mode: none;
 
