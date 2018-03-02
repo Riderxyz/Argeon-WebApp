@@ -33,7 +33,7 @@ export class CriarFichasComponent implements OnInit {
     Clans: null,
   }
   PontosGastos: any
-  PontosSaldo:any
+  PontosSaldo: any
   //toaster
   toasterText: string
   //image
@@ -62,9 +62,9 @@ export class CriarFichasComponent implements OnInit {
       }
 
       if (this.PontosGastos > this.PontosSaldo) {
-        
+
       } else {
-        
+
       }
     })
   }
@@ -78,7 +78,7 @@ export class CriarFichasComponent implements OnInit {
           const magias = this.Dropdowns.Grimorio[i];
           delete magias.url_imagem
           console.log(magias);
-          
+
           this.MagiaGrimorio.push(magias)
           //console.log(this.MagiaGrimorio)
         }
@@ -125,7 +125,7 @@ export class CriarFichasComponent implements OnInit {
       html: body,
       showConfirmButton: false,
       background: cor,
-      width:500,
+      width: 500,
       type: iconType,
       toast: true,
       timer: time,
@@ -167,9 +167,9 @@ export class CriarFichasComponent implements OnInit {
 
     }
     let pontosFinais = this.FichasData.IdadePlayer - this.PontosGastos;
-    if (pontosFinais < 0 ) {
+    if (pontosFinais < 0) {
       console.log(pontosFinais);
-      
+
       this.toasterText = this.toasterText + `<div style="
                          padding:10px;
                          color:#fff;
@@ -182,9 +182,9 @@ export class CriarFichasComponent implements OnInit {
     }
     return (this.toasterText == '')
   }
-PlayerPoints(){
-  this.FichasData.IdadePlayer - this.PontosGastos
-}
+  PlayerPoints() {
+    this.FichasData.IdadePlayer - this.PontosGastos
+  }
   CustoMagico() {
     var pontos = 0,
       average;
@@ -193,13 +193,13 @@ PlayerPoints(){
     }
     average = pontos
     console.log(average);
-    
+
     return average;
   };
   salvar(item) {
     console.clear()
     console.log('OA!', this.PontosGastos);
-      if (this.FichasData.Reino == null) {
+    if (this.FichasData.Reino == null) {
       this.FichasData.Reino = 'Vento Verde'
     }
     if (this.FichasData.Clan == null) {
@@ -211,7 +211,7 @@ PlayerPoints(){
       if (!this.ValidarRegistro()) {
         this.showToast('top', 'error', this.toasterText, 3000, '#B83740')
       } else {
-        
+
         this.Envio.set({
           NomePlayer: this.FichasData.NomePlayer,
           NomeChar: this.FichasData.NomeChar,
@@ -225,17 +225,17 @@ PlayerPoints(){
           userId: this.userId,
           Magias: this.MagiaPlayer,
           MagiasPendentes: this.MagiaGrimorio
-        }).then((s) =>{
+        }).then((s) => {
           var successMsg = '<h5>Ficha criada com sucesso</h5>'
           this.showToast('top-end', 'success', successMsg, 2000, '#678D65')
           setTimeout(() => {
             this.router.navigateByUrl('/fichas')
           }, 2100);
-        }) 
-        
-  
+        })
+
+
       }
-    } 
+    }
 
   }
 
