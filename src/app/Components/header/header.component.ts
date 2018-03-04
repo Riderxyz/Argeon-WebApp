@@ -91,7 +91,10 @@ export class HeaderComponent implements OnInit {
         // Read more about handling dismissals
         result.dismiss === swal.DismissReason.cancel
       ) {
-      this.Rotate = null;
+        this.Rotate = 'RotateToLogin';
+        setTimeout(() => {
+          this.Rotate = null
+        }, 2000);
       }
     })
   }

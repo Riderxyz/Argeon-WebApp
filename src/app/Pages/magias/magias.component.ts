@@ -6,32 +6,33 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-magias',
   templateUrl: './magias.component.html',
-  styleUrls: [ './magias.component.scss' ]
+  styleUrls: ['./magias.component.scss']
 })
 export class MagiasComponent {
-  Magia:any
+  Magia: any
   constructor(public db: AngularFireDatabase, public cacheSrv: CacheServiceService) {
 
 
-this.getGrimorio()
+    this.getGrimorio()
   }
   getGrimorio() {
     this.db.list('Grimorio').valueChanges()
       .subscribe((s) => {
         console.log(s);
         this.Magia = s
-       // this.execute = false;
+        // this.execute = false;
       })
   }
 
-  onClick(dados){
+  onClick(dados) {
     swal({
-      title: dados.nome, 
-      text: '<p>' + dados.observacao + '</p>',
+      title: dados.nome,
+      html: '<div><p style="text-align:start">' + dados.observacao + '</p></div>',
       imageUrl: dados.url_imagem,
       imageWidth: 200,
       imageHeight: 200,
-      background:'#3d3780'
+      width: 600,
+      background: '#3d3780'
     })
   }
 }
