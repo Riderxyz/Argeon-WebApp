@@ -1,6 +1,6 @@
 .Mostrar {
-  font-size: 70px;
-  font-weight: bold; //color: #4794D3; //width: 300px;
+  //font-size: 70px;
+  //font-weight: bold; //color: #4794D3; //width: 300px;
   //margin: 90px auto;
   -webkit-animation-name: bounce-in;
   -webkit-animation-duration: 3s;
@@ -70,15 +70,14 @@
   }
 }
 
-.WrapItUp {
+ .WrapItUp {
   display: flex;
   flex-wrap: wrap;
-}
+} 
 
 .okay {
   text-align: center !important;
 }
-
 
 ::ng-deep .swal2-popup .swal2-title {
   color: white !important;
