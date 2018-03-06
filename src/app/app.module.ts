@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 //Nebular
   import {
     NbActionsModule,
@@ -103,7 +104,8 @@ import { FormsModule } from '@angular/forms';
     NbMenuModule.forRoot().providers,
     CacheServiceService,
     LoginSrvService,
-    AngularFireAuth],
+    AngularFireAuth,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 
 })
