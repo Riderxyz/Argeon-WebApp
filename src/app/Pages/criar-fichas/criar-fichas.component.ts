@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { DragulaDirective } from 'ng2-dragula/components/dragula.directive';
@@ -8,7 +7,6 @@ import { RouterModule, Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import swal from 'sweetalert2';
-import { open } from 'inspector';
 @Component({
   selector: 'app-criar-fichas',
   templateUrl: './criar-fichas.component.html',
@@ -77,7 +75,7 @@ export class CriarFichasComponent implements OnInit {
         for (let i = 0; i < this.Dropdowns.Grimorio.length; i++) {
           const magias = this.Dropdowns.Grimorio[i];
           delete magias.url_imagem
-          console.log(magias);
+          // console.log(magias);
 
           this.MagiaGrimorio.push(magias)
           //console.log(this.MagiaGrimorio)
@@ -199,6 +197,7 @@ export class CriarFichasComponent implements OnInit {
   salvar(item) {
     console.clear()
     console.log('OA!', this.PontosGastos);
+    console.log(this.MagiaPlayer);
     if (this.FichasData.Reino == null) {
       this.FichasData.Reino = 'Vento Verde'
     }
@@ -211,7 +210,6 @@ export class CriarFichasComponent implements OnInit {
       if (!this.ValidarRegistro()) {
         this.showToast('top', 'error', this.toasterText, 3000, '#B83740')
       } else {
-
         this.Envio.set({
           NomePlayer: this.FichasData.NomePlayer,
           NomeChar: this.FichasData.NomeChar,
@@ -236,9 +234,5 @@ export class CriarFichasComponent implements OnInit {
 
       }
     }
-
   }
-
-
-
-}  
+}
