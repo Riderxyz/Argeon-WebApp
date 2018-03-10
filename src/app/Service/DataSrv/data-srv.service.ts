@@ -3,14 +3,14 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 
 @Injectable()
 export class DataSrvService {
-    constructor(public db: AngularFireDatabase) {}
+    constructor(public db: AngularFireDatabase) { }
 
 
 
 
-    getData(banco){
-        
+    getData(banco) {
+
         this.db.list(banco).valueChanges()
-        .map((dados) =>{ return dados})
+            .map((dados) => { console.log(dados) })
     }
 }
