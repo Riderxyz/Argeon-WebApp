@@ -58,9 +58,7 @@ export class CriarFichasComponent implements OnInit {
       } else {
         this.PontosSaldo = this.FichasData.IdadePlayer
       }
-
       if (this.PontosGastos > this.PontosSaldo) {
-
       } else {
 
       }
