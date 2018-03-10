@@ -53,6 +53,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   import { LoginSrvService } from './Service/LoginSrv/login-srv.service';
   import { AppRoutingModule } from "./app.routing.module";
   import { AgmCoreModule } from '@agm/core';
+  import { DataSrvService } from './Service/DataSrv/data-srv.service';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     NbMenuModule.forRoot().providers,
     CacheServiceService,
     LoginSrvService,
+    DataSrvService,
     AngularFireAuth,
     {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],

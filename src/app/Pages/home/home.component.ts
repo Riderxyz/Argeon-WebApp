@@ -1,9 +1,10 @@
-import { RouterModule, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { DataSrvService } from '../../Service/DataSrv/data-srv.service';
+
 
 
 @Component({
@@ -22,12 +23,10 @@ export class HomeComponent implements OnInit {
   lng: number = -43.22418451;
   elevation: number = 15
 
-  constructor(public db: AngularFireDatabase, public router: Router, private themeService: NbThemeService) {
+  constructor(public db: AngularFireDatabase, private themeService: NbThemeService, public FireSrv: DataSrvService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
-      //this.layoutState$ = this.stateService.onLayoutState()
-      // .subscribe((layout: string) => this.layout = layout);
     });
   }
   ngOnInit() {
@@ -63,14 +62,12 @@ export class HomeComponent implements OnInit {
     ]
   }
 
-  Gerar(Botao) {
-
-    setTimeout(() => {
-      this.router.navigateByUrl('/noticias')
-    }, 30);
+  Gerar() {
+   var X =  this.FireSrv.getData('Reinos')
+console.log('Em home',X)
+    
 
   }
   ngOnDestroy() {
-    //this.layoutState.unsubscribe();
   }
 }
