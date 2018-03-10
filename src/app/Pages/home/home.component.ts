@@ -26,46 +26,19 @@ export class HomeComponent implements OnInit {
   constructor(public db: AngularFireDatabase, private themeService: NbThemeService, public FireSrv: DataSrvService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
-      this.init(theme.variables);
+      // this.init(theme.variables);
     });
   }
   ngOnInit() {
 
   }
-  init(colors: any) {
-    this.settings = [{
-      class: 'btn-hero-primary',
-      container: 'primary-container',
-      Destino: 'home',
-      NameButton: 'Home',
-      cosmic: {
-        gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
-        gradientRight: colors.primary,
-        bevel: `shade(${colors.primary}, 14%)`,
-        shadow: 'rgba (6, 7, 64, 0.5)',
-        glow: `adjust-hue(${colors.primary}, 10deg)`,
-      },
-    },
-    {
-      class: 'btn-hero-success',
-      container: 'success-container',
-      Destino: 'home',
-      NameButton: 'Noticias',
-      cosmic: {
-        gradientLeft: `adjust-hue(${colors.primary}, 20deg)`,
-        gradientRight: colors.primary,
-        bevel: `shade(${colors.primary}, 14%)`,
-        shadow: 'rgba (6, 7, 64, 0.5)',
-        glow: `adjust-hue(${colors.primary}, 10deg)`,
-      },
-    },
-    ]
-  }
+
 
   Gerar() {
-   var X =  this.FireSrv.getData('Reinos')
-console.log('Em home',X)
-    
+    console.log('asdsdadas');
+
+    this.db.list('Reinos').valueChanges()
+      .subscribe((dados) => { console.log(dados) })
 
   }
   ngOnDestroy() {
