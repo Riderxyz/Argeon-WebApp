@@ -50,21 +50,19 @@ export class CriarFichasComponent implements OnInit {
       this.Buttons(theme.variables);
     });
     this.dragulaService.drop.subscribe((value) => {
-      console.log(value)
-      this.CustoMagico()
+      console.log(this.MagiaPlayer)
       this.PontosGastos = this.CustoMagico();
-      if (this.FichasData.IdadePlayer < 20) {
-        this.PontosSaldo = 20
-      } else {
-        this.PontosSaldo = this.FichasData.IdadePlayer
-      }
-      if (this.PontosGastos > this.PontosSaldo) {
-      } else {
-
-      }
     })
   }
   ngOnInit() {
+  }
+  MP($event) {
+    console.log($event);
+    if (this.FichasData.IdadePlayer < 20) {
+      this.PontosSaldo = 20
+    } else {
+      this.PontosSaldo = this.FichasData.IdadePlayer
+    }
   }
   getDados() {
     this.db.list('Grimorio').valueChanges()
@@ -73,10 +71,7 @@ export class CriarFichasComponent implements OnInit {
         for (let i = 0; i < this.Dropdowns.Grimorio.length; i++) {
           const magias = this.Dropdowns.Grimorio[i];
           delete magias.url_imagem
-          // console.log(magias);
-
           this.MagiaGrimorio.push(magias)
-          //console.log(this.MagiaGrimorio)
         }
       })
     this.db.list('Reinos').valueChanges()
@@ -129,7 +124,6 @@ export class CriarFichasComponent implements OnInit {
 
   }
   ValidarRegistro() {
-    //var retorno: boolean = false;
     this.toasterText = '';
     if (this.FichasData.NomePlayer == null || this.FichasData.NomePlayer == '') {
       this.toasterText = this.toasterText + `<div style="
@@ -139,7 +133,6 @@ export class CriarFichasComponent implements OnInit {
                           text-align: left;
                           ">
                           <span style="font-weight: bold;">Erro!</span>Você não informou seu nome</div>`
-
     }
     if (this.FichasData.NomeChar == null || this.FichasData.NomeChar == '') {
       this.toasterText = this.toasterText + `<div style="
@@ -149,7 +142,6 @@ export class CriarFichasComponent implements OnInit {
                          text-align: left;
                          >
                          <span style="font-weight: bold;">Erro!</span>Você não informou o nome do seu personagem</div>`
-
     }
     if (this.FichasData.IdadePlayer == null || this.FichasData.IdadePlayer == '') {
       this.toasterText = this.toasterText + `<div style="
@@ -159,13 +151,9 @@ export class CriarFichasComponent implements OnInit {
                          text-align: left;
                          >
                          <span style="font-weight: bold;">Erro!</span>Você não informou sua idade</div>`
-
-
     }
-    let pontosFinais = this.FichasData.IdadePlayer - this.PontosGastos;
+    let pontosFinais = this.PontosSaldo - this.PontosGastos;
     if (pontosFinais < 0) {
-      console.log(pontosFinais);
-
       this.toasterText = this.toasterText + `<div style="
                          padding:10px;
                          color:#fff;
@@ -177,10 +165,7 @@ export class CriarFichasComponent implements OnInit {
 
     }
     return (this.toasterText == '')
-  }
-  PlayerPoints() {
-    this.FichasData.IdadePlayer - this.PontosGastos
-  }
+  };
   CustoMagico() {
     var pontos = 0,
       average;
@@ -188,14 +173,10 @@ export class CriarFichasComponent implements OnInit {
       pontos += this.MagiaPlayer[i].pontos;
     }
     average = pontos
-    console.log(average);
-
     return average;
   };
   salvar(item) {
     console.clear()
-    console.log('OA!', this.PontosGastos);
-    console.log(this.MagiaPlayer);
     if (this.FichasData.Reino == null) {
       this.FichasData.Reino = 'Vento Verde'
     }
