@@ -25,7 +25,7 @@
             </div>
             <div class="form-group col-md-4">
               <label>*Sua idade</label>
-              <input [(ngModel)]="FichasData.IdadePlayer" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+              <input [(ngModel)]="FichasData.IdadePlayer"  (ngModelChange)="MP($event)" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
             </div>
             <div class="form-group col-md-4">
               <label>Idade do seu personagem</label>
