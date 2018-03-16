@@ -35,10 +35,13 @@ export class HomeComponent implements OnInit {
 
 
   Gerar() {
-    console.log('asdsdadas');
+    var X
+    X = this.FireSrv.getData('Reinos')
+    console.log(X);
 
-    this.db.list('Reinos').valueChanges()
-      .subscribe((dados) => { console.log(dados) })
+
+    /*  this.db.list('Reinos').valueChanges()
+       .subscribe((dados) => { console.log(dados) }) */
 
   }
   ngOnDestroy() {
