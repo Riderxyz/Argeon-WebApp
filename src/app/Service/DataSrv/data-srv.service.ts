@@ -3,14 +3,22 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 
 @Injectable()
 export class DataSrvService {
+    ReinoKl: any
     constructor(public db: AngularFireDatabase) { }
 
 
 
 
     getData(banco) {
+        this.db.list(banco).valueChanges().subscribe((dados) => {
+            this.ReinoKl = dados
+            //console.log(this.ReinoKl)
 
-        this.db.list(banco).valueChanges()
-            .map((dados) => { console.log(dados) })
+        })
+        return this.ReinoKl
+        /*   var IO = this.ReinoKl
+          // console.log('oooooo', IO);
+          return IO
+   */
     }
 }
